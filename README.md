@@ -13,7 +13,7 @@ This layer depends on:
 
 	URI: https://github.com/STMicroelectronics/meta-st-stm32mp
 	layer: meta-st-stm32mp
-	branch: dunfell
+	branch: gatesgarth
 
 
 BSP
