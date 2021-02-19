@@ -1,12 +1,12 @@
 # Copyright (C) 2019 Oliver Stäbler <oliver.staebler@bytesatwork.ch>
 # Released under the MIT license (see COPYING.MIT for the terms)
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${BP}:"
+FILESEXTRAPATHS_prepend := "${THISDIR}/${BPN}-${U_BOOT_VERSION}:"
 
 # Increase PR if something changes
 PR="0"
 
-SRC_URI_class-devupstream += " \
+SRC_URI_append_class-devupstream = " \
 	file://0001-board-bytedevkit-Add-initial-version-for-bytedevkit.patch \
 	file://0002-configs-bytedevkit-Add-initial-version.patch \
 	file://0003-bytedevkit-Add-initial-version.patch \
