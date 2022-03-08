@@ -4,7 +4,7 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/linux-stm32mp-5.10:"
 
 # Increase PR if something changes
-PR="0"
+PR="1"
 
 SRC_URI_class-devupstream += " \
 	file://0001-drm-add-youritech-panel-with-ili9806e-mipi-controlle.patch \
@@ -18,6 +18,7 @@ SRC_URI_class-devupstream += " \
 	file://0009-ARM-dts-stm32mp157c-byteengine-bytedevkit-Adapt-to-5.patch \
 	file://0010-ARM-dts-stm32-Fix-issue-with-usart1-when-using-no-sc.patch \
 	file://0011-ARM-configs-bytedevkit-Fix-boot-logo.patch \
+	file://0012-lib-iov_iter-initialize-flags-in-new-pipe_buffer.patch \
 "
 
 KERNEL_CONFIG_FRAGMENTS += "${S}/arch/arm/configs/fragment-901-bytedevkit.config"
