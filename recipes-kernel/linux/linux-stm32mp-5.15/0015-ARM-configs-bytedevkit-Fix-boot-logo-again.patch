@@ -1,0 +1,28 @@
+From 80390eb004470deca4bf0b079149103912c65a2c Mon Sep 17 00:00:00 2001
+From: Daniel Ammann <daniel.ammann@bytesatwork.ch>
+Date: Tue, 12 Jul 2022 10:18:37 +0200
+Subject: [PATCH] ARM: configs: bytedevkit: Fix boot logo again
+
+The logo is not shown if the framebuffer console is disabled.
+
+Signed-off-by: Daniel Ammann <daniel.ammann@bytesatwork.ch>
+---
+ arch/arm/configs/fragment-901-bytedevkit.config | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/arch/arm/configs/fragment-901-bytedevkit.config b/arch/arm/configs/fragment-901-bytedevkit.config
+index 77734596ad19..602321a70295 100644
+--- a/arch/arm/configs/fragment-901-bytedevkit.config
++++ b/arch/arm/configs/fragment-901-bytedevkit.config
+@@ -12,3 +12,8 @@ CONFIG_DP83867_PHY=y
+ 
+ CONFIG_MFD_STM32_TIMERS=y
+ CONFIG_PWM_STM32=y
++
++CONFIG_FRAMEBUFFER_CONSOLE=y
++CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY=y
++# CONFIG_FRAMEBUFFER_CONSOLE_ROTATION is not set
++# CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER is not set
+-- 
+2.39.2
+

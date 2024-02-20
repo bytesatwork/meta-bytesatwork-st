@@ -1,0 +1,28 @@
+From 06d82100dba0cb9815439ab71d18e8e96fffbda9 Mon Sep 17 00:00:00 2001
+From: Daniel Ammann <daniel.ammann@bytesatwork.ch>
+Date: Thu, 14 Jul 2022 10:14:39 +0200
+Subject: [PATCH] dt-bindings: vendor-prefixes: Add bytes at work AG
+
+Document the bytes at work AG vendor prefix.
+
+Signed-off-by: Daniel Ammann <daniel.ammann@bytesatwork.ch>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 864e10fbf90b..d434a23c98e2 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -165,6 +165,8 @@ patternProperties:
+     description: BAIKAL ELECTRONICS, JSC
+   "^bananapi,.*":
+     description: BIPAI KEJI LIMITED
++  "^batw,.*":
++    description: bytes at work AG
+   "^beacon,.*":
+     description: Compass Electronics Group, LLC
+   "^beagle,.*":
+-- 
+2.39.2
+

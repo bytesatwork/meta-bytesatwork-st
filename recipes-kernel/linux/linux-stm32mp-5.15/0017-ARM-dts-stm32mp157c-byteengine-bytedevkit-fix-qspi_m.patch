@@ -1,0 +1,39 @@
+From 32e3fa1f382127f7a0c19279bef6a27dc7ddde9e Mon Sep 17 00:00:00 2001
+From: Rico Ganahl <rico.ganahl@bytesatwork.ch>
+Date: Fri, 21 Apr 2023 09:00:23 +0200
+Subject: [PATCH] ARM: dts: stm32mp157c-byteengine/bytedevkit: fix qspi_mm
+ region
+
+Using the default value from the stm32mp151.dtsi gives error in the
+stm32-qspi probe function on a stm32mp151a with 1 GB RAM:
+
+[    3.194620] vmap allocation for size 268439552 failed:
+               use vmalloc=<size> to increase size
+[    3.201610] stm32-qspi 58003000.spi: ioremap failed for
+               resource [mem 0x70000000-0x7ffffffe]
+[    3.210126] stm32-qspi: probe of 58003000.spi failed with error -12
+
+Therefore no mtd device is present in Linux. To avoid that do not map
+the full 256 MB address space.
+Because only a 16 MB SPI NOR is attached, this should not be an issue.
+
+Signed-off-by: Rico Ganahl <rico.ganahl@bytesatwork.ch>
+---
+ arch/arm/boot/dts/stm32mp157c-byteengine-m5.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm/boot/dts/stm32mp157c-byteengine-m5.dtsi b/arch/arm/boot/dts/stm32mp157c-byteengine-m5.dtsi
+index 5c8cc90963dc..0aec9c7fb3f1 100644
+--- a/arch/arm/boot/dts/stm32mp157c-byteengine-m5.dtsi
++++ b/arch/arm/boot/dts/stm32mp157c-byteengine-m5.dtsi
+@@ -329,6 +329,7 @@ &qspi {
+ 	pinctrl-names = "default", "sleep";
+ 	pinctrl-0 = <&qspi_clk_pins_a &qspi_bk1_pins_a>;
+ 	pinctrl-1 = <&qspi_clk_sleep_pins_a &qspi_bk1_sleep_pins_a>;
++	reg = <0x58003000 0x1000>, <0x70000000 0x8000000>;
+ 	#address-cells = <1>;
+ 	#size-cells = <0>;
+ 	status = "okay";
+-- 
+2.39.2
+
