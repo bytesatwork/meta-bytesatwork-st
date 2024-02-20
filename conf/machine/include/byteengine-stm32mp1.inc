@@ -6,9 +6,12 @@
 #@DESCRIPTION: byteENGINE STM32MP1 by bytes at work AG
 
 include conf/machine/include/st-machine-common-stm32mp.inc
-include conf/machine/include/arm/armv7a/tune-cortexa7.inc
+include conf/machine/include/st-machine-providers-stm32mp.inc
+
+MACHINEOVERRIDES .= ":stm32mp1common:stm32mp15common"
 
 DEFAULTTUNE = "cortexa7thf-neon-vfpv4"
+include conf/machine/include/arm/armv7a/tune-cortexa7.inc
 
 PREFERRED_PROVIDER_virtual/bootloader = "u-boot-stm32mp"
 PREFERRED_PROVIDER_virtual/kernel = "linux-stm32mp"
