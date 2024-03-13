@@ -1,0 +1,113 @@
+From aa62a61ae34161091dbf1e2165f5f5c292910763 Mon Sep 17 00:00:00 2001
+From: Rico Ganahl <rico.ganahl@bytesatwork.ch>
+Date: Thu, 13 Apr 2023 11:56:39 +0200
+Subject: [PATCH] board: bytedevkit: introduce baw_config
+
+Use the tool in u-boot to store production data on the module EEPROM.
+
+Signed-off-by: Rico Ganahl <rico.ganahl@bytesatwork.ch>
+---
+ board/bytesatwork/bytedevkit/Kconfig    | 39 +++++++++++++++++++++++++
+ board/bytesatwork/bytedevkit/Makefile   |  1 +
+ board/bytesatwork/bytedevkit/stm32mp1.c |  5 ++++
+ include/configs/bytedevkit.h            |  4 +++
+ 4 files changed, 49 insertions(+)
+
+diff --git a/board/bytesatwork/bytedevkit/Kconfig b/board/bytesatwork/bytedevkit/Kconfig
+index cb322a25c5..5bcd0c41d1 100644
+--- a/board/bytesatwork/bytedevkit/Kconfig
++++ b/board/bytesatwork/bytedevkit/Kconfig
+@@ -31,6 +31,45 @@ config CMD_HWID
+ 	  destinguish on which type of board they run and can dynamically
+ 	  pass the right Device-Trees to the Kernel.
+ 
++menu "bytes at work config tool"
++
++config CMD_BAW_CONFIG
++	bool "bawconfig command"
++	default y
++	help
++	  Enable bawconfig command functionality.
++	  Command is used to read and write production data.
++	  In general the production data is stored in the EEPROM on the module.
++
++config BAW_CONFIG_EEPROM
++	bool "bawconfig eeprom support"
++	default y
++	help
++	  Enable bawconfig EEPROM read/write functionality.
++	  Allows to read and write the production data to the EEPROM on the
++	  module.
++
++config BAW_CONFIG_EEPROM_BUS
++	int "bawconfig I2C bus number"
++	default 3
++	help
++	  I2C bus number of production data EEPROM.
++
++config BAW_CONFIG_EEPROM_ADDRESS
++	hex "bawconfig I2C address"
++	default 0x50
++	help
++	  I2C address of production data EEPROM.
++
++config BAW_CONFIG_BUILTIN
++	bool "bawconfig builtin support"
++	default n
++	help
++	  Enable bawconfig builtin configuration functionality.
++	  Uses the define values from the board header.
++	  See for example include/configs/bytedevkit.h.
++
++endmenu
+ 
+ 
+ source "board/st/common/Kconfig"
+diff --git a/board/bytesatwork/bytedevkit/Makefile b/board/bytesatwork/bytedevkit/Makefile
+index 14b7738710..2f270695c9 100644
+--- a/board/bytesatwork/bytedevkit/Makefile
++++ b/board/bytesatwork/bytedevkit/Makefile
+@@ -7,3 +7,4 @@
+ #
+ obj-y += stm32mp1.o
+ obj-$(CONFIG_CMD_HWID) += hwid.o
++obj-y += ../baw_config/
+diff --git a/board/bytesatwork/bytedevkit/stm32mp1.c b/board/bytesatwork/bytedevkit/stm32mp1.c
+index 268fb1fc81..05f0cc504f 100644
+--- a/board/bytesatwork/bytedevkit/stm32mp1.c
++++ b/board/bytesatwork/bytedevkit/stm32mp1.c
+@@ -50,6 +50,8 @@
+ #include <tee/optee.h>
+ #include <usb/dwc2_udc.h>
+ 
++#include "../baw_config/baw_config_eeprom.h"
++
+ /* SYSCFG registers */
+ #define SYSCFG_BOOTR		0x00
+ #define SYSCFG_PMCSETR		0x04
+@@ -250,6 +252,9 @@ int board_late_init(void)
+ 	    (!strcmp(boot_device, "serial") || !strcmp(boot_device, "usb")))
+ 		env_set("bootdelay", "0");
+ 
++	if (IS_ENABLED(CONFIG_BAW_CONFIG_EEPROM) && baw_config_eeprom_init())
++		printf("EEPROM init failed!\n");
++
+ 	return 0;
+ }
+ 
+diff --git a/include/configs/bytedevkit.h b/include/configs/bytedevkit.h
+index 42bb55df8d..95b32f4f6e 100644
+--- a/include/configs/bytedevkit.h
++++ b/include/configs/bytedevkit.h
+@@ -135,4 +135,8 @@
+ 		"sf write ${loadaddr} ${uboot_offset} ${filesize};\0" \
+ 	MMC_BOOT_CMD
+ 
++#define BAW_CONFIG_BUILTIN_PCB    M5_PCB_REV_1_2
++#define BAW_CONFIG_BUILTIN_RAM    M5_RAM_K4B4G1646DBIK0
++#define BAW_CONFIG_BUILTIN_FLASH  EMMC_8GB
++
+ #endif /* __CONFIG_H */
+-- 
+2.39.2
+
