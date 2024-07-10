@@ -1,0 +1,54 @@
+From 8b7eff75d0df03fde83c5eaec627413f3fe90edf Mon Sep 17 00:00:00 2001
+From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
+Date: Fri, 5 Jul 2024 13:21:51 +0200
+Subject: [PATCH] ARM: dts: stm32mp157c-byteengine: Adapt to 6.1
+
+- Include "stm32mp157c-dk2-scmi.dtsi"
+- Removed sram label
+
+Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
+---
+ arch/arm/boot/dts/stm32mp157c-byteengine-m5.dtsi | 16 +---------------
+ 1 file changed, 1 insertion(+), 15 deletions(-)
+
+diff --git a/arch/arm/boot/dts/stm32mp157c-byteengine-m5.dtsi b/arch/arm/boot/dts/stm32mp157c-byteengine-m5.dtsi
+index 0d4f649bd8ec..976b663f93da 100644
+--- a/arch/arm/boot/dts/stm32mp157c-byteengine-m5.dtsi
++++ b/arch/arm/boot/dts/stm32mp157c-byteengine-m5.dtsi
+@@ -9,6 +9,7 @@
+ #include "stm32mp15xxac-pinctrl.dtsi"
+ #include "stm32mp15-m4-srm.dtsi"
+ #include "stm32mp15-m4-srm-pinctrl.dtsi"
++#include "stm32mp157c-dk2-scmi.dtsi"
+ #include <dt-bindings/mfd/st,stpmic1.h>
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/rtc/rtc-stm32.h>
+@@ -287,14 +288,6 @@ &cryp1 {
+ 	status="okay";
+ };
+ 
+-&dma1 {
+-	sram = <&dma_pool>;
+-};
+-
+-&dma2 {
+-	sram = <&dma_pool>;
+-};
+-
+ /* Thermal Sensor */
+ &dts {
+ 	status = "okay";
+@@ -383,10 +376,3 @@ &sdmmc2 {
+ 	mmc-ddr-3_3v;
+ 	status = "okay";
+ };
+-
+-&sram {
+-	dma_pool: dma_pool@0 {
+-		reg = <0x50000 0x10000>;
+-		pool;
+-	};
+-};
+-- 
+2.39.2
+

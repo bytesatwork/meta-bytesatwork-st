@@ -1,0 +1,118 @@
+From 431db6035b0e3b9e295a6597f39260b8f1d8c774 Mon Sep 17 00:00:00 2001
+From: Guy Morand <guy.morand@bytesatwork.ch>
+Date: Wed, 3 Jul 2024 14:44:14 +0200
+Subject: [PATCH] arm: dts: Introduce bytedevkit
+
+This is a copy from stm32mp157c-dk2.dts with pinmuxing fix for the
+serial console.
+
+Signed-off-by: Guy Morand <guy.morand@bytesatwork.ch>
+---
+ .../arm/dts/stm32mp157c-bytedevkit-v1-1.dts   | 12 ++++
+ .../arm/dts/stm32mp157c-bytedevkit-v1-3.dts   | 12 ++++
+ core/arch/arm/dts/stm32mp157c-bytedevkit.dtsi | 55 +++++++++++++++++++
+ 3 files changed, 79 insertions(+)
+ create mode 100644 core/arch/arm/dts/stm32mp157c-bytedevkit-v1-1.dts
+ create mode 100644 core/arch/arm/dts/stm32mp157c-bytedevkit-v1-3.dts
+ create mode 100644 core/arch/arm/dts/stm32mp157c-bytedevkit.dtsi
+
+diff --git a/core/arch/arm/dts/stm32mp157c-bytedevkit-v1-1.dts b/core/arch/arm/dts/stm32mp157c-bytedevkit-v1-1.dts
+new file mode 100644
+index 000000000..617b6294e
+--- /dev/null
++++ b/core/arch/arm/dts/stm32mp157c-bytedevkit-v1-1.dts
+@@ -0,0 +1,12 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ *  Copyright (C) 2024 bytes at work AG - http://www.bytesatwork.ch
++ */
++
++/dts-v1/;
++
++#include "stm32mp157c-bytedevkit.dtsi"
++
++/ {
++	model = "byteDEVKIT V1.1";
++};
+diff --git a/core/arch/arm/dts/stm32mp157c-bytedevkit-v1-3.dts b/core/arch/arm/dts/stm32mp157c-bytedevkit-v1-3.dts
+new file mode 100644
+index 000000000..76c403b91
+--- /dev/null
++++ b/core/arch/arm/dts/stm32mp157c-bytedevkit-v1-3.dts
+@@ -0,0 +1,12 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ *  Copyright (C) 2024 bytes at work AG - http://www.bytesatwork.ch
++ */
++
++/dts-v1/;
++
++#include "stm32mp157c-bytedevkit.dtsi"
++
++/ {
++	model = "byteDEVKIT V1.3";
++};
+diff --git a/core/arch/arm/dts/stm32mp157c-bytedevkit.dtsi b/core/arch/arm/dts/stm32mp157c-bytedevkit.dtsi
+new file mode 100644
+index 000000000..2133c6104
+--- /dev/null
++++ b/core/arch/arm/dts/stm32mp157c-bytedevkit.dtsi
+@@ -0,0 +1,55 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ *  Copyright (C) 2024 bytes at work AG - http://www.bytesatwork.ch
++ */
++
++/dts-v1/;
++
++#include "stm32mp157.dtsi"
++#include "stm32mp15xc.dtsi"
++#include "stm32mp15-pinctrl.dtsi"
++#include "stm32mp15xxac-pinctrl.dtsi"
++#include "stm32mp15xx-dkx.dtsi"
++
++/ {
++	compatible = "bytesatwork,bytedevkit",
++		     "bytesatwork,m5",
++		     "st,stm32mp157";
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++};
++
++&pinctrl {
++	uart4_pins_a: uart4-0 {
++		pins1 {
++			pinmux = <STM32_PINMUX('H', 13, AF8)>; /* UART4_TX */
++			bias-disable;
++			drive-push-pull;
++			slew-rate = <0>;
++		};
++		pins2 {
++			pinmux = <STM32_PINMUX('H', 14, AF8)>; /* UART4_RX */
++			bias-disable;
++		};
++	};
++};
++
++&etzpc {
++	st,decprot = <
++		DECPROT(STM32MP1_ETZPC_USART1_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
++		DECPROT(STM32MP1_ETZPC_SPI6_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
++		DECPROT(STM32MP1_ETZPC_I2C4_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
++		DECPROT(STM32MP1_ETZPC_I2C6_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
++		DECPROT(STM32MP1_ETZPC_RNG1_ID, DECPROT_S_RW, DECPROT_UNLOCK)
++		DECPROT(STM32MP1_ETZPC_HASH1_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
++		DECPROT(STM32MP1_ETZPC_CRYP1_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
++		DECPROT(STM32MP1_ETZPC_DDRCTRL_ID, DECPROT_NS_R_S_W, DECPROT_LOCK)
++		DECPROT(STM32MP1_ETZPC_DDRPHYC_ID, DECPROT_NS_R_S_W, DECPROT_LOCK)
++		DECPROT(STM32MP1_ETZPC_STGENC_ID, DECPROT_S_RW, DECPROT_LOCK)
++		DECPROT(STM32MP1_ETZPC_BKPSRAM_ID, DECPROT_S_RW, DECPROT_LOCK)
++		DECPROT(STM32MP1_ETZPC_IWDG1_ID, DECPROT_S_RW, DECPROT_LOCK)
++	>;
++};
++
+-- 
+2.39.2
+

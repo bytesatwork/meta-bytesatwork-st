@@ -1,0 +1,38 @@
+From a00504d02eca5967758905b78b1e9a9415b3156e Mon Sep 17 00:00:00 2001
+From: Jose Quaresma <jose.quaresma@foundries.io>
+Date: Mon, 12 Jun 2023 18:32:24 +0100
+Subject: [PATCH] core: mm: Fix conflicting types due to enum/integer mismatch
+
+This is an error with gcc13 [-Werror=enum-int-mismatch]
+
+Reviewed-by: Jens Wiklander <jens.wiklander@linaro.org>
+Change-Id: I74077b73fa010aa40f2ca835e625df7196d0b499
+Signed-off-by: Jose Quaresma <jose.quaresma@foundries.io>
+Reviewed-on: https://gerrit.st.com/c/mpu/oe/optee/optee_os/+/325401
+ACI: CIBUILD <MDG-smet-aci-builds@list.st.com>
+Reviewed-by: Etienne CARRIERE <etienne.carriere@foss.st.com>
+Reviewed-by: Gatien CHEVALLIER <gatien.chevallier@st.com>
+Tested-by: Gatien CHEVALLIER <gatien.chevallier@st.com>
+Domain-Review: Gatien CHEVALLIER <gatien.chevallier@st.com>
+ACI: CITOOLS <MDG-smet-aci-reviews@list.st.com>
+---
+ core/mm/core_mmu.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/core/mm/core_mmu.c b/core/mm/core_mmu.c
+index 3829f3005..51022327d 100644
+--- a/core/mm/core_mmu.c
++++ b/core/mm/core_mmu.c
+@@ -1511,7 +1511,8 @@ static void *map_pa2va(struct tee_mmap_region *map, paddr_t pa, size_t len)
+ /*
+  * teecore gets some memory area definitions
+  */
+-void core_mmu_get_mem_by_type(unsigned int type, vaddr_t *s, vaddr_t *e)
++void core_mmu_get_mem_by_type(enum teecore_memtypes type, vaddr_t *s,
++			      vaddr_t *e)
+ {
+ 	struct tee_mmap_region *map = find_map_by_type(type);
+ 
+-- 
+2.39.2
+
