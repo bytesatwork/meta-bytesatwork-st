@@ -5,10 +5,10 @@
 #@NAME: byteENGINE STM32MP1
 #@DESCRIPTION: byteENGINE STM32MP1 by bytes at work AG
 
+MACHINEOVERRIDES =. "stm32mp1common:stm32mp15common:"
+
 include conf/machine/include/st-machine-common-stm32mp.inc
 include conf/machine/include/st-machine-providers-stm32mp.inc
-
-MACHINEOVERRIDES .= ":stm32mp1common:stm32mp15common"
 
 DEFAULTTUNE = "cortexa7thf-neon-vfpv4"
 include conf/machine/include/arm/armv7a/tune-cortexa7.inc
@@ -34,3 +34,6 @@ WKS_FILE = "stm32mp1.wks"
 IMAGE_FSTYPES += "wic.gz wic.bmap"
 UBOOT_BINARY = "u-boot.img"
 IMAGE_BOOT_FILES = "${KERNEL_IMAGETYPE} ${KERNEL_DEVICETREE}"
+
+SPDX_WORKAROUND ??= "create-spdx"
+INHERIT:remove = "${SPDX_WORKAROUND}"
