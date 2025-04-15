@@ -1,28 +1,62 @@
-From 9d8114aa412f1c5a9aadc2df336f451c41237767 Mon Sep 17 00:00:00 2001
-From: Guy Morand <guy.morand@bytesatwork.ch>
-Date: Tue, 16 Jul 2024 08:41:23 +0200
-Subject: [PATCH] board: bytesatwork: Import baw_config
+From e588af56f2b5b9ef395678bf771c53e2ac7951d1 Mon Sep 17 00:00:00 2001
+From: Rico Ganahl <rico.ganahl@bytesatwork.ch>
+Date: Wed, 2 Feb 2022 09:16:56 +0100
+Subject: [PATCH] board: bytesatwork: Import bawconfig
 
-Verbatim import from the currrent main branch
+Bytesatwork tool to store production data in EEPROM.
 
-commit fd901fb676d4 bytesatwork: bawconfig: add I2C config options
+Used cherry picked commits:
 
-Signed-off-by: Guy Morand <guy.morand@bytesatwork.ch>
+3578ec17f4 bytesatwork: m2config: verbatim import
+42230a9c17 bytesatwork: m2config: rename to baw config
+7daca48726 bytesatwork: bawconfig: init config to zero
+8aa81503bc bytesatwork: bawconfig: adapt PCB, RAM and flash enums
+8fb2cc005e bytesatwork: bawconfig: stm32mp1 ram fallback
+4750929ff5 bytesatwork: bawconfig: support imx8mm bytedevkit
+c2b7c6e802 bytesatwork: bawconfig: fix build without EEPROM enabled
+1d017f3668 bytesatwork: bawconfig: add 4 GB as 3 GB RAM
+315aa98743 bytesatwork: bawconfig: introduce ti am62x enums
+d83cf89382 bytesatwork: bawconfig: introduce Makefile
+3cb80a7bf4 bytesatwork: bawconfig: add stm32mp1 ram types
+96614941ec bytesatwork: bawconfig: remove legacy i2c support, use driver
+7a1476fffe bytesatwork: bawconfig: clean up for automated check
+72182c520c bytesatwork: bawconfig: update cmd function
+1ded65d639 bytesatwork: bawconfig: ti am62x ram fallback
+b81f301b13 bytesatwork: bawconfig: fix am62x ram fallback
+cac51ab069 bytesatwork: bawconfig: add ti am62x revision
+97c39a73a1 bytesatwork: bawconfig: introduce nxp imx8mp
+7a56df4a0d bytesatwork: bawconfig: introduce ti am62px
+08d0ffb1a8 bytesatwork: bawconfig: introduce Kconfig, unify copyrights
+8e0064a4da bytesatwork: bawconfig: add HW revisions and RAM types
+fd901fb676 bytesatwork: bawconfig: add I2C config options
+81f05f22c8 bytesatwork: bawconfig: add imx8mp 6GB ram type
+4d95af5b93 bytesatwork: bawconfig: Add legacy i2c support for SPL
+c5701c8eda bytesatwork: bawconfig: Update attribute unused to
+7351ba8ff7 bytesatwork: bawconfig: Add maintainer
+032f569ed0 bytesatwork: bawconfig: Add imx8mp HW revision and RAM type
+3e9758e8bc bytesatwork: bawconfig: Update STM32MP1 target name
+
+The following commit was skipped because it does not apply for u-boot
+v2023.10:
+ce86484356 bytesatwork: bawconfig: Remove common.h includes
+
+Signed-off-by: Rico Ganahl <rico.ganahl@bytesatwork.ch>
+Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 ---
- board/bytesatwork/baw_config/Kconfig          |  72 +++++
- board/bytesatwork/baw_config/MAINTAINERS      |   6 +
+ board/bytesatwork/baw_config/Kconfig          |  72 ++++
+ board/bytesatwork/baw_config/MAINTAINERS      |   7 +
  board/bytesatwork/baw_config/Makefile         |  15 +
- board/bytesatwork/baw_config/README           |  71 +++++
- board/bytesatwork/baw_config/baw_config.c     |  82 +++++
- board/bytesatwork/baw_config/baw_config.h     | 119 +++++++
+ board/bytesatwork/baw_config/README           |  71 ++++
+ board/bytesatwork/baw_config/baw_config.c     |  85 +++++
+ board/bytesatwork/baw_config/baw_config.h     | 122 +++++++
  .../baw_config/baw_config_builtin.c           |  15 +
  .../baw_config/baw_config_builtin.h           |  21 ++
- .../baw_config/baw_config_eeprom.c            | 291 ++++++++++++++++++
+ .../baw_config/baw_config_eeprom.c            | 308 ++++++++++++++++++
  .../baw_config/baw_config_eeprom.h            |  38 +++
- board/bytesatwork/baw_config/baw_config_get.c | 104 +++++++
+ board/bytesatwork/baw_config/baw_config_get.c | 104 ++++++
  board/bytesatwork/baw_config/baw_config_get.h |  13 +
- board/bytesatwork/baw_config/cmd_baw_config.c | 223 ++++++++++++++
- 13 files changed, 1070 insertions(+)
+ board/bytesatwork/baw_config/cmd_baw_config.c | 223 +++++++++++++
+ 13 files changed, 1094 insertions(+)
  create mode 100644 board/bytesatwork/baw_config/Kconfig
  create mode 100644 board/bytesatwork/baw_config/MAINTAINERS
  create mode 100644 board/bytesatwork/baw_config/Makefile
@@ -117,12 +151,13 @@ index 0000000000..b49e5f36d8
 +endmenu
 diff --git a/board/bytesatwork/baw_config/MAINTAINERS b/board/bytesatwork/baw_config/MAINTAINERS
 new file mode 100644
-index 0000000000..27dd16973b
+index 0000000000..68cf2510f6
 --- /dev/null
 +++ b/board/bytesatwork/baw_config/MAINTAINERS
-@@ -0,0 +1,6 @@
+@@ -0,0 +1,7 @@
 +BYTESATWORK BAWCONFIG
 +M:	Rico Ganahl <rico.ganahl@bytesatwork.ch>
++M:	Simone Schwizer <simone.schwizer@bytesatwork.ch>
 +S:	Maintained
 +F:	board/bytesatwork/baw_config/*
 +F:	board/bytesatwork/baw_config/Makefile
@@ -227,10 +262,10 @@ index 0000000000..518d2a94ec
 +Magic is 0x6e4a. CRC is the native u-boot crc32.
 diff --git a/board/bytesatwork/baw_config/baw_config.c b/board/bytesatwork/baw_config/baw_config.c
 new file mode 100644
-index 0000000000..9952218cf3
+index 0000000000..2a63fe3810
 --- /dev/null
 +++ b/board/bytesatwork/baw_config/baw_config.c
-@@ -0,0 +1,82 @@
+@@ -0,0 +1,85 @@
 +// SPDX-License-Identifier: GPL-2.0+
 +/*
 + * Copyright (C) 2015 bytesatwork AG - https://www.bytesatwork.io
@@ -256,6 +291,7 @@ index 0000000000..9952218cf3
 +	{ M8P_PCB_REV_1_1, "M8P Rev 1.1" },
 +	{ M9_PCB_REV_1_0, "M9 Rev 1.0" },
 +	{ M9_PCB_REV_2_0, "M9 Rev 2.0" },
++	{ M7_PCB_REV_1_1, "M7 Rev 1.1" },
 +	{ -1, NULL },
 +};
 +
@@ -288,6 +324,8 @@ index 0000000000..9952218cf3
 +	{ M9_RAM_MT53E256M16D1DS_046, "MT53E256M16D1DS-046 512 MB LPDDR4X @ 1866 MHz" },
 +	{ M9_RAM_MT53D512M16D1DS_046, "MT53D512M16D1DS-046 1 GB LPDDR4X @ 1866 MHz" },
 +	{ M9_RAM_MT53E1G16D1FW_046, "MT53E1G16D1FW-046 2 GB LPDDR4X @ 1866 MHz" },
++	{ M7_RAM_MT53E1536M32D4DE_046, "MT53E1536M32D4DE-046 6 GB LPDDR4 @ 2000 MHz"},
++	{ M7_RAM_IS43LQ32512A_046, "IS43LQ32512A-046BLI 2GB LPDDR4 @ 2000 MHz"},
 +	{ -1, NULL },
 +};
 +
@@ -315,10 +353,10 @@ index 0000000000..9952218cf3
 +}
 diff --git a/board/bytesatwork/baw_config/baw_config.h b/board/bytesatwork/baw_config/baw_config.h
 new file mode 100644
-index 0000000000..892f3e76ef
+index 0000000000..8a86b4a9c2
 --- /dev/null
 +++ b/board/bytesatwork/baw_config/baw_config.h
-@@ -0,0 +1,119 @@
+@@ -0,0 +1,122 @@
 +/* SPDX-License-Identifier: GPL-2.0+ */
 +/*
 + * Copyright (C) 2015 bytesatwork AG - https://www.bytesatwork.io
@@ -348,6 +386,7 @@ index 0000000000..892f3e76ef
 +	M8P_PCB_REV_1_1 = 14,
 +	M9_PCB_REV_1_0 = 15,
 +	M9_PCB_REV_2_0 = 16,
++	M7_PCB_REV_1_1 = 17,
 +};
 +
 +enum baw_config_ram {
@@ -382,6 +421,8 @@ index 0000000000..892f3e76ef
 +	M9_RAM_MT53E256M16D1DS_046 = 26,
 +	M9_RAM_MT53D512M16D1DS_046 = 27,
 +	M9_RAM_MT53E1G16D1FW_046 = 28,
++	M7_RAM_MT53E1536M32D4DE_046 = 29,
++	M7_RAM_IS43LQ32512A_046 = 30,
 +};
 +
 +enum baw_config_flash {
@@ -488,10 +529,10 @@ index 0000000000..a44445955d
 +#endif
 diff --git a/board/bytesatwork/baw_config/baw_config_eeprom.c b/board/bytesatwork/baw_config/baw_config_eeprom.c
 new file mode 100644
-index 0000000000..da577e2d2e
+index 0000000000..f27e2f737e
 --- /dev/null
 +++ b/board/bytesatwork/baw_config/baw_config_eeprom.c
-@@ -0,0 +1,291 @@
+@@ -0,0 +1,308 @@
 +// SPDX-License-Identifier: GPL-2.0+
 +/*
 + * Copyright (C) 2015 bytesatwork AG - https://www.bytesatwork.io
@@ -572,6 +613,7 @@ index 0000000000..da577e2d2e
 +
 +int baw_config_eeprom_init(void)
 +{
++#if (!IS_ENABLED(CONFIG_SPL_BUILD) || IS_ENABLED(CONFIG_SPL_DM_I2C))
 +	int ret;
 +
 +	ret = uclass_get_device_by_name(UCLASS_I2C, CONFIG_BAW_CONFIG_EEPROM_BUS_NAME, &busp);
@@ -594,7 +636,7 @@ index 0000000000..da577e2d2e
 +		printf("%s(): i2c_set_chip_offset_len(): %d\n", __func__, ret);
 +		return ret;
 +	}
-+
++#endif
 +	return 0;
 +}
 +
@@ -608,7 +650,13 @@ index 0000000000..da577e2d2e
 +	u8 dummy = 0xff; /* i2c_write doesn't like to write NULL pointers */
 +
 +	for (i = 0; ret < 0 && i < 10; ++i) {
++#if (IS_ENABLED(CONFIG_SPL_BUILD) && IS_ENABLED(CONFIG_SPL_SYS_I2C_LEGACY))
++		i2c_set_bus_num(CONFIG_BAW_CONFIG_EEPROM_BUS);
++		ret = i2c_write(CONFIG_BAW_CONFIG_EEPROM_ADDRESS, 0,
++				CONFIG_BAW_CONFIG_EEPROM_ADDRESS_BYTES, &dummy, 0);
++#else
 +		ret = dm_i2c_write(baw_config_dev, 0, &dummy, 0);
++#endif
 +		if (ret != 0)
 +			udelay(500);
 +	}
@@ -635,8 +683,12 @@ index 0000000000..da577e2d2e
 +				break;
 +			}
 +		}
-+
++#if (IS_ENABLED(CONFIG_SPL_BUILD) && IS_ENABLED(CONFIG_SPL_SYS_I2C_LEGACY))
++		ret = i2c_write(CONFIG_BAW_CONFIG_EEPROM_ADDRESS, off,
++				CONFIG_BAW_CONFIG_EEPROM_ADDRESS_BYTES, (u8 *)(&frame) + off, wlen);
++#else
 +		ret = dm_i2c_write(baw_config_dev, off, (u8 *)(&frame) + off, wlen);
++#endif
 +		if (ret != 0) {
 +			ret = -EIO;
 +			break;
@@ -656,9 +708,15 @@ index 0000000000..da577e2d2e
 +{
 +	struct eeprom_read_frame frame;
 +
++#if (IS_ENABLED(CONFIG_SPL_BUILD) && IS_ENABLED(CONFIG_SPL_SYS_I2C_LEGACY))
++	i2c_set_bus_num(CONFIG_BAW_CONFIG_EEPROM_BUS);
++	if (i2c_read(CONFIG_BAW_CONFIG_EEPROM_ADDRESS, 0, CONFIG_BAW_CONFIG_EEPROM_ADDRESS_BYTES,
++		     (u8 *)&frame, sizeof(frame)) != 0)
++		return -3;
++#else
 +	if (dm_i2c_read(baw_config_dev, 0, (u8 *)&frame, sizeof(frame)))
 +		return -12;
-+
++#endif
 +	if (frame.content.header.magic != MAGIC)
 +		return -4;
 +
@@ -829,7 +887,7 @@ index 0000000000..c5d943f18c
 +#endif
 diff --git a/board/bytesatwork/baw_config/baw_config_get.c b/board/bytesatwork/baw_config/baw_config_get.c
 new file mode 100644
-index 0000000000..70302bdd3d
+index 0000000000..effc6ee785
 --- /dev/null
 +++ b/board/bytesatwork/baw_config/baw_config_get.c
 @@ -0,0 +1,104 @@
@@ -851,7 +909,7 @@ index 0000000000..70302bdd3d
 +
 +void baw_config_get(struct baw_config *config)
 +{
-+	u8 __attribute__((unused)) reg = 0;
++	u8 __maybe_unused reg = 0;
 +
 +	if (baw_config_eeprom_read(config) == 0) {
 +		if (IS_ENABLED(CONFIG_SPL_BUILD)) {
@@ -918,7 +976,7 @@ index 0000000000..70302bdd3d
 +	} else {
 +		if (IS_ENABLED(CONFIG_TARGET_BYTEENGINE_AM335X))
 +			config->ram = M2_RAM_K4B2G1646EBIH9;	/* set default to legacy DDR3 */
-+		else if (IS_ENABLED(CONFIG_TARGET_BYTEDEVKIT))
++		else if (IS_ENABLED(CONFIG_TARGET_STM32MP1_BYTEDEVKIT))
 +			config->ram = M5_RAM_K4B4G1646DBIK0;
 +		else if (IS_ENABLED(CONFIG_TARGET_IMX8MM_BYTEDEVKIT))
 +			config->ram = M6_RAM_MT53E128M32D2DS_053;
@@ -1185,6 +1243,3 @@ index 0000000000..922f021701
 +#endif
 +#endif
 +);
--- 
-2.39.2
-

@@ -1,18 +1,31 @@
-From aa2f9522aabc9b91a7b15b9e265a6467b00d1725 Mon Sep 17 00:00:00 2001
-From: Michael Meister <michael.meister@bytesatwork.ch>
-Date: Mon, 11 Jul 2022 15:56:40 +0200
-Subject: [PATCH] github: workflows: Add patch static analyzer
+From 4babf9dca0ac3de115dda5e67fdbe683b010a7dc Mon Sep 17 00:00:00 2001
+From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
+Date: Tue, 29 Jul 2025 09:14:28 +0200
+Subject: [PATCH] github: workflows: Add action to analyze patches
 
-This adds more check during code reviews.
+Add github action running checkpatch on pull request.
 
-Signed-off-by: Michael Meister <michael.meister@bytesatwork.ch>
-Signed-off-by: Benjamin Imhof <benjamin.imhof@bytesatwork.ch>
-Signed-off-by: Guy Morand <guy.morand@bytesatwork.ch>
+Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 ---
+ .checkpatch.conf                 |   2 +-
  .github/workflows/checkpatch.yml | 120 +++++++++++++++++++++++++++++++
- 1 file changed, 120 insertions(+)
+ MAINTAINERS                      |   7 ++
+ 3 files changed, 128 insertions(+), 1 deletion(-)
  create mode 100644 .github/workflows/checkpatch.yml
 
+diff --git a/.checkpatch.conf b/.checkpatch.conf
+index c368d41472..e79d6f2034 100644
+--- a/.checkpatch.conf
++++ b/.checkpatch.conf
+@@ -30,7 +30,7 @@
+ --ignore ENOSYS
+ 
+ # A bit shorter of a description is OK with us.
+---min-conf-desc-length=2
++--min-conf-desc-length=1
+ 
+ # Extra checks for U-Boot
+ --u-boot
 diff --git a/.github/workflows/checkpatch.yml b/.github/workflows/checkpatch.yml
 new file mode 100644
 index 0000000000..dc75adb9e0
@@ -139,6 +152,21 @@ index 0000000000..dc75adb9e0
 +          else
 +            ./scripts/checkpatch.pl --no-tree ${{ matrix.patch }}
 +          fi
--- 
-2.39.2
-
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 592aab68dc..d4b2f23953 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -248,6 +248,13 @@ F:	doc/README.bcm7xxx
+ F:	drivers/mmc/bcmstb_sdhci.c
+ F:	drivers/spi/bcmstb_spi.c
+ 
++ARM BYTESATWORK BYTEDEVKIT STM32MP1/STM32MP2
++M:	Simone Schwizer <simone.schwizer@bytesatwork.ch>
++S:	Maintained
++W:	https://www.bytesatwork.io/
++T:	git https://github.com/bytesatwork/u-boot-stm32mp
++F:	.github/workflows/checkpatch.yml
++
+ ARM CORTINA ACCESS CAxxxx
+ M:	Alex Nemirovsky <alex.nemirovsky@cortina-access.com>
+ S:	Supported

@@ -1,18 +1,16 @@
-From b04d1424a08b981e3ddd71645e0d55cf2cab3bc3 Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Oliver=20St=C3=A4bler?= <oliver.staebler@bytesatwork.ch>
-Date: Tue, 23 Jul 2019 15:46:12 +0200
-Subject: [PATCH] board: bytedevkit: Add initial version for bytedevkit
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From 9c5d8bc8049b589dbfddddcf934f93a5ce59a1df Mon Sep 17 00:00:00 2001
+From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
+Date: Tue, 19 Aug 2025 14:17:00 +0200
+Subject: [PATCH] stm32mp1: Add STM32MP1 bytesatwork byteDEVKIT board
 
-Based on board/st/stmp32mp1.
+Add basic STM32MP1 bytesatwork byteDEVKIT board support.
 
-Signed-off-by: Oliver Stäbler <oliver.staebler@bytesatwork.ch>
 Signed-off-by: Daniel Ammann <daniel.ammann@bytesatwork.ch>
 Signed-off-by: Guy Morand <guy.morand@bytesatwork.ch>
 Signed-off-by: Rico Ganahl <rico.ganahl@bytesatwork.ch>
+Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 ---
+ MAINTAINERS                                   |  11 +
  arch/arm/Kconfig                              |   1 +
  arch/arm/dts/Makefile                         |   2 +
  .../dts/stm32mp15-ddr3-1x8Gb-1066-binG.dtsi   | 120 +++++
@@ -21,50 +19,73 @@ Signed-off-by: Rico Ganahl <rico.ganahl@bytesatwork.ch>
  .../stm32mp157c-bytedevkit-v1-3-u-boot.dtsi   |  31 ++
  arch/arm/dts/stm32mp157c-bytedevkit-v1-3.dts  |  18 +
  arch/arm/dts/stm32mp157c-bytedevkit.dtsi      | 108 ++++
- arch/arm/dts/stm32mp157c-byteengine-m5.dtsi   | 440 ++++++++++++++++
+ arch/arm/dts/stm32mp157c-byteengine.dtsi      | 458 +++++++++++++++++
  arch/arm/mach-stm32mp/Kconfig.15x             |  21 +
- board/bytesatwork/bytedevkit/Kconfig          |  43 ++
- board/bytesatwork/bytedevkit/Makefile         |  10 +
- board/bytesatwork/bytedevkit/hwid.c           | 481 ++++++++++++++++++
- board/bytesatwork/bytedevkit/stm32mp1.c       | 176 +++++++
+ board/bytesatwork/bytedevkit_stm32mp1/Kconfig |  43 ++
+ .../bytesatwork/bytedevkit_stm32mp1/Makefile  |  10 +
+ board/bytesatwork/bytedevkit_stm32mp1/hwid.c  | 481 ++++++++++++++++++
+ .../bytedevkit_stm32mp1/stm32mp1-bytedevkit.c | 180 +++++++
  board/bytesatwork/common                      |   1 +
- configs/stm32mp157_bytedevkit_1g_defconfig    | 109 ++++
- configs/stm32mp157_bytedevkit_defconfig       | 108 ++++
- include/configs/bytedevkit.h                  | 114 +++++
- 18 files changed, 1796 insertions(+)
+ configs/stm32mp157_bytedevkit_1g_defconfig    | 115 +++++
+ configs/stm32mp157_bytedevkit_defconfig       | 114 +++++
+ include/configs/stm32mp1_bytedevkit.h         | 109 ++++
+ 19 files changed, 1836 insertions(+)
  create mode 100644 arch/arm/dts/stm32mp15-ddr3-1x8Gb-1066-binG.dtsi
  create mode 120000 arch/arm/dts/stm32mp157c-bytedevkit-v1-1-u-boot.dtsi
  create mode 100644 arch/arm/dts/stm32mp157c-bytedevkit-v1-1.dts
  create mode 100644 arch/arm/dts/stm32mp157c-bytedevkit-v1-3-u-boot.dtsi
  create mode 100644 arch/arm/dts/stm32mp157c-bytedevkit-v1-3.dts
  create mode 100644 arch/arm/dts/stm32mp157c-bytedevkit.dtsi
- create mode 100644 arch/arm/dts/stm32mp157c-byteengine-m5.dtsi
- create mode 100644 board/bytesatwork/bytedevkit/Kconfig
- create mode 100644 board/bytesatwork/bytedevkit/Makefile
- create mode 100644 board/bytesatwork/bytedevkit/hwid.c
- create mode 100644 board/bytesatwork/bytedevkit/stm32mp1.c
+ create mode 100644 arch/arm/dts/stm32mp157c-byteengine.dtsi
+ create mode 100644 board/bytesatwork/bytedevkit_stm32mp1/Kconfig
+ create mode 100644 board/bytesatwork/bytedevkit_stm32mp1/Makefile
+ create mode 100644 board/bytesatwork/bytedevkit_stm32mp1/hwid.c
+ create mode 100644 board/bytesatwork/bytedevkit_stm32mp1/stm32mp1-bytedevkit.c
  create mode 120000 board/bytesatwork/common
  create mode 100644 configs/stm32mp157_bytedevkit_1g_defconfig
  create mode 100644 configs/stm32mp157_bytedevkit_defconfig
- create mode 100644 include/configs/bytedevkit.h
+ create mode 100644 include/configs/stm32mp1_bytedevkit.h
 
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 2982311e19..5ab39cbe6a 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -254,7 +254,18 @@ S:	Maintained
+ W:	https://www.bytesatwork.io/
+ T:	git https://github.com/bytesatwork/u-boot-stm32mp
+ F:	.github/workflows/checkpatch.yml
++F:	arch/arm/dts/stm32mp15-ddr3-1x8Gb-1066-binG.dtsi
++F:	arch/arm/dts/stm32mp157c-bytedevkit-v1-1-u-boot.dtsi
++F:	arch/arm/dts/stm32mp157c-bytedevkit-v1-1.dts
++F:	arch/arm/dts/stm32mp157c-bytedevkit-v1-3-u-boot.dtsi
++F:	arch/arm/dts/stm32mp157c-bytedevkit-v1-3.dts
++F:	arch/arm/dts/stm32mp157c-bytedevkit.dtsi
++F:	arch/arm/dts/stm32mp157c-byteengine.dtsi
++F:	board/bytesatwork/bytedevkit_stm32mp1/
+ F:	cmd/cpuinfo.c
++F:	configs/stm32mp157_bytedevkit_1g_defconfig
++F:	configs/stm32mp157_bytedevkit_defconfig
++F:	include/configs/stm32mp1_bytedevkit.h
+ 
+ ARM CORTINA ACCESS CAxxxx
+ M:	Alex Nemirovsky <alex.nemirovsky@cortina-access.com>
 diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
-index 82cd456f51..619e02b059 100644
+index 1b8b833b97..8fcd393abe 100644
 --- a/arch/arm/Kconfig
 +++ b/arch/arm/Kconfig
-@@ -2310,6 +2310,7 @@ source "board/broadcom/bcm96753ref/Kconfig"
- source "board/broadcom/bcm968360bg/Kconfig"
- source "board/broadcom/bcm968580xref/Kconfig"
+@@ -2285,6 +2285,7 @@ source "board/armltd/vexpress64/Kconfig"
+ source "board/cortina/presidio-asic/Kconfig"
+ source "board/broadcom/bcmns/Kconfig"
  source "board/broadcom/bcmns3/Kconfig"
-+source "board/bytesatwork/bytedevkit/Kconfig"
++source "board/bytesatwork/bytedevkit_stm32mp1/Kconfig"
  source "board/cavium/thunderx/Kconfig"
  source "board/eets/pdu001/Kconfig"
  source "board/emulation/qemu-arm/Kconfig"
 diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
-index c6f52e8ea8..c5e3c70e0b 100644
+index 0fd5fee226..ed08848e81 100644
 --- a/arch/arm/dts/Makefile
 +++ b/arch/arm/dts/Makefile
-@@ -1191,6 +1191,8 @@ dtb-$(CONFIG_STM32MP15X) += \
+@@ -1293,6 +1293,8 @@ dtb-$(CONFIG_STM32MP15X) += \
  	stm32mp157a-icore-stm32mp1-edimm2.2.dtb \
  	stm32mp157a-microgea-stm32mp1-microdev2.0.dtb \
  	stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dtb \
@@ -75,13 +96,13 @@ index c6f52e8ea8..c5e3c70e0b 100644
  	stm32mp157c-ev1.dtb \
 diff --git a/arch/arm/dts/stm32mp15-ddr3-1x8Gb-1066-binG.dtsi b/arch/arm/dts/stm32mp15-ddr3-1x8Gb-1066-binG.dtsi
 new file mode 100644
-index 0000000000..b38781a63d
+index 0000000000..c53b8c0141
 --- /dev/null
 +++ b/arch/arm/dts/stm32mp15-ddr3-1x8Gb-1066-binG.dtsi
 @@ -0,0 +1,120 @@
 +// SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause
 +/*
-+ * Copyright (C) 2021 bytes at work AG - http://www.bytesatwork.ch
++ * Copyright (C) 2025 bytesatwork AG - https://www.bytesatwork.io
 + * Copyright (C) 2018, STMicroelectronics - All Rights Reserved
 + */
 +
@@ -209,13 +230,13 @@ index 0000000000..710f42c394
 \ No newline at end of file
 diff --git a/arch/arm/dts/stm32mp157c-bytedevkit-v1-1.dts b/arch/arm/dts/stm32mp157c-bytedevkit-v1-1.dts
 new file mode 100644
-index 0000000000..e660f9ac79
+index 0000000000..95b8bc9626
 --- /dev/null
 +++ b/arch/arm/dts/stm32mp157c-bytedevkit-v1-1.dts
 @@ -0,0 +1,12 @@
 +// SPDX-License-Identifier: GPL-2.0
 +/*
-+ *  Copyright (C) 2022 bytes at work AG - http://www.bytesatwork.ch
++ * Copyright (C) 2025 bytesatwork AG - https://www.bytesatwork.io
 + */
 +
 +/dts-v1/;
@@ -227,7 +248,7 @@ index 0000000000..e660f9ac79
 +};
 diff --git a/arch/arm/dts/stm32mp157c-bytedevkit-v1-3-u-boot.dtsi b/arch/arm/dts/stm32mp157c-bytedevkit-v1-3-u-boot.dtsi
 new file mode 100644
-index 0000000000..f62789b098
+index 0000000000..a1c25da838
 --- /dev/null
 +++ b/arch/arm/dts/stm32mp157c-bytedevkit-v1-3-u-boot.dtsi
 @@ -0,0 +1,31 @@
@@ -250,27 +271,27 @@ index 0000000000..f62789b098
 +};
 +
 +&uart4_pins {
-+	u-boot,dm-pre-reloc;
++	bootph-all;
 +	pins1 {
-+		u-boot,dm-pre-reloc;
++		bootph-all;
 +	};
 +	pins2 {
-+		u-boot,dm-pre-reloc;
++		bootph-all;
 +	};
 +};
 +
 +&uart4 {
-+	u-boot,dm-pre-reloc;
++	bootph-all;
 +};
 diff --git a/arch/arm/dts/stm32mp157c-bytedevkit-v1-3.dts b/arch/arm/dts/stm32mp157c-bytedevkit-v1-3.dts
 new file mode 100644
-index 0000000000..3a3d6d2308
+index 0000000000..29e8d639c1
 --- /dev/null
 +++ b/arch/arm/dts/stm32mp157c-bytedevkit-v1-3.dts
 @@ -0,0 +1,18 @@
 +// SPDX-License-Identifier: GPL-2.0
 +/*
-+ *  Copyright (C) 2022 bytes at work AG - http://www.bytesatwork.ch
++ * Copyright (C) 2025 bytesatwork AG - https://www.bytesatwork.io
 + */
 +
 +/dts-v1/;
@@ -288,19 +309,19 @@ index 0000000000..3a3d6d2308
 +};
 diff --git a/arch/arm/dts/stm32mp157c-bytedevkit.dtsi b/arch/arm/dts/stm32mp157c-bytedevkit.dtsi
 new file mode 100644
-index 0000000000..7417c3a689
+index 0000000000..97cae8793b
 --- /dev/null
 +++ b/arch/arm/dts/stm32mp157c-bytedevkit.dtsi
 @@ -0,0 +1,108 @@
 +// SPDX-License-Identifier: GPL-2.0
 +/*
-+ *  Copyright (C) 2019 bytes at work AG - http://www.bytesatwork.ch
++ * Copyright (C) 2025 bytesatwork AG - https://www.bytesatwork.io
 + */
 +
-+#include "stm32mp157c-byteengine-m5.dtsi"
++#include "stm32mp157c-byteengine.dtsi"
 +
 +/ {
-+	compatible = "batw,bytedevkit", "batw,m5", "st,stm32mp157";
++	compatible = "bytesatwork,bytedevkit-stm32mp1", "bytesatwork,byteengine-stm32mp1", "st,stm32mp157";
 +
 +	aliases {
 +		serial0 = &uart4;
@@ -400,15 +421,15 @@ index 0000000000..7417c3a689
 +&usbphyc_port0 {
 +	st,phy-tuning = <&usb_phy_tuning>;
 +};
-diff --git a/arch/arm/dts/stm32mp157c-byteengine-m5.dtsi b/arch/arm/dts/stm32mp157c-byteengine-m5.dtsi
+diff --git a/arch/arm/dts/stm32mp157c-byteengine.dtsi b/arch/arm/dts/stm32mp157c-byteengine.dtsi
 new file mode 100644
-index 0000000000..a808ad3367
+index 0000000000..1528d0d13a
 --- /dev/null
-+++ b/arch/arm/dts/stm32mp157c-byteengine-m5.dtsi
-@@ -0,0 +1,440 @@
++++ b/arch/arm/dts/stm32mp157c-byteengine.dtsi
+@@ -0,0 +1,458 @@
 +// SPDX-License-Identifier: GPL-2.0
 +/*
-+ *  Copyright (C) 2019 bytes at work AG - http://www.bytesatwork.ch
++ * Copyright (C) 2025 bytesatwork AG - https://www.bytesatwork.io
 + */
 +
 +#include "stm32mp157.dtsi"
@@ -429,7 +450,7 @@ index 0000000000..a808ad3367
 +#endif
 +
 +/ {
-+	compatible = "batw,m5", "st,stm32mp157";
++	compatible = "bytesatwork,byteengine-stm32mp1", "st,stm32mp157";
 +
 +	memory@c0000000 {
 +		device_type = "memory";
@@ -487,6 +508,20 @@ index 0000000000..a808ad3367
 +			reg = <0xda000000 0x4000000>;
 +			no-map;
 +		};
++
++		/* global autoconfigured region for contiguous allocations */
++		linux,cma {
++			compatible = "shared-dma-pool";
++			reusable;
++			size = <0x8000000>;
++			alignment = <0x2000>;
++			linux,cma-default;
++		};
++	};
++
++	fwu-mdata {
++		compatible = "u-boot,fwu-mdata-gpt";
++		fwu-mdata-store = <&sdmmc1>;
 +	};
 +};
 +
@@ -799,6 +834,10 @@ index 0000000000..a808ad3367
 +	};
 +};
 +
++&arm_wdt {
++	status = "okay";
++};
++
 +&cpu0{
 +	cpu-supply = <&vddcore>;
 +};
@@ -847,14 +886,14 @@ index 0000000000..a808ad3367
 +	status = "okay";
 +};
 diff --git a/arch/arm/mach-stm32mp/Kconfig.15x b/arch/arm/mach-stm32mp/Kconfig.15x
-index 882a580339..dd6ed11778 100644
+index 0dadf3bd25..6bb127da97 100644
 --- a/arch/arm/mach-stm32mp/Kconfig.15x
 +++ b/arch/arm/mach-stm32mp/Kconfig.15x
-@@ -25,6 +25,27 @@ config TARGET_ST_STM32MP15X
+@@ -23,6 +23,27 @@ config TARGET_ST_STM32MP15X
  		Evalulation board (EV1) or Discovery board (DK1 and DK2).
  		The difference between board are managed with devicetree
  
-+config TARGET_BYTEDEVKIT
++config TARGET_STM32MP1_BYTEDEVKIT
 +	bool "bytesatwork byteDEVKIT"
 +	select ARCH_SUPPORT_PSCI
 +	select BINMAN
@@ -878,22 +917,22 @@ index 882a580339..dd6ed11778 100644
  config TARGET_DH_STM32MP1_PDK2
  	bool "DH STM32MP1 PDK2"
  	help
-diff --git a/board/bytesatwork/bytedevkit/Kconfig b/board/bytesatwork/bytedevkit/Kconfig
+diff --git a/board/bytesatwork/bytedevkit_stm32mp1/Kconfig b/board/bytesatwork/bytedevkit_stm32mp1/Kconfig
 new file mode 100644
-index 0000000000..9c4f4dbda6
+index 0000000000..776d4e83a2
 --- /dev/null
-+++ b/board/bytesatwork/bytedevkit/Kconfig
++++ b/board/bytesatwork/bytedevkit_stm32mp1/Kconfig
 @@ -0,0 +1,43 @@
-+if TARGET_BYTEDEVKIT
++if TARGET_STM32MP1_BYTEDEVKIT
 +
 +config SYS_BOARD
-+	default "bytedevkit"
++	default "bytedevkit_stm32mp1"
 +
 +config SYS_VENDOR
 +	default "bytesatwork"
 +
 +config SYS_CONFIG_NAME
-+	default "bytedevkit"
++	default "stm32mp1_bytedevkit"
 +
 +choice
 +	prompt "byteENGINE STM32MP1 DDR size"
@@ -927,31 +966,31 @@ index 0000000000..9c4f4dbda6
 +source "board/bytesatwork/baw_config/Kconfig"
 +
 +endif
-diff --git a/board/bytesatwork/bytedevkit/Makefile b/board/bytesatwork/bytedevkit/Makefile
+diff --git a/board/bytesatwork/bytedevkit_stm32mp1/Makefile b/board/bytesatwork/bytedevkit_stm32mp1/Makefile
 new file mode 100644
-index 0000000000..2f270695c9
+index 0000000000..6d2798d414
 --- /dev/null
-+++ b/board/bytesatwork/bytedevkit/Makefile
++++ b/board/bytesatwork/bytedevkit_stm32mp1/Makefile
 @@ -0,0 +1,10 @@
 +# SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause
 +#
-+# Copyright (c) 2019 bytes at work AG. All rights reserved.
++# Copyright (C) 2025 bytesatwork AG - https://www.bytesatwork.io
 +#
 +# based on stm32mp1/Makefile:
 +# Copyright (C) 2018, STMicroelectronics - All Rights Reserved
 +#
-+obj-y += stm32mp1.o
++obj-y += stm32mp1-bytedevkit.o
 +obj-$(CONFIG_CMD_HWID) += hwid.o
 +obj-y += ../baw_config/
-diff --git a/board/bytesatwork/bytedevkit/hwid.c b/board/bytesatwork/bytedevkit/hwid.c
+diff --git a/board/bytesatwork/bytedevkit_stm32mp1/hwid.c b/board/bytesatwork/bytedevkit_stm32mp1/hwid.c
 new file mode 100644
-index 0000000000..9041ea1a0b
+index 0000000000..eb2c441988
 --- /dev/null
-+++ b/board/bytesatwork/bytedevkit/hwid.c
++++ b/board/bytesatwork/bytedevkit_stm32mp1/hwid.c
 @@ -0,0 +1,481 @@
 +// SPDX-License-Identifier: GPL-2.0+
 +/*
-+ * Copyright (c) 2022 bytes at work AG. All rights reserved.
++ * Copyright (C) 2025 bytesatwork AG - https://www.bytesatwork.io
 + *
 + * U-Boot command to read HWID EEPROM module and parse the there-contained
 + * information offers functionality to read hardware identifiers from EEPROM and
@@ -1430,12 +1469,12 @@ index 0000000000..9041ea1a0b
 +	   "  information about constants in this module\n"
 +#endif
 +	)
-diff --git a/board/bytesatwork/bytedevkit/stm32mp1.c b/board/bytesatwork/bytedevkit/stm32mp1.c
+diff --git a/board/bytesatwork/bytedevkit_stm32mp1/stm32mp1-bytedevkit.c b/board/bytesatwork/bytedevkit_stm32mp1/stm32mp1-bytedevkit.c
 new file mode 100644
-index 0000000000..fee7a86861
+index 0000000000..611cf961fb
 --- /dev/null
-+++ b/board/bytesatwork/bytedevkit/stm32mp1.c
-@@ -0,0 +1,176 @@
++++ b/board/bytesatwork/bytedevkit_stm32mp1/stm32mp1-bytedevkit.c
+@@ -0,0 +1,180 @@
 +// SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause
 +/*
 + * Copyright (C) 2018, STMicroelectronics - All Rights Reserved
@@ -1602,6 +1641,10 @@ index 0000000000..fee7a86861
 +int mmc_get_env_dev(void)
 +{
 +	u32 bootmode = get_bootmode();
++	const int mmc_env_dev = CONFIG_IS_ENABLED(ENV_IS_IN_MMC, (CONFIG_SYS_MMC_ENV_DEV), (-1));
++
++	if (mmc_env_dev >= 0)
++		return mmc_env_dev;
 +
 +	return (bootmode & TAMP_BOOT_INSTANCE_MASK) - 1;
 +}
@@ -1622,10 +1665,10 @@ index 0000000000..fea1e658d7
 \ No newline at end of file
 diff --git a/configs/stm32mp157_bytedevkit_1g_defconfig b/configs/stm32mp157_bytedevkit_1g_defconfig
 new file mode 100644
-index 0000000000..27642d7cb8
+index 0000000000..6c02b1d7a1
 --- /dev/null
 +++ b/configs/stm32mp157_bytedevkit_1g_defconfig
-@@ -0,0 +1,109 @@
+@@ -0,0 +1,115 @@
 +CONFIG_ARM=y
 +CONFIG_ARCH_STM32MP=y
 +CONFIG_SUPPORT_PASSING_ATAGS=y
@@ -1636,7 +1679,7 @@ index 0000000000..27642d7cb8
 +CONFIG_ENV_OFFSET=0xC0000
 +CONFIG_DEFAULT_DEVICE_TREE="stm32mp157c-bytedevkit-v1-3"
 +CONFIG_DDR_CACHEABLE_SIZE=0x8000000
-+CONFIG_TARGET_BYTEDEVKIT=y
++CONFIG_TARGET_STM32MP1_BYTEDEVKIT=y
 +CONFIG_ENV_OFFSET_REDUND=0xE0000
 +# CONFIG_ARMV7_NONSEC is not set
 +CONFIG_ARMV7_LPAE=y
@@ -1647,6 +1690,9 @@ index 0000000000..27642d7cb8
 +CONFIG_ENV_VARS_UBOOT_CONFIG=y
 +CONFIG_FIT=y
 +CONFIG_SUPPORT_RAW_INITRD=y
++CONFIG_USE_BOOTCOMMAND=y
++CONFIG_BOOTCOMMAND="run select_dtb;mmc rescan;run mmc_boot"
++# CONFIG_CONSOLE_MUX is not set
 +CONFIG_HUSH_PARSER=y
 +CONFIG_CMD_CPUINFO=y
 +CONFIG_CMD_BOOTZ=y
@@ -1673,6 +1719,7 @@ index 0000000000..27642d7cb8
 +CONFIG_CMD_PXE=y
 +CONFIG_CMD_BMP=y
 +CONFIG_CMD_CACHE=y
++# CONFIG_CMD_CLS is not set
 +CONFIG_CMD_TIME=y
 +CONFIG_CMD_TIMER=y
 +CONFIG_CMD_PMIC=y
@@ -1724,23 +1771,25 @@ index 0000000000..27642d7cb8
 +CONFIG_SYSRESET_PSCI=y
 +CONFIG_TEE=y
 +CONFIG_OPTEE=y
-+CONFIG_DM_VIDEO=y
++CONFIG_VIDEO=y
 +CONFIG_BACKLIGHT_GPIO=y
 +CONFIG_VIDEO_STM32=y
 +CONFIG_VIDEO_STM32_DSI=y
 +CONFIG_VIDEO_STM32_MAX_XRES=720
 +CONFIG_VIDEO_STM32_MAX_YRES=1280
 +CONFIG_VIDEO_STM32_MAX_BPP=32
++CONFIG_WDT=y
++CONFIG_WDT_ARM_SMC=y
 +# CONFIG_BINMAN_FDT is not set
 +# CONFIG_LMB_USE_MAX_REGIONS is not set
 +CONFIG_LMB_MEMORY_REGIONS=2
 +CONFIG_LMB_RESERVED_REGIONS=16
 diff --git a/configs/stm32mp157_bytedevkit_defconfig b/configs/stm32mp157_bytedevkit_defconfig
 new file mode 100644
-index 0000000000..7707a2cb1a
+index 0000000000..6723e6072b
 --- /dev/null
 +++ b/configs/stm32mp157_bytedevkit_defconfig
-@@ -0,0 +1,108 @@
+@@ -0,0 +1,114 @@
 +CONFIG_ARM=y
 +CONFIG_ARCH_STM32MP=y
 +CONFIG_SUPPORT_PASSING_ATAGS=y
@@ -1751,7 +1800,7 @@ index 0000000000..7707a2cb1a
 +CONFIG_ENV_OFFSET=0xC0000
 +CONFIG_DEFAULT_DEVICE_TREE="stm32mp157c-bytedevkit-v1-3"
 +CONFIG_DDR_CACHEABLE_SIZE=0x8000000
-+CONFIG_TARGET_BYTEDEVKIT=y
++CONFIG_TARGET_STM32MP1_BYTEDEVKIT=y
 +CONFIG_ENV_OFFSET_REDUND=0xE0000
 +# CONFIG_ARMV7_NONSEC is not set
 +CONFIG_ARMV7_LPAE=y
@@ -1761,6 +1810,9 @@ index 0000000000..7707a2cb1a
 +CONFIG_ENV_VARS_UBOOT_CONFIG=y
 +CONFIG_FIT=y
 +CONFIG_SUPPORT_RAW_INITRD=y
++CONFIG_USE_BOOTCOMMAND=y
++CONFIG_BOOTCOMMAND="run select_dtb;mmc rescan;run mmc_boot"
++# CONFIG_CONSOLE_MUX is not set
 +CONFIG_HUSH_PARSER=y
 +CONFIG_CMD_CPUINFO=y
 +CONFIG_CMD_BOOTZ=y
@@ -1787,6 +1839,7 @@ index 0000000000..7707a2cb1a
 +CONFIG_CMD_PXE=y
 +CONFIG_CMD_BMP=y
 +CONFIG_CMD_CACHE=y
++# CONFIG_CMD_CLS is not set
 +CONFIG_CMD_TIME=y
 +CONFIG_CMD_TIMER=y
 +CONFIG_CMD_PMIC=y
@@ -1838,26 +1891,28 @@ index 0000000000..7707a2cb1a
 +CONFIG_SYSRESET_PSCI=y
 +CONFIG_TEE=y
 +CONFIG_OPTEE=y
-+CONFIG_DM_VIDEO=y
++CONFIG_VIDEO=y
 +CONFIG_BACKLIGHT_GPIO=y
 +CONFIG_VIDEO_STM32=y
 +CONFIG_VIDEO_STM32_DSI=y
 +CONFIG_VIDEO_STM32_MAX_XRES=720
 +CONFIG_VIDEO_STM32_MAX_YRES=1280
 +CONFIG_VIDEO_STM32_MAX_BPP=32
++CONFIG_WDT=y
++CONFIG_WDT_ARM_SMC=y
 +# CONFIG_BINMAN_FDT is not set
 +# CONFIG_LMB_USE_MAX_REGIONS is not set
 +CONFIG_LMB_MEMORY_REGIONS=2
 +CONFIG_LMB_RESERVED_REGIONS=16
-diff --git a/include/configs/bytedevkit.h b/include/configs/bytedevkit.h
+diff --git a/include/configs/stm32mp1_bytedevkit.h b/include/configs/stm32mp1_bytedevkit.h
 new file mode 100644
-index 0000000000..4df454b026
+index 0000000000..538474463b
 --- /dev/null
-+++ b/include/configs/bytedevkit.h
-@@ -0,0 +1,114 @@
++++ b/include/configs/stm32mp1_bytedevkit.h
+@@ -0,0 +1,109 @@
 +/* SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause */
 +/*
-+ * Copyright (c) 2019 bytes at work AG. All rights reserved.
++ * Copyright (C) 2025 bytesatwork AG - https://www.bytesatwork.io
 + *
 + * based on stm32mp1.h:
 + * Copyright (C) 2018, STMicroelectronics - All Rights Reserved
@@ -1884,7 +1939,7 @@ index 0000000000..4df454b026
 +/*
 + * Configuration of the external SRAM memory used by U-Boot
 + */
-+#define CONFIG_SYS_SDRAM_BASE			STM32_DDR_BASE
++#define CFG_SYS_SDRAM_BASE			STM32_DDR_BASE
 +
 +/*
 + * For booting Linux, use the first 256 MB of memory, since this is
@@ -1913,11 +1968,6 @@ index 0000000000..4df454b026
 +
 +#define CONFIG_SYS_MAX_FLASH_BANKS	1
 +
-+#define CONFIG_BOOTCOMMAND \
-+	"run select_dtb; " \
-+	"mmc rescan; " \
-+	"run mmc_boot; " \
-+
 +#define MMC_BOOT_CMD \
 +	"mmc_boot=load mmc ${mmc_dev} ${fdt_addr_r} ${dtbfile} || exit; " \
 +	"load mmc ${mmc_dev} ${kernel_addr_r} ${kernelfile} || exit; " \
@@ -1929,7 +1979,7 @@ index 0000000000..4df454b026
 + * 1M fdt, 1M script, 1M pxe and 1M for splashimage
 + * and the ramdisk at the end.
 + */
-+#define CONFIG_EXTRA_ENV_SETTINGS \
++#define CFG_EXTRA_ENV_SETTINGS \
 +	"mmc_dev=0:7\0" \
 +	"mmc_root=/dev/mmcblk0p7\0" \
 +	"kernelfile=/boot/uImage\0" \
@@ -1969,6 +2019,3 @@ index 0000000000..4df454b026
 +#define BAW_CONFIG_BUILTIN_FLASH  EMMC_8GB
 +
 +#endif /* __CONFIG_H */
--- 
-2.39.2
-
