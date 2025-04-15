@@ -1,0 +1,46 @@
+From fdc28b7a7ef843ebc987fc3cd9be5400123d530f Mon Sep 17 00:00:00 2001
+From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
+Date: Thu, 25 Jul 2024 11:05:37 +0200
+Subject: [PATCH] ARM: configs: Add bytedevkit fragment
+
+Add necessary configs to use all features from byteDEVKIT.
+
+Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
+Signed-off-by: Daniel Ammann <daniel.ammann@bytesatwork.ch>
+---
+ MAINTAINERS                                     |  1 +
+ arch/arm/configs/fragment-901-bytedevkit.config | 13 +++++++++++++
+ 2 files changed, 14 insertions(+)
+ create mode 100644 arch/arm/configs/fragment-901-bytedevkit.config
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 17f59805cd45..bbfcec8915f8 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -4442,6 +4442,7 @@ M:	Daniel Ammann <daniel.ammann@bytesatwork.ch>
+ S:	Maintained
+ F:	.github/workflows/checkpatch.yml
+ F:	Documentation/devicetree/bindings/arm/bytesatwork/bytesatwork.yaml
++F:	arch/arm/configs/fragment-901-bytedevkit.config
+ F:	drivers/gpu/drm/panel/panel-youritec-ili9806e.c
+ 
+ C-MEDIA CMI8788 DRIVER
+diff --git a/arch/arm/configs/fragment-901-bytedevkit.config b/arch/arm/configs/fragment-901-bytedevkit.config
+new file mode 100644
+index 000000000000..e8f6aec15363
+--- /dev/null
++++ b/arch/arm/configs/fragment-901-bytedevkit.config
+@@ -0,0 +1,13 @@
++CONFIG_DRM_PANEL_YOURITECH_ILI9806E=y
++
++CONFIG_DRM_FBDEV_EMULATION=y
++
++CONFIG_DP83867_PHY=y
++
++CONFIG_MFD_STM32_TIMERS=y
++CONFIG_PWM_STM32=y
++
++CONFIG_FRAMEBUFFER_CONSOLE=y
++CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY=y
++# CONFIG_FRAMEBUFFER_CONSOLE_ROTATION is not set
++# CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER is not set
