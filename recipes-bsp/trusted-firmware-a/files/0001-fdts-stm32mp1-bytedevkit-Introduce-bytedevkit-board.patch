@@ -1,4 +1,4 @@
-From dcfb67b5441bcbae5db8740e4cc59bad72a0c7e8 Mon Sep 17 00:00:00 2001
+From f02c8d741365864a525919c7ad055e28369dbb00 Mon Sep 17 00:00:00 2001
 From: Markus Kappeler <markus.kappeler@bytesatwork.ch>
 Date: Thu, 5 Mar 2020 14:57:34 +0100
 Subject: [PATCH] fdts: stm32mp1-bytedevkit: Introduce bytedevkit board
@@ -166,5 +166,5 @@ index 000000000..1fd160830
 +	usb-role-host;
 +};
 -- 
-2.39.2
+2.39.5
 
