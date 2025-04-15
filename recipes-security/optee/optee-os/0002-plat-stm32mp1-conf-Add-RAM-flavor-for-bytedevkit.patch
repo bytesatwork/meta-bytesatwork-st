@@ -1,4 +1,4 @@
-From 347636b63e951894e35f3d3f0a66bf8684c55b61 Mon Sep 17 00:00:00 2001
+From 7ec3a2b434aada299503d84ef0164af8843499ea Mon Sep 17 00:00:00 2001
 From: Guy Morand <guy.morand@bytesatwork.ch>
 Date: Wed, 3 Jul 2024 14:45:49 +0200
 Subject: [PATCH] plat-stm32mp1: conf: Add RAM flavor for bytedevkit
@@ -12,7 +12,7 @@ Signed-off-by: Guy Morand <guy.morand@bytesatwork.ch>
  1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/core/arch/arm/plat-stm32mp1/conf.mk b/core/arch/arm/plat-stm32mp1/conf.mk
-index ef6fc368e..856176230 100644
+index 2600f51c2..dc7dc35dd 100644
 --- a/core/arch/arm/plat-stm32mp1/conf.mk
 +++ b/core/arch/arm/plat-stm32mp1/conf.mk
 @@ -13,12 +13,16 @@ flavor_dts_file-157D_EV1 = stm32mp157d-ev1.dts
@@ -34,5 +34,5 @@ index ef6fc368e..856176230 100644
  flavorlist-no_cryp-512M = $(flavor_dts_file-157A_DK1) \
  			  $(flavor_dts_file-157D_DK1)
 -- 
-2.39.2
+2.39.5
 

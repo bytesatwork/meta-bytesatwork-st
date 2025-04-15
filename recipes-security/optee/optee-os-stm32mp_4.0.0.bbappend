@@ -7,9 +7,8 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/optee-os:"
 PR="r0"
 
 SRC_URI:class-devupstream += " \
-	file://0001-core-mm-Fix-conflicting-types-due-to-enum-integer-mi.patch \
-	file://0002-arm-dts-Introduce-bytedevkit.patch \
-	file://0003-plat-stm32mp1-conf-Add-RAM-flavor-for-bytedevkit.patch \
+	file://0001-arm-dts-Introduce-bytedevkit.patch \
+	file://0002-plat-stm32mp1-conf-Add-RAM-flavor-for-bytedevkit.patch \
 "
 
 STM32MP_SOURCE_SELECTION = "github"

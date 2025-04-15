@@ -1,4 +1,4 @@
-From 431db6035b0e3b9e295a6597f39260b8f1d8c774 Mon Sep 17 00:00:00 2001
+From db7dc4c14f4902871192e6e9e59e9b4eca7eff58 Mon Sep 17 00:00:00 2001
 From: Guy Morand <guy.morand@bytesatwork.ch>
 Date: Wed, 3 Jul 2024 14:44:14 +0200
 Subject: [PATCH] arm: dts: Introduce bytedevkit
@@ -8,10 +8,10 @@ serial console.
 
 Signed-off-by: Guy Morand <guy.morand@bytesatwork.ch>
 ---
- .../arm/dts/stm32mp157c-bytedevkit-v1-1.dts   | 12 ++++
- .../arm/dts/stm32mp157c-bytedevkit-v1-3.dts   | 12 ++++
- core/arch/arm/dts/stm32mp157c-bytedevkit.dtsi | 55 +++++++++++++++++++
- 3 files changed, 79 insertions(+)
+ .../arm/dts/stm32mp157c-bytedevkit-v1-1.dts   | 12 +++
+ .../arm/dts/stm32mp157c-bytedevkit-v1-3.dts   | 12 +++
+ core/arch/arm/dts/stm32mp157c-bytedevkit.dtsi | 78 +++++++++++++++++++
+ 3 files changed, 102 insertions(+)
  create mode 100644 core/arch/arm/dts/stm32mp157c-bytedevkit-v1-1.dts
  create mode 100644 core/arch/arm/dts/stm32mp157c-bytedevkit-v1-3.dts
  create mode 100644 core/arch/arm/dts/stm32mp157c-bytedevkit.dtsi
@@ -54,10 +54,10 @@ index 000000000..76c403b91
 +};
 diff --git a/core/arch/arm/dts/stm32mp157c-bytedevkit.dtsi b/core/arch/arm/dts/stm32mp157c-bytedevkit.dtsi
 new file mode 100644
-index 000000000..2133c6104
+index 000000000..038672254
 --- /dev/null
 +++ b/core/arch/arm/dts/stm32mp157c-bytedevkit.dtsi
-@@ -0,0 +1,55 @@
+@@ -0,0 +1,78 @@
 +// SPDX-License-Identifier: GPL-2.0
 +/*
 + *  Copyright (C) 2024 bytes at work AG - http://www.bytesatwork.ch
@@ -113,6 +113,29 @@ index 000000000..2133c6104
 +	>;
 +};
 +
++&mcusram1 {
++	access-controllers-conf-default = <&etzpc DECPROT(STM32MP1_ETZPC_SRAM1_ID, DECPROT_MCU_ISOLATION, DECPROT_UNLOCK)>;
++	access-controllers-conf-load = <&etzpc DECPROT(STM32MP1_ETZPC_SRAM1_ID, DECPROT_S_RW, DECPROT_UNLOCK)>;
++};
++
++&mcusram2 {
++	access-controllers-conf-default = <&etzpc DECPROT(STM32MP1_ETZPC_SRAM2_ID, DECPROT_MCU_ISOLATION, DECPROT_UNLOCK)>;
++	access-controllers-conf-load = <&etzpc DECPROT(STM32MP1_ETZPC_SRAM2_ID, DECPROT_S_RW, DECPROT_UNLOCK)>;
++};
++
++&mcusram3 {
++	access-controllers-conf-default = <&etzpc DECPROT(STM32MP1_ETZPC_SRAM3_ID, DECPROT_NS_RW, DECPROT_UNLOCK)>;
++	access-controllers-conf-load = <&etzpc DECPROT(STM32MP1_ETZPC_SRAM3_ID, DECPROT_S_RW, DECPROT_UNLOCK)>;
++};
++
++&retram {
++	access-controllers-conf-default = <&etzpc DECPROT(STM32MP1_ETZPC_RETRAM_ID, DECPROT_MCU_ISOLATION, DECPROT_UNLOCK)>;
++	access-controllers-conf-load = <&etzpc DECPROT(STM32MP1_ETZPC_RETRAM_ID, DECPROT_S_RW, DECPROT_UNLOCK)>;
++};
++
++&rcc {
++	status = "okay";
++};
 -- 
-2.39.2
+2.39.5
 
