@@ -14,13 +14,15 @@ do_deploy:append() {
 }
 
 # Increase PR if something changes
-PR = "r0"
+PR = "r1"
 
 SRC_URI:class-devupstream += " \
 	file://0001-github-workflows-Add-action-to-analyze-patches.patch \
 	file://0002-cmd-Add-cpuinfo.patch \
 	file://0003-board-bytesatwork-Import-bawconfig.patch \
 	file://0004-stm32mp1-Add-STM32MP1-bytesatwork-byteDEVKIT-board.patch \
+	file://0005-configs-stm32mp157_bytedevkit-Add-password.patch \
+	file://0006-configs-stm32mp1_bytedevkit-Add-quiet-to-kernel-boot.patch \
 "
 
 # Commit `40469ba48e30e280371a057ce63f7dcb505095b7` is no longer in *any* branch.

@@ -1,4 +1,4 @@
-From dcbcf2e84c1402664c9b1041db3bf0b9d8a20ed7 Mon Sep 17 00:00:00 2001
+From fb03ef0280fd2e20cf8fdf7ea6aaec1662630033 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Stephan=20D=C3=BCnner?= <stephan.duenner@bytesatwork.ch>
 Date: Fri, 9 Aug 2019 19:17:33 +0200
 Subject: [PATCH] cmd: Add cpuinfo
@@ -19,7 +19,7 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
  create mode 100644 cmd/cpuinfo.c
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index d4b2f23953..2982311e19 100644
+index feea8e9366..16b4836c4f 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
 @@ -254,6 +254,7 @@ S:	Maintained

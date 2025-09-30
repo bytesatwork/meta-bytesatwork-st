@@ -1,4 +1,4 @@
-From e588af56f2b5b9ef395678bf771c53e2ac7951d1 Mon Sep 17 00:00:00 2001
+From 6fdaf955f7606084a6ce8b81dfd7e0ef6d05218e Mon Sep 17 00:00:00 2001
 From: Rico Ganahl <rico.ganahl@bytesatwork.ch>
 Date: Wed, 2 Feb 2022 09:16:56 +0100
 Subject: [PATCH] board: bytesatwork: Import bawconfig

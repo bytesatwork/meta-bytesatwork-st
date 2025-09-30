@@ -1,4 +1,4 @@
-From 4babf9dca0ac3de115dda5e67fdbe683b010a7dc Mon Sep 17 00:00:00 2001
+From da454d1d188e9657ced4a90f358c979a6712461b Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Tue, 29 Jul 2025 09:14:28 +0200
 Subject: [PATCH] github: workflows: Add action to analyze patches
@@ -153,14 +153,14 @@ index 0000000000..dc75adb9e0
 +            ./scripts/checkpatch.pl --no-tree ${{ matrix.patch }}
 +          fi
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 592aab68dc..d4b2f23953 100644
+index 592aab68dc..feea8e9366 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
 @@ -248,6 +248,13 @@ F:	doc/README.bcm7xxx
  F:	drivers/mmc/bcmstb_sdhci.c
  F:	drivers/spi/bcmstb_spi.c
  
-+ARM BYTESATWORK BYTEDEVKIT STM32MP1/STM32MP2
++ARM BYTESATWORK BYTEDEVKIT STM32MP1
 +M:	Simone Schwizer <simone.schwizer@bytesatwork.ch>
 +S:	Maintained
 +W:	https://www.bytesatwork.io/
