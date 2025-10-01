@@ -4,7 +4,7 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/linux-stm32mp-6.6:"
 
 # Increase PR if something changes
-PR="0"
+PR="1"
 
 SRC_URI:class-devupstream += " \
 	file://0001-github-workflows-Add-action-to-analyze-patches.patch \
@@ -12,6 +12,8 @@ SRC_URI:class-devupstream += " \
 	file://0003-drm-add-youritech-panel-with-ili9806e-mipi-controlle.patch \
 	file://0004-ARM-configs-Add-bytedevkit-fragment.patch \
 	file://0005-ARM-dts-stm32mp157c-byteengine-bytedevkit.patch \
+	file://0006-ARM-configs-Add-nftables-fragment.patch \
+	file://0007-ARM-configs-Add-systemd-fragment.patch \
 "
 
 KERNEL_CONFIG_FRAGMENTS:append:bytedevkit-stm32mp1 = "${S}/arch/arm/configs/fragment-901-bytedevkit.config"
