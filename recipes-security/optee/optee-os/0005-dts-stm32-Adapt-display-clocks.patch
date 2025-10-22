@@ -1,0 +1,30 @@
+From 1e94e772276d67a6ae95376ac120137f2f32c353 Mon Sep 17 00:00:00 2001
+From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
+Date: Thu, 2 Oct 2025 09:44:02 +0200
+Subject: [PATCH] dts: stm32: Adapt display clocks
+
+Set mipi clock to 33MHz and lvds pixel clock to 25MHz.
+
+Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
+---
+ core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi b/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi
+index cab0daea0..89e1d06a1 100644
+--- a/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi
++++ b/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi
+@@ -67,11 +67,11 @@
+ 		FLEXGEN_CFG(25, XBAR_SRC_PLL7, 0, 16)
+ 		FLEXGEN_CFG(26, XBAR_SRC_PLL4, 0, 11)
+ 		FLEXGEN_CFG(27, XBAR_SRC_PLL8, 0, 3)
+-		FLEXGEN_CFG(28, XBAR_SRC_PLL8, 0, 21)
++		FLEXGEN_CFG(28, XBAR_SRC_PLL8, 0, 17)
+ 		FLEXGEN_CFG(29, XBAR_SRC_PLL5, 0, 1)
+ 		FLEXGEN_CFG(30, XBAR_SRC_HSE_KER, 0, 1)
+ 		FLEXGEN_CFG(31, XBAR_SRC_PLL5, 0, 19)
+-		FLEXGEN_CFG(32, XBAR_SRC_PLL5, 0, 19)
++		FLEXGEN_CFG(32, XBAR_SRC_PLL4, 0, 47)
+ 		FLEXGEN_CFG(33, XBAR_SRC_PLL4, 0, 23)
+ 		FLEXGEN_CFG(34, XBAR_SRC_PLL4, 0, 59)
+ 		FLEXGEN_CFG(35, XBAR_SRC_HSI_KER, 0, 3)

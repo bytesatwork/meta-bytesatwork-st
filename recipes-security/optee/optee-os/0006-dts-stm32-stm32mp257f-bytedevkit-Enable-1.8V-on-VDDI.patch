@@ -1,0 +1,28 @@
+From ae992e68b8590681d8fe424a8b6886b8a5fc2220 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Stephan=20D=C3=BCnner?= <stephan.duenner@bytesatwork.ch>
+Date: Thu, 20 Nov 2025 11:48:06 +0100
+Subject: [PATCH] dts: stm32: stm32mp257f-bytedevkit: Enable 1.8V on VDDIO
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Enables 1.8V voltage level for VDDIO.
+
+Signed-off-by: Stephan Dünner <stephan.duenner@bytesatwork.ch>
+---
+ core/arch/arm/dts/stm32mp257f-bytedevkit.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/core/arch/arm/dts/stm32mp257f-bytedevkit.dts b/core/arch/arm/dts/stm32mp257f-bytedevkit.dts
+index 7ef87701f..5bbbd10fe 100644
+--- a/core/arch/arm/dts/stm32mp257f-bytedevkit.dts
++++ b/core/arch/arm/dts/stm32mp257f-bytedevkit.dts
+@@ -43,7 +43,7 @@
+ 		compatible = "st,provisioning";
+ 		hconf1_prov {
+ 			nvmem-cells = <&hconf1_otp>;
+-			st,shadow-value = <0x00018DB6>;
++			st,shadow-value = <0x0003EDB6>;
+ 		};
+ 	};
+ };

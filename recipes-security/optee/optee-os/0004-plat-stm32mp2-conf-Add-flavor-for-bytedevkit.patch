@@ -1,0 +1,38 @@
+From f0fd64d750403179d0d83764e9ceb1c26a9cdadb Mon Sep 17 00:00:00 2001
+From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
+Date: Mon, 1 Sep 2025 15:40:40 +0200
+Subject: [PATCH] plat-stm32mp2: conf: Add flavor for bytedevkit
+
+Adds stm32mp2 byteDEVKIT device tree.
+
+Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
+---
+ core/arch/arm/plat-stm32mp2/conf.mk | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/core/arch/arm/plat-stm32mp2/conf.mk b/core/arch/arm/plat-stm32mp2/conf.mk
+index 9295869a8..d886bce21 100644
+--- a/core/arch/arm/plat-stm32mp2/conf.mk
++++ b/core/arch/arm/plat-stm32mp2/conf.mk
+@@ -1,9 +1,11 @@
+ flavor_dts_file-215F_DK = stm32mp215f-dk.dts
+ flavor_dts_file-235F_DK = stm32mp235f-dk.dts
++flavor_dts_file-257F_BDK = stm32mp257f-bytedevkit.dts
+ flavor_dts_file-257F_DK = stm32mp257f-dk.dts
+ flavor_dts_file-257F_EV1 = stm32mp257f-ev1.dts
+ 
+-flavorlist-MP25 = $(flavor_dts_file-257F_DK) \
++flavorlist-MP25 = $(flavor_dts_file-257F_BDK) \
++		  $(flavor_dts_file-257F_DK) \
+ 		  $(flavor_dts_file-257F_EV1)
+ 
+ flavorlist-MP23 = $(flavor_dts_file-235F_DK)
+@@ -214,7 +216,7 @@ CFG_WERROR ?= y
+ CFG_CORE_ASLR ?= n
+ 
+ # UART instance used for early console (0 disables early console)
+-CFG_STM32_EARLY_CONSOLE_UART ?= 2
++CFG_STM32_EARLY_CONSOLE_UART ?= 1
+ 
+ # Default disable external DT support
+ CFG_EXTERNAL_DT ?= n
