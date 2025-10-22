@@ -19,7 +19,7 @@ Signed-off-by: Stephan Dünner <stephan.duenner@bytesatwork.ch>
  create mode 100644 drivers/gpu/drm/panel/panel-youritec-ili9806e.c
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 86bf2feef13b..17f59805cd45 100644
+index 86bf2feef1..17f59805cd 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
 @@ -4442,6 +4442,7 @@ M:	Daniel Ammann <daniel.ammann@bytesatwork.ch>
@@ -31,7 +31,7 @@ index 86bf2feef13b..17f59805cd45 100644
  C-MEDIA CMI8788 DRIVER
  M:	Clemens Ladisch <clemens@ladisch.de>
 diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index f2378592e496..e4299638f491 100644
+index f2378592e4..e4299638f4 100644
 --- a/drivers/gpu/drm/panel/Kconfig
 +++ b/drivers/gpu/drm/panel/Kconfig
 @@ -844,4 +844,13 @@ config DRM_PANEL_XINPENG_XPP055C272
@@ -49,7 +49,7 @@ index f2378592e496..e4299638f491 100644
 +	  Ilitek ILI9881c controller.
  endmenu
 diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index 930d8b9a8b24..520763608818 100644
+index 930d8b9a8b..5207636088 100644
 --- a/drivers/gpu/drm/panel/Makefile
 +++ b/drivers/gpu/drm/panel/Makefile
 @@ -86,3 +86,4 @@ obj-$(CONFIG_DRM_PANEL_VISIONOX_VTDR6130) += panel-visionox-vtdr6130.o
@@ -59,7 +59,7 @@ index 930d8b9a8b24..520763608818 100644
 +obj-$(CONFIG_DRM_PANEL_YOURITECH_ILI9806E) += panel-youritec-ili9806e.o
 diff --git a/drivers/gpu/drm/panel/panel-youritec-ili9806e.c b/drivers/gpu/drm/panel/panel-youritec-ili9806e.c
 new file mode 100644
-index 000000000000..5046fa4a0257
+index 0000000000..5046fa4a02
 --- /dev/null
 +++ b/drivers/gpu/drm/panel/panel-youritec-ili9806e.c
 @@ -0,0 +1,468 @@

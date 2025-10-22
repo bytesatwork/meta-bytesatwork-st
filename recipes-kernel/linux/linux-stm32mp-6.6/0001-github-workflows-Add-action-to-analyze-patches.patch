@@ -16,7 +16,7 @@ Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 
 diff --git a/.checkpatch.conf b/.checkpatch.conf
 new file mode 100644
-index 000000000000..433d9264673c
+index 0000000000..433d926467
 --- /dev/null
 +++ b/.checkpatch.conf
 @@ -0,0 +1,2 @@
@@ -24,7 +24,7 @@ index 000000000000..433d9264673c
 +--min-conf-desc-length=1
 diff --git a/.github/workflows/checkpatch.yml b/.github/workflows/checkpatch.yml
 new file mode 100644
-index 000000000000..c71203a8708c
+index 0000000000..c71203a870
 --- /dev/null
 +++ b/.github/workflows/checkpatch.yml
 @@ -0,0 +1,119 @@
@@ -148,7 +148,7 @@ index 000000000000..c71203a8708c
 +            ./scripts/checkpatch.pl --no-tree ${{ matrix.patch }}
 +          fi
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 9704c0220f5f..1a9bc0bcdf6a 100644
+index 9704c0220f..1a9bc0bcdf 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
 @@ -4437,6 +4437,11 @@ S:	Maintained

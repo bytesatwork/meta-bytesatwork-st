@@ -14,7 +14,7 @@ Signed-off-by: Daniel Ammann <daniel.ammann@bytesatwork.ch>
  create mode 100644 arch/arm/configs/fragment-901-bytedevkit.config
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 17f59805cd45..bbfcec8915f8 100644
+index 17f59805cd..bbfcec8915 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
 @@ -4442,6 +4442,7 @@ M:	Daniel Ammann <daniel.ammann@bytesatwork.ch>
@@ -27,7 +27,7 @@ index 17f59805cd45..bbfcec8915f8 100644
  C-MEDIA CMI8788 DRIVER
 diff --git a/arch/arm/configs/fragment-901-bytedevkit.config b/arch/arm/configs/fragment-901-bytedevkit.config
 new file mode 100644
-index 000000000000..e8f6aec15363
+index 0000000000..e8f6aec153
 --- /dev/null
 +++ b/arch/arm/configs/fragment-901-bytedevkit.config
 @@ -0,0 +1,13 @@

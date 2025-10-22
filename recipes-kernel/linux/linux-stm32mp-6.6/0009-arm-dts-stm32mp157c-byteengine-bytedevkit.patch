@@ -1,0 +1,55 @@
+From a174095bd5e6e31ddececdce510ebe7401a23c66 Mon Sep 17 00:00:00 2001
+From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
+Date: Fri, 31 Oct 2025 09:57:45 +0100
+Subject: [PATCH] arm: dts: stm32mp157c-byteengine/bytedevkit
+
+Update compatible properties.
+
+Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
+---
+ arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-1.dts | 3 ++-
+ arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-3.dts | 3 ++-
+ arch/arm/boot/dts/st/stm32mp157c-byteengine-m5.dtsi  | 2 +-
+ 3 files changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-1.dts b/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-1.dts
+index 827410b598..1cabbc9c83 100644
+--- a/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-1.dts
++++ b/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-1.dts
+@@ -9,7 +9,8 @@
+ 
+ / {
+ 	model = "byteDEVKIT V1.1";
+-	compatible = "batw,bytedevkit", "batw,m5", "st,stm32mp157";
++	compatible = "bytesatwork,bytedevkit-stm32mp1", "bytesatwork,byteengine-stm32mp1",
++		"st,stm32mp157";
+ };
+ 
+ &ethernet0 {
+diff --git a/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-3.dts b/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-3.dts
+index 3b065c310f..f3f94fc898 100644
+--- a/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-3.dts
++++ b/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-3.dts
+@@ -9,7 +9,8 @@
+ 
+ / {
+ 	model = "byteDEVKIT V1.3";
+-	compatible = "batw,bytedevkit", "batw,m5", "st,stm32mp157";
++	compatible = "bytesatwork,bytedevkit-stm32mp1", "bytesatwork,byteengine-stm32mp1",
++		"st,stm32mp157";
+ };
+ 
+ &ethernet0 {
+diff --git a/arch/arm/boot/dts/st/stm32mp157c-byteengine-m5.dtsi b/arch/arm/boot/dts/st/stm32mp157c-byteengine-m5.dtsi
+index 5f11cca0ec..5799a8953d 100644
+--- a/arch/arm/boot/dts/st/stm32mp157c-byteengine-m5.dtsi
++++ b/arch/arm/boot/dts/st/stm32mp157c-byteengine-m5.dtsi
+@@ -15,7 +15,7 @@
+ #include <dt-bindings/rtc/rtc-stm32.h>
+ 
+ / {
+-	compatible = "batw,m5", "st,stm32mp157";
++	compatible = "bytesatwork,byteengine-stm32mp1", "st,stm32mp157";
+ 
+ 	memory@c0000000 {
+ 		device_type = "memory";

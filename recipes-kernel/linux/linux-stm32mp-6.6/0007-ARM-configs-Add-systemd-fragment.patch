@@ -11,7 +11,7 @@ Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
  1 file changed, 49 insertions(+)
 
 diff --git a/arch/arm/configs/fragment-901-bytedevkit.config b/arch/arm/configs/fragment-901-bytedevkit.config
-index 592dcca2262c..132056c199b5 100644
+index 592dcca226..132056c199 100644
 --- a/arch/arm/configs/fragment-901-bytedevkit.config
 +++ b/arch/arm/configs/fragment-901-bytedevkit.config
 @@ -49,3 +49,52 @@ CONFIG_NFT_SET_RBTREE=y

@@ -17,7 +17,7 @@ Signed-off-by: Daniel Ammann <daniel.ammann@bytesatwork.ch>
 
 diff --git a/Documentation/devicetree/bindings/arm/bytesatwork/bytesatwork.yaml b/Documentation/devicetree/bindings/arm/bytesatwork/bytesatwork.yaml
 new file mode 100644
-index 000000000000..567086eb9248
+index 0000000000..567086eb92
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/arm/bytesatwork/bytesatwork.yaml
 @@ -0,0 +1,30 @@
@@ -52,7 +52,7 @@ index 000000000000..567086eb9248
 +
 +...
 diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index b642dd510841..0141cd837fe9 100644
+index b642dd5108..0141cd837f 100644
 --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
 +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
 @@ -186,6 +186,8 @@ patternProperties:
@@ -65,7 +65,7 @@ index b642dd510841..0141cd837fe9 100644
      description: Compass Electronics Group, LLC
    "^beagle,.*":
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 1a9bc0bcdf6a..86bf2feef13b 100644
+index 1a9bc0bcdf..86bf2feef1 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
 @@ -4441,6 +4441,7 @@ BYTES AT WORK MODULES AND BOARDS

@@ -1,0 +1,30 @@
+From da9f08c83ff0c08d5cbbcb3a474dece29dd0ab5b Mon Sep 17 00:00:00 2001
+From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
+Date: Thu, 23 Oct 2025 09:05:15 +0200
+Subject: [PATCH] net: stmmac: Fix stmmac names for sysfs
+
+Let be stmmac names be differ in /sys/class/mdio_bus.
+
+Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
+Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
+---
+ drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
+index 0542cfd181..0c9dfaeb88 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
++++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
+@@ -551,7 +551,12 @@ int stmmac_mdio_register(struct net_device *ndev)
+ 		memcpy(new_bus->irq, mdio_bus_data->irqs, sizeof(new_bus->irq));
+ 
+ 	new_bus->name = "stmmac";
++	static atomic_t mdio_unique_id = ATOMIC_INIT(0);
++	int uniq = atomic_inc_return(&mdio_unique_id);
+ 
++	snprintf(new_bus->id, MII_BUS_ID_SIZE, "%s-%d", new_bus->name, uniq);
++
++	new_bus->name = new_bus->id;
+ 	if (priv->plat->has_xgmac) {
+ 		new_bus->read = &stmmac_xgmac2_mdio_read_c22;
+ 		new_bus->write = &stmmac_xgmac2_mdio_write_c22;
