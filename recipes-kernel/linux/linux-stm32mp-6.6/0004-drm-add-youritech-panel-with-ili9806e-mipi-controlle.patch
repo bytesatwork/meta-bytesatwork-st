@@ -1,4 +1,4 @@
-From 7998594b00eab0ec76483731c035cbb2f1c04d23 Mon Sep 17 00:00:00 2001
+From 5de9e5c735ddca0badbbae6c528aa10e0e7bfe39 Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Thu, 25 Jul 2024 11:02:55 +0200
 Subject: [PATCH] drm: add youritech panel with ili9806e mipi controller
@@ -19,7 +19,7 @@ Signed-off-by: Stephan Dünner <stephan.duenner@bytesatwork.ch>
  create mode 100644 drivers/gpu/drm/panel/panel-youritec-ili9806e.c
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 86bf2feef1..17f59805cd 100644
+index ff09b323cc..a44e3dc85f 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
 @@ -4442,6 +4442,7 @@ M:	Daniel Ammann <daniel.ammann@bytesatwork.ch>
@@ -31,10 +31,10 @@ index 86bf2feef1..17f59805cd 100644
  C-MEDIA CMI8788 DRIVER
  M:	Clemens Ladisch <clemens@ladisch.de>
 diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index f2378592e4..e4299638f4 100644
+index 3a2f4a9f1d..b5fd4089d9 100644
 --- a/drivers/gpu/drm/panel/Kconfig
 +++ b/drivers/gpu/drm/panel/Kconfig
-@@ -844,4 +844,13 @@ config DRM_PANEL_XINPENG_XPP055C272
+@@ -835,4 +835,13 @@ config DRM_PANEL_XINPENG_XPP055C272
  	  Say Y here if you want to enable support for the Xinpeng
  	  XPP055C272 controller for 720x1280 LCD panels with MIPI/RGB/SPI
  	  system interfaces.
@@ -49,10 +49,10 @@ index f2378592e4..e4299638f4 100644
 +	  Ilitek ILI9881c controller.
  endmenu
 diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index 930d8b9a8b..5207636088 100644
+index 433e93d579..482c3320e0 100644
 --- a/drivers/gpu/drm/panel/Makefile
 +++ b/drivers/gpu/drm/panel/Makefile
-@@ -86,3 +86,4 @@ obj-$(CONFIG_DRM_PANEL_VISIONOX_VTDR6130) += panel-visionox-vtdr6130.o
+@@ -85,3 +85,4 @@ obj-$(CONFIG_DRM_PANEL_VISIONOX_VTDR6130) += panel-visionox-vtdr6130.o
  obj-$(CONFIG_DRM_PANEL_VISIONOX_R66451) += panel-visionox-r66451.o
  obj-$(CONFIG_DRM_PANEL_WIDECHIPS_WS2401) += panel-widechips-ws2401.o
  obj-$(CONFIG_DRM_PANEL_XINPENG_XPP055C272) += panel-xinpeng-xpp055c272.o

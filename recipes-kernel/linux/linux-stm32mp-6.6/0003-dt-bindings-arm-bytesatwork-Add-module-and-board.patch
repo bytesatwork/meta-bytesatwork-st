@@ -1,4 +1,4 @@
-From 4de453ea14c345040be925a045a858febff81777 Mon Sep 17 00:00:00 2001
+From 1cedd714bffdf54f00d11cdcedf8f903a44f94af Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Mon, 19 Aug 2024 15:02:27 +0200
 Subject: [PATCH] dt-bindings: arm: bytesatwork: Add module and board
@@ -52,7 +52,7 @@ index 0000000000..567086eb92
 +
 +...
 diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index b642dd5108..0141cd837f 100644
+index fc8b23e57d..f373fe792f 100644
 --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
 +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
 @@ -186,6 +186,8 @@ patternProperties:
@@ -65,7 +65,7 @@ index b642dd5108..0141cd837f 100644
      description: Compass Electronics Group, LLC
    "^beagle,.*":
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 1a9bc0bcdf..86bf2feef1 100644
+index 65bc3e01a5..ff09b323cc 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
 @@ -4441,6 +4441,7 @@ BYTES AT WORK MODULES AND BOARDS

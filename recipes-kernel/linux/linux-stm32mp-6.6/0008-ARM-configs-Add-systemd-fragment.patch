@@ -1,4 +1,4 @@
-From b5e8fdb66e66af03b7358290a5bd37914463e7b7 Mon Sep 17 00:00:00 2001
+From 51f7dd0137a572d22f84c01039e7daa6a423ea27 Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Tue, 30 Sep 2025 16:23:00 +0200
 Subject: [PATCH] ARM: configs: Add systemd fragment

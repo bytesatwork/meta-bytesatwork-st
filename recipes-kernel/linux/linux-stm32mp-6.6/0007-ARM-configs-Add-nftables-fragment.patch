@@ -1,4 +1,4 @@
-From bd6d003d5cdbffa81e1a12dbb0ec12735f5e153e Mon Sep 17 00:00:00 2001
+From a830644438407b8f8372a918eec34e82e4fe92fa Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Tue, 30 Sep 2025 11:56:24 +0200
 Subject: [PATCH] ARM: configs: Add nftables fragment

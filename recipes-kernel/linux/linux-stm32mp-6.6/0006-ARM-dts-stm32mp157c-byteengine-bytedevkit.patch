@@ -1,4 +1,4 @@
-From de87fe21ad5b92279ad3725fcaca7178f502924b Mon Sep 17 00:00:00 2001
+From f513328a00f59fa5d2e75ff305a2da1f55df9f88 Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Thu, 25 Jul 2024 11:08:58 +0200
 Subject: [PATCH] ARM: dts: stm32mp157c-byteengine/bytedevkit
@@ -22,7 +22,7 @@ Signed-off-by: Rico Ganahl <rico.ganahl@bytesatwork.ch>
  create mode 100644 arch/arm/boot/dts/st/stm32mp157c-byteengine-m5.dtsi
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index bbfcec8915..dd0c327d17 100644
+index d477e6c9de..6459f183b9 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
 @@ -4442,6 +4442,8 @@ M:	Daniel Ammann <daniel.ammann@bytesatwork.ch>

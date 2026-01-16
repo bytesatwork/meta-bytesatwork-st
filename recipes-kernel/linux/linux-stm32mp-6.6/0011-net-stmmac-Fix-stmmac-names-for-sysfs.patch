@@ -1,4 +1,4 @@
-From da9f08c83ff0c08d5cbbcb3a474dece29dd0ab5b Mon Sep 17 00:00:00 2001
+From 225d6b36d92bace5b68844a3b1f2a213f6bd55fb Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Thu, 23 Oct 2025 09:05:15 +0200
 Subject: [PATCH] net: stmmac: Fix stmmac names for sysfs

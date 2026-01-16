@@ -1,4 +1,4 @@
-From 990ec014468547206536ed59806fa580adbe9d8d Mon Sep 17 00:00:00 2001
+From 908f4231721090b90ad3fc03d433cd48b2f5fe7b Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Stephan=20D=C3=BCnner?= <stephan.duenner@bytesatwork.ch>
 Date: Thu, 20 Nov 2025 15:30:39 +0100
 Subject: [PATCH] arm64: dts: st: stm32mp257f-bytedevkit: Enable Gb for

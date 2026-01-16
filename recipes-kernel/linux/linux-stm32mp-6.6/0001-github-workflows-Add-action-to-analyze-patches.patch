@@ -1,4 +1,4 @@
-From 0203ce019ca206a6b6138beb6302951460551160 Mon Sep 17 00:00:00 2001
+From 9cb649e5dac01f81ae7cc02d48bb7b5bf12a3312 Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Thu, 25 Jul 2024 10:56:51 +0200
 Subject: [PATCH] github: workflows: Add action to analyze patches
@@ -148,7 +148,7 @@ index 0000000000..c71203a870
 +            ./scripts/checkpatch.pl --no-tree ${{ matrix.patch }}
 +          fi
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 9704c0220f..1a9bc0bcdf 100644
+index ec00b7d72d..65bc3e01a5 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
 @@ -4437,6 +4437,11 @@ S:	Maintained

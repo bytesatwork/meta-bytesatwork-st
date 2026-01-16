@@ -1,4 +1,4 @@
-From fdc28b7a7ef843ebc987fc3cd9be5400123d530f Mon Sep 17 00:00:00 2001
+From 58e81811158bd95d9d6e27c6478b2754b0f53fcd Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Thu, 25 Jul 2024 11:05:37 +0200
 Subject: [PATCH] ARM: configs: Add bytedevkit fragment
@@ -14,7 +14,7 @@ Signed-off-by: Daniel Ammann <daniel.ammann@bytesatwork.ch>
  create mode 100644 arch/arm/configs/fragment-901-bytedevkit.config
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 17f59805cd..bbfcec8915 100644
+index a44e3dc85f..d477e6c9de 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
 @@ -4442,6 +4442,7 @@ M:	Daniel Ammann <daniel.ammann@bytesatwork.ch>

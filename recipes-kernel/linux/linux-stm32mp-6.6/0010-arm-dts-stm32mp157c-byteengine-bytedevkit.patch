@@ -1,4 +1,4 @@
-From a174095bd5e6e31ddececdce510ebe7401a23c66 Mon Sep 17 00:00:00 2001
+From 1f1b619a48c543ab206d389e17f3d39bc52ec160 Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Fri, 31 Oct 2025 09:57:45 +0100
 Subject: [PATCH] arm: dts: stm32mp157c-byteengine/bytedevkit

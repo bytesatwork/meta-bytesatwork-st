@@ -1,4 +1,4 @@
-From 9d4ade65eb434f3be0db199246922c08f0a6c3b2 Mon Sep 17 00:00:00 2001
+From dd50cb6e4fab3c7cba86365779ee9fa72d3d66c0 Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Thu, 30 Oct 2025 16:03:38 +0100
 Subject: [PATCH] dt-bindings: arm: bytesatwork: Update modules and boards
@@ -59,7 +59,7 @@ index 567086eb92..d9a7475ca2 100644
  additionalProperties: true
  
 diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 0141cd837f..057dfec069 100644
+index f373fe792f..658d5e430f 100644
 --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
 +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
 @@ -186,7 +186,7 @@ patternProperties:

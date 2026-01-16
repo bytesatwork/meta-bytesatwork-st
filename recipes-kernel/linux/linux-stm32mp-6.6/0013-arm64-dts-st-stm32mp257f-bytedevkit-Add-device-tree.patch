@@ -1,4 +1,4 @@
-From 341af9e37b085e7a59b46793127c6252e399d9a1 Mon Sep 17 00:00:00 2001
+From f02d92eee0719d1f7ebe2ba5a41ebf3b404ec18c Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Thu, 23 Oct 2025 09:09:32 +0200
 Subject: [PATCH] arm64: dts: st: stm32mp257f-bytedevkit: Add device tree
@@ -22,7 +22,7 @@ Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
  create mode 100644 arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index b4ee5ee4b2..75e154177f 100644
+index 3055f15525..1103638252 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
 @@ -4442,6 +4442,7 @@ M:	Daniel Ammann <daniel.ammann@bytesatwork.ch>
@@ -45,7 +45,7 @@ index 63908113ae..85bb8a3ac5 100644
  	stm32mp257f-dk.dtb \
  	stm32mp257f-ev1.dtb
 diff --git a/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi b/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi
-index a6ed7566aa..e882eda45b 100644
+index 253a840a7a..88ddf3cb32 100644
 --- a/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi
 +++ b/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi
 @@ -96,8 +96,7 @@ pins1 {
@@ -118,10 +118,10 @@ index a6ed7566aa..e882eda45b 100644
  		};
  	};
 diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-index 5aed351f94..a35791ff4a 100644
+index 3b96eccc42..a7241a7025 100644
 --- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
 +++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-@@ -2287,13 +2287,11 @@ eth1: eth1@482c0000 {
+@@ -2293,13 +2293,11 @@ eth1: eth1@482c0000 {
  				clock-names = "stmmaceth",
  					      "mac-clk-tx",
  					      "mac-clk-rx",
@@ -717,10 +717,10 @@ index 0000000000..4c3be8099e
 +};
 +
 diff --git a/arch/arm64/boot/dts/st/stm32mp257f-dk-ca35tdcid-resmem.dtsi b/arch/arm64/boot/dts/st/stm32mp257f-dk-ca35tdcid-resmem.dtsi
-index 243df32b68..1d1c2c709d 100644
+index 2931ad2b45..52acda2349 100644
 --- a/arch/arm64/boot/dts/st/stm32mp257f-dk-ca35tdcid-resmem.dtsi
 +++ b/arch/arm64/boot/dts/st/stm32mp257f-dk-ca35tdcid-resmem.dtsi
-@@ -157,18 +157,18 @@ op_tee: op-tee@82000000 {
+@@ -167,18 +167,18 @@ op_tee: op-tee@82000000 {
  			no-map;
  		};
  
@@ -745,7 +745,7 @@ index 243df32b68..1d1c2c709d 100644
  			no-map;
  		};
  
-@@ -176,8 +176,8 @@ ltdc_sec_rotation: ltdc-sec-rotation@ff000000 {
+@@ -186,8 +186,8 @@ ltdc_sec_rotation: ltdc-sec-rotation@ff000000 {
  		linux,cma {
  			compatible = "shared-dma-pool";
  			reusable;
