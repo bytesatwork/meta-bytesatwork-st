@@ -1,4 +1,4 @@
-From b66d249a145d574a161278c4038b5d6c4c8dbec2 Mon Sep 17 00:00:00 2001
+From c2bbcc9203f4f3adc6a9835ea24593fe96e08f47 Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Tue, 2 Sep 2025 15:06:20 +0200
 Subject: [PATCH] bytesatwork: stm32mp2: Introduce bawconfig
@@ -49,11 +49,11 @@ index 219aeb9c9c..c5cf9b6696 100644
  CONFIG_OF_BOARD_FIXUP=y
  CONFIG_SYS_MEMTEST_START=0x84000000
 diff --git a/include/configs/stm32mp2_bytedevkit.h b/include/configs/stm32mp2_bytedevkit.h
-index 684039bd67..1e89207ca6 100644
+index ad989751dc..83474a110b 100644
 --- a/include/configs/stm32mp2_bytedevkit.h
 +++ b/include/configs/stm32mp2_bytedevkit.h
 @@ -46,4 +46,8 @@
- 		"root=${mmc_root} ${bootargs_append}; \0" \
+ 		"root=${mmc_root} quiet ${bootargs_append}; \0" \
  	MMC_BOOT_CMD
  
 +#define BAW_CONFIG_BUILTIN_PCB		M10_PCB_REV_0_1

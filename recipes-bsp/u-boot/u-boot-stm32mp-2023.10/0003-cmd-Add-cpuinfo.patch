@@ -1,4 +1,4 @@
-From fb03ef0280fd2e20cf8fdf7ea6aaec1662630033 Mon Sep 17 00:00:00 2001
+From 03591398d75404e8901527967866bf9b6437b53a Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Stephan=20D=C3=BCnner?= <stephan.duenner@bytesatwork.ch>
 Date: Fri, 9 Aug 2019 19:17:33 +0200
 Subject: [PATCH] cmd: Add cpuinfo

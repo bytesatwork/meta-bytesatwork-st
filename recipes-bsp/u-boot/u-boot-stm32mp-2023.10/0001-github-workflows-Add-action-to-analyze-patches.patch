@@ -1,4 +1,4 @@
-From da454d1d188e9657ced4a90f358c979a6712461b Mon Sep 17 00:00:00 2001
+From 931fed0e411afb8bfe0da07a91ad235100cf713b Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Tue, 29 Jul 2025 09:14:28 +0200
 Subject: [PATCH] github: workflows: Add action to analyze patches

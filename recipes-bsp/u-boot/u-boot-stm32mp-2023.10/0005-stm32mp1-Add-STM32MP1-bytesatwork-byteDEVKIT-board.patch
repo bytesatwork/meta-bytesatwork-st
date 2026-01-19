@@ -1,4 +1,4 @@
-From 43081dd64564a5d84ea74c2ae16183801264b23f Mon Sep 17 00:00:00 2001
+From 6318b31471e86e25289d9174a9a363df57ea7f2e Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Tue, 19 Aug 2025 14:17:00 +0200
 Subject: [PATCH] stm32mp1: Add STM32MP1 bytesatwork byteDEVKIT board
@@ -1864,7 +1864,7 @@ index 0000000000..6723e6072b
 +CONFIG_LMB_RESERVED_REGIONS=16
 diff --git a/include/configs/stm32mp1_bytedevkit.h b/include/configs/stm32mp1_bytedevkit.h
 new file mode 100644
-index 0000000000..55385c7cfe
+index 0000000000..ec6608099c
 --- /dev/null
 +++ b/include/configs/stm32mp1_bytedevkit.h
 @@ -0,0 +1,89 @@
@@ -1927,7 +1927,7 @@ index 0000000000..55385c7cfe
 +	"console=ttySTM0,115200\0" \
 +	"default_args=rootwait rw vt.global_cursor_default=0 consoleblank=0\0" \
 +	"mmc_args=setenv bootargs ${default_args} console=${console} " \
-+		"root=${mmc_root} ${bootargs_append}; \0" \
++		"root=${mmc_root} quiet ${bootargs_append}; \0" \
 +	"select_dtb=if hwid check; " \
 +		"then " \
 +			"setenv dtbfile \"" \
