@@ -1,4 +1,4 @@
-From f02c8d741365864a525919c7ad055e28369dbb00 Mon Sep 17 00:00:00 2001
+From c400f50ab8d42b491cdcaf885421d79a8f9f045c Mon Sep 17 00:00:00 2001
 From: Markus Kappeler <markus.kappeler@bytesatwork.ch>
 Date: Thu, 5 Mar 2020 14:57:34 +0100
 Subject: [PATCH] fdts: stm32mp1-bytedevkit: Introduce bytedevkit board
@@ -27,7 +27,7 @@ Signed-off-by: Guy Morand <guy.morand@bytesatwork.ch>
 
 diff --git a/fdts/stm32mp157c-bytedevkit-fw-config.dts b/fdts/stm32mp157c-bytedevkit-fw-config.dts
 new file mode 100644
-index 000000000..de4dfd0e3
+index 0000000000..de4dfd0e34
 --- /dev/null
 +++ b/fdts/stm32mp157c-bytedevkit-fw-config.dts
 @@ -0,0 +1,7 @@
@@ -40,7 +40,7 @@ index 000000000..de4dfd0e3
 +#include "stm32mp15-fw-config.dtsi"
 diff --git a/fdts/stm32mp157c-bytedevkit-v1-1-fw-config.dts b/fdts/stm32mp157c-bytedevkit-v1-1-fw-config.dts
 new file mode 120000
-index 000000000..5bcb26d07
+index 0000000000..5bcb26d072
 --- /dev/null
 +++ b/fdts/stm32mp157c-bytedevkit-v1-1-fw-config.dts
 @@ -0,0 +1 @@
@@ -48,7 +48,7 @@ index 000000000..5bcb26d07
 \ No newline at end of file
 diff --git a/fdts/stm32mp157c-bytedevkit-v1-1.dts b/fdts/stm32mp157c-bytedevkit-v1-1.dts
 new file mode 120000
-index 000000000..871e8ef8f
+index 0000000000..871e8ef8fd
 --- /dev/null
 +++ b/fdts/stm32mp157c-bytedevkit-v1-1.dts
 @@ -0,0 +1 @@
@@ -56,7 +56,7 @@ index 000000000..871e8ef8f
 \ No newline at end of file
 diff --git a/fdts/stm32mp157c-bytedevkit-v1-3-fw-config.dts b/fdts/stm32mp157c-bytedevkit-v1-3-fw-config.dts
 new file mode 120000
-index 000000000..5bcb26d07
+index 0000000000..5bcb26d072
 --- /dev/null
 +++ b/fdts/stm32mp157c-bytedevkit-v1-3-fw-config.dts
 @@ -0,0 +1 @@
@@ -64,7 +64,7 @@ index 000000000..5bcb26d07
 \ No newline at end of file
 diff --git a/fdts/stm32mp157c-bytedevkit-v1-3.dts b/fdts/stm32mp157c-bytedevkit-v1-3.dts
 new file mode 120000
-index 000000000..871e8ef8f
+index 0000000000..871e8ef8fd
 --- /dev/null
 +++ b/fdts/stm32mp157c-bytedevkit-v1-3.dts
 @@ -0,0 +1 @@
@@ -72,7 +72,7 @@ index 000000000..871e8ef8f
 \ No newline at end of file
 diff --git a/fdts/stm32mp157c-bytedevkit.dts b/fdts/stm32mp157c-bytedevkit.dts
 new file mode 100644
-index 000000000..89a8bc479
+index 0000000000..89a8bc479b
 --- /dev/null
 +++ b/fdts/stm32mp157c-bytedevkit.dts
 @@ -0,0 +1,53 @@
@@ -131,7 +131,7 @@ index 000000000..89a8bc479
 +};
 diff --git a/fdts/stm32mp15xx-byteengine.dtsi b/fdts/stm32mp15xx-byteengine.dtsi
 new file mode 100644
-index 000000000..1fd160830
+index 0000000000..1fd1608304
 --- /dev/null
 +++ b/fdts/stm32mp15xx-byteengine.dtsi
 @@ -0,0 +1,30 @@
@@ -165,6 +165,3 @@ index 000000000..1fd160830
 +&usbotg_hs {
 +	usb-role-host;
 +};
--- 
-2.39.5
-

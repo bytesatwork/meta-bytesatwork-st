@@ -5,6 +5,9 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 STM32MP_SOURCE_SELECTION = "github"
 
+# Increase PR if something changes
+PR = "r2"
+
 SRC_URI:class-devupstream:append = " \
 	file://0001-fdts-stm32mp1-bytedevkit-Introduce-bytedevkit-board.patch \
 	file://0002-spi-nor-macronix-Use-2-lane-bus-and-dual-read.patch \

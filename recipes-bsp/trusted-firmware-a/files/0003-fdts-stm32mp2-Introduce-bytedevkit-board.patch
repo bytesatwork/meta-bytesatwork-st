@@ -1,4 +1,4 @@
-From 393149bc1987c418d8bd00965d88e9ab7cecd382 Mon Sep 17 00:00:00 2001
+From 14be087aa610103ddb90d357ec62db7b27cfb6ae Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Thu, 13 Mar 2025 15:13:17 +0100
 Subject: [PATCH] fdts: stm32mp2: Introduce bytedevkit board
@@ -25,7 +25,7 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 
 diff --git a/fdts/stm32mp25-lpddr4-1x8Gbits-1x16bits-1200MHz.dtsi b/fdts/stm32mp25-lpddr4-1x8Gbits-1x16bits-1200MHz.dtsi
 new file mode 100644
-index 000000000..69446dce0
+index 0000000000..69446dce05
 --- /dev/null
 +++ b/fdts/stm32mp25-lpddr4-1x8Gbits-1x16bits-1200MHz.dtsi
 @@ -0,0 +1,243 @@
@@ -275,7 +275,7 @@ index 000000000..69446dce0
 \ No newline at end of file
 diff --git a/fdts/stm32mp257f-bytedevkit-fw-config.dts b/fdts/stm32mp257f-bytedevkit-fw-config.dts
 new file mode 100644
-index 000000000..0c5b3729f
+index 0000000000..0c5b3729f9
 --- /dev/null
 +++ b/fdts/stm32mp257f-bytedevkit-fw-config.dts
 @@ -0,0 +1,11 @@
@@ -292,7 +292,7 @@ index 000000000..0c5b3729f
 +#include "stm32mp257f-dk-ca35tdcid-fw-config.dtsi"
 diff --git a/fdts/stm32mp257f-bytedevkit.dts b/fdts/stm32mp257f-bytedevkit.dts
 new file mode 100644
-index 000000000..672847f80
+index 0000000000..672847f805
 --- /dev/null
 +++ b/fdts/stm32mp257f-bytedevkit.dts
 @@ -0,0 +1,57 @@
@@ -355,7 +355,7 @@ index 000000000..672847f80
 +};
 diff --git a/fdts/stm32mp257f-byteengine.dtsi b/fdts/stm32mp257f-byteengine.dtsi
 new file mode 100644
-index 000000000..f85419e0c
+index 0000000000..f85419e0c8
 --- /dev/null
 +++ b/fdts/stm32mp257f-byteengine.dtsi
 @@ -0,0 +1,214 @@
@@ -574,10 +574,10 @@ index 000000000..f85419e0c
 +	status = "okay";
 +};
 diff --git a/plat/st/stm32mp2/stm32mp2_def.h b/plat/st/stm32mp2/stm32mp2_def.h
-index aee989db1..2cb39188f 100644
+index 95889b20fc..392fae4a45 100644
 --- a/plat/st/stm32mp2/stm32mp2_def.h
 +++ b/plat/st/stm32mp2/stm32mp2_def.h
-@@ -408,11 +408,11 @@ enum ddr_type {
+@@ -442,11 +442,11 @@ enum ddr_type {
  /* For UART crash console */
  #define STM32MP_DEBUG_USART_CLK_FRQ		64000000
  /* USART2 on HSI@64MHz, TX on GPIOA4 Alternate 6 */
