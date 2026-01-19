@@ -1,4 +1,4 @@
-From 4438b36fd25d84d3fcecf36fd997270c308be803 Mon Sep 17 00:00:00 2001
+From fb0937f42c66a995728e7c8d7fb37a588559129a Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Thu, 13 Mar 2025 15:27:42 +0100
 Subject: [PATCH] dts: stm32: Add stm32mp257-bytedevkit board support
@@ -11,11 +11,11 @@ Add device tree for byteDEVKIT OSM with byteENGINE stm32mp2.
 Signed-off-by: Stephan Dünner <stephan.duenner@bytesatwork.ch>
 Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 ---
- .../stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi | 205 ++++
- ...m32mp257f-bytedevkit-ca35tdcid-resmem.dtsi | 136 +++
- .../stm32mp257f-bytedevkit-ca35tdcid-rif.dtsi | 998 ++++++++++++++++++
- core/arch/arm/dts/stm32mp257f-bytedevkit.dts  | 496 +++++++++
- 4 files changed, 1835 insertions(+)
+ .../stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi |  205 ++++
+ ...m32mp257f-bytedevkit-ca35tdcid-resmem.dtsi |  146 +++
+ .../stm32mp257f-bytedevkit-ca35tdcid-rif.dtsi | 1003 +++++++++++++++++
+ core/arch/arm/dts/stm32mp257f-bytedevkit.dts  |  514 +++++++++
+ 4 files changed, 1868 insertions(+)
  create mode 100644 core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi
  create mode 100644 core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-resmem.dtsi
  create mode 100644 core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rif.dtsi
@@ -23,7 +23,7 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 
 diff --git a/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi b/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi
 new file mode 100644
-index 000000000..cab0daea0
+index 0000000000..4a425f33fd
 --- /dev/null
 +++ b/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi
 @@ -0,0 +1,205 @@
@@ -101,7 +101,7 @@ index 000000000..cab0daea0
 +		FLEXGEN_CFG(30, XBAR_SRC_HSE_KER, 0, 1)
 +		FLEXGEN_CFG(31, XBAR_SRC_PLL5, 0, 19)
 +		FLEXGEN_CFG(32, XBAR_SRC_PLL5, 0, 19)
-+		FLEXGEN_CFG(33, XBAR_SRC_PLL4, 0, 23)
++		FLEXGEN_CFG(33, XBAR_SRC_HSE_KER, 0, 0)
 +		FLEXGEN_CFG(34, XBAR_SRC_PLL4, 0, 59)
 +		FLEXGEN_CFG(35, XBAR_SRC_HSI_KER, 0, 3)
 +		FLEXGEN_CFG(36, XBAR_SRC_PLL5, 0, 3)
@@ -109,7 +109,7 @@ index 000000000..cab0daea0
 +		FLEXGEN_CFG(38, XBAR_SRC_PLL5, 0, 3)
 +		FLEXGEN_CFG(39, XBAR_SRC_MSI_KER, 0, 0)
 +		FLEXGEN_CFG(40, XBAR_SRC_LSE, 0, 0)
-+		FLEXGEN_CFG(41, XBAR_SRC_PLL4, 0, 11)
++		FLEXGEN_CFG(41, XBAR_SRC_LSI, 0, 0)
 +		FLEXGEN_CFG(42, XBAR_SRC_PLL7, 0, 16)
 +		FLEXGEN_CFG(43, XBAR_SRC_PLL4, 0, 23)
 +		FLEXGEN_CFG(44, XBAR_SRC_PLL4, 0, 5)
@@ -234,10 +234,10 @@ index 000000000..cab0daea0
 +
 diff --git a/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-resmem.dtsi b/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-resmem.dtsi
 new file mode 100644
-index 000000000..0eb789c95
+index 0000000000..f2b0a6624c
 --- /dev/null
 +++ b/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-resmem.dtsi
-@@ -0,0 +1,136 @@
+@@ -0,0 +1,146 @@
 +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause)
 +/*
 + * Copyright (C) 2025 bytesatwork AG - https://www.bytesatwork.io
@@ -269,8 +269,18 @@ index 000000000..0eb789c95
 +			no-map;
 +		};
 +
-+		cm33_sram1: cm33-sram1@a041000 {
-+			reg = <0x0 0xa041000 0x0 0x1f000>;
++		scmi_cid2_s: scmi-cid2-s@a041000 {
++			reg = <0x0 0xa041000 0x0 0x1000>;
++			no-map;
++		};
++
++		scmi_cid2_ns: scmi-cid2-ns@a042000 {
++			reg = <0x0 0xa042000 0x0 0x1000>;
++			no-map;
++		};
++
++		cm33_sram1: cm33-sram1@a043000 {
++			reg = <0x0 0xa043000 0x0 0x1d000>;
 +			no-map;
 +		};
 +
@@ -376,10 +386,10 @@ index 000000000..0eb789c95
 +};
 diff --git a/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rif.dtsi b/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rif.dtsi
 new file mode 100644
-index 000000000..314761ebf
+index 0000000000..11dabe52a4
 --- /dev/null
 +++ b/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rif.dtsi
-@@ -0,0 +1,998 @@
+@@ -0,0 +1,1003 @@
 +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause)
 +/*
 + * Copyright (C) 2025 bytesatwork AG - https://www.bytesatwork.io
@@ -466,8 +476,8 @@ index 000000000..314761ebf
 +		RIFPROT(STM32MP25_RIFSC_SDMMC3_ID, RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
 +		RIFPROT(STM32MP25_RIFSC_GPU_ID, RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
 +		RIFPROT(STM32MP25_RIFSC_LTDC_CMN_ID, RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
-+		RIFPROT(STM32MP25_RIFSC_LTDC_L0L1_ID, RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
-+		RIFPROT(STM32MP25_RIFSC_LTDC_L2_ID, RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
++		RIFPROT(STM32MP25_RIFSC_LTDC_L1L2_ID, RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
++		RIFPROT(STM32MP25_RIFSC_LTDC_L3_ID, RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
 +		RIFPROT(STM32MP25_RIFSC_LTDC_ROT_ID, RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
 +		RIFPROT(STM32MP25_RIFSC_DSI_CMN_ID, RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
 +		RIFPROT(STM32MP25_RIFSC_DSI_TRIG_ID, RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
@@ -503,7 +513,6 @@ index 000000000..314761ebf
 +		RIFPROT(STM32MP25_RIFSC_I3C4_ID, RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
 +		RIFPROT(STM32MP25_RIFSC_ICACHE_DCACHE_ID, RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
 +	>;
-+	st,glocked = <RIFSC_RIMU_GLOCK>;
 +};
 +
 +&fmc {
@@ -621,9 +630,7 @@ index 000000000..314761ebf
 +		RIFPROT(RIF_EXTI1_RESOURCE(65), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
 +		RIFPROT(RIF_EXTI1_RESOURCE(67), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
 +		RIFPROT(RIF_EXTI1_RESOURCE(68), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
-+		RIFPROT(RIF_EXTI1_RESOURCE(69), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
 +		RIFPROT(RIF_EXTI1_RESOURCE(70), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
-+		RIFPROT(RIF_EXTI1_RESOURCE(71), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
 +		RIFPROT(RIF_EXTI1_RESOURCE(72), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
 +		RIFPROT(RIF_EXTI1_RESOURCE(73), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_CID1, RIF_SEM_DIS, RIF_CFEN)
 +		RIFPROT(RIF_EXTI1_RESOURCE(74), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
@@ -659,7 +666,7 @@ index 000000000..314761ebf
 +		RIFPROT(RIF_EXTI2_RESOURCE(13), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
 +		RIFPROT(RIF_EXTI2_RESOURCE(14), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
 +		RIFPROT(RIF_EXTI2_RESOURCE(15), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
-+		RIFPROT(RIF_EXTI2_RESOURCE(16), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_CID1, RIF_SEM_DIS, RIF_CFEN)
++		RIFPROT(RIF_EXTI2_RESOURCE(16), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
 +		RIFPROT(RIF_EXTI2_RESOURCE(17), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_CID1, RIF_SEM_DIS, RIF_CFEN)
 +		RIFPROT(RIF_EXTI2_RESOURCE(18), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_CID2, RIF_SEM_DIS, RIF_CFEN)
 +		RIFPROT(RIF_EXTI2_RESOURCE(19), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_CID2, RIF_SEM_DIS, RIF_CFEN)
@@ -1057,8 +1064,8 @@ index 000000000..314761ebf
 +		RIFPROT(RIF_RCC_RESOURCE(75), RIF_UNUSED, RIF_UNLOCK, RIF_SEC, RIF_PRIV, RIF_CID1, RIF_SEM_DIS, RIF_CFEN)
 +		RIFPROT(RIF_RCC_RESOURCE(76), RIF_CID1_BF, RIF_UNLOCK, RIF_SEC, RIF_PRIV, RIF_UNUSED, RIF_SEM_EN, RIF_CFEN)
 +		RIFPROT(RIF_RCC_RESOURCE(77), RIF_CID1_BF, RIF_UNLOCK, RIF_SEC, RIF_PRIV, RIF_UNUSED, RIF_SEM_EN, RIF_CFEN)
-+		RIFPROT(RIF_RCC_RESOURCE(78), RIF_UNUSED, RIF_UNLOCK, RIF_SEC, RIF_PRIV, RIF_CID1, RIF_SEM_DIS, RIF_CFEN)
-+		RIFPROT(RIF_RCC_RESOURCE(79), RIF_UNUSED, RIF_UNLOCK, RIF_SEC, RIF_PRIV, RIF_CID1, RIF_SEM_DIS, RIF_CFEN)
++		RIFPROT(RIF_RCC_RESOURCE(78), RIF_CID1_BF, RIF_UNLOCK, RIF_SEC, RIF_PRIV, RIF_UNUSED, RIF_SEM_EN, RIF_CFEN)
++		RIFPROT(RIF_RCC_RESOURCE(79), RIF_CID1_BF, RIF_UNLOCK, RIF_SEC, RIF_PRIV, RIF_UNUSED, RIF_SEM_EN, RIF_CFEN)
 +		RIFPROT(RIF_RCC_RESOURCE(80), RIF_UNUSED, RIF_UNLOCK, RIF_SEC, RIF_PRIV, RIF_CID1, RIF_SEM_DIS, RIF_CFEN)
 +		RIFPROT(RIF_RCC_RESOURCE(81), RIF_UNUSED, RIF_UNLOCK, RIF_SEC, RIF_PRIV, RIF_CID1, RIF_SEM_DIS, RIF_CFEN)
 +		RIFPROT(RIF_RCC_RESOURCE(82), RIF_UNUSED, RIF_UNLOCK, RIF_SEC, RIF_PRIV, RIF_CID1, RIF_SEM_DIS, RIF_CFEN)
@@ -1232,7 +1239,7 @@ index 000000000..314761ebf
 +};
 +
 +&tfa_bl31 {
-+	st,protreg = <RISABPROT(RIF_DDCID_DIS, RIF_UNUSED, RIF_SEC, RIF_UNUSED, RIF_CFEN, RIF_CID1_BF, RIF_CID1_BF, RIF_CID1_BF)>;
++	st,protreg = <RISABPROT(RIF_DDCID_DIS, RIF_UNUSED, RIF_SEC, RIF_NPRIV, RIF_CFEN, RIF_CID1_BF, RIF_CID1_BF, RIF_CID1_BF)>;
 +};
 +
 +&hpdma_lli {
@@ -1241,6 +1248,14 @@ index 000000000..314761ebf
 +
 +&bsec_mirror {
 +	st,protreg = <RISABPROT(RIF_DDCID_DIS, RIF_UNUSED, RIF_SEC, RIF_NPRIV, RIF_CFDIS, RIF_UNUSED, RIF_UNUSED, RIF_UNUSED)>;
++};
++
++&scmi_cid2_s {
++	st,protreg = <RISABPROT(RIF_DDCID_DIS, RIF_UNUSED, RIF_SEC, RIF_NPRIV, RIF_CFDIS, RIF_UNUSED, RIF_UNUSED, RIF_UNUSED)>;
++};
++
++&scmi_cid2_ns {
++	st,protreg = <RISABPROT(RIF_DDCID_DIS, RIF_UNUSED, RIF_NSEC, RIF_NPRIV, RIF_CFDIS, RIF_UNUSED, RIF_UNUSED, RIF_UNUSED)>;
 +};
 +
 +&cm33_sram1 {
@@ -1269,7 +1284,7 @@ index 000000000..314761ebf
 +
 +&risab3 {
 +	st,srwiad;
-+	memory-region = <&bsec_mirror>, <&cm33_sram1>;
++	memory-region = <&bsec_mirror>, <&scmi_cid2_s>, <&scmi_cid2_ns>, <&cm33_sram1>;
 +};
 +
 +&risab4 {
@@ -1283,7 +1298,7 @@ index 000000000..314761ebf
 +};
 +
 +&mm_ospi1 {
-+	st,protreg = <RISAFPROT(RISAF_REG_ID(1), RIF_CID1_BF | RIF_CID2_BF, RIF_CID1_BF | RIF_CID2_BF, 0, RIF_NSEC, RIF_ENC_DIS, RIF_BREN_EN)>;
++	st,protreg = <RISAFPROT(RISAF_REG_ID(1), RIF_CID1_BF | RIF_CID2_BF, RIF_CID1_BF | RIF_CID2_BF, RIF_UNUSED, RIF_NSEC, RIF_ENC_DIS, RIF_BREN_EN)>;
 +};
 +
 +&risaf2 {
@@ -1380,10 +1395,10 @@ index 000000000..314761ebf
 +
 diff --git a/core/arch/arm/dts/stm32mp257f-bytedevkit.dts b/core/arch/arm/dts/stm32mp257f-bytedevkit.dts
 new file mode 100644
-index 000000000..7ef87701f
+index 0000000000..c05ee69300
 --- /dev/null
 +++ b/core/arch/arm/dts/stm32mp257f-bytedevkit.dts
-@@ -0,0 +1,496 @@
+@@ -0,0 +1,514 @@
 +// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-3-Clause)
 +/*
 + * Copyright (C) 2025 bytesatwork AG - https://www.bytesatwork.io
@@ -1406,6 +1421,7 @@ index 000000000..7ef87701f
 +#include "stm32mp257f-bytedevkit-ca35tdcid-resmem.dtsi"
 +#include "stm32mp257f-bytedevkit-ca35tdcid-rif.dtsi"
 +#include "stm32mp25-pinctrl.dtsi"
++#include "stm32mp25-st-scmi-cfg.dtsi"
 +#include "stm32mp25xxal-pinctrl.dtsi"
 +
 +/ {
@@ -1484,10 +1500,10 @@ index 000000000..7ef87701f
 +	pmic2: stpmic2@33 {
 +		compatible = "st,stpmic2";
 +		reg = <0x33>;
-+		st,wakeup-pin-number = <1>;
++		interrupts-extended = <&exti1 52 IRQ_TYPE_EDGE_FALLING>;
++		wakeup-source;
 +		st,pmic-it-id = <IT_PKEY_FA IT_PKEY_RI>;
 +		st,notif-it-id = <0 1>;
-+		wakeup-parent = <&pwr>;
 +		status = "okay";
 +
 +		regulators {
@@ -1686,7 +1702,6 @@ index 000000000..7ef87701f
 +				regulator-name = "vdd3v3_usb";
 +				regulator-min-microvolt = <3300000>;
 +				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
 +				regulator-over-current-protection;
 +			};
 +			v5v_hdmi: ldo5 {
@@ -1748,7 +1763,6 @@ index 000000000..7ef87701f
 +		regulator-min-microvolt = <3300000>;
 +		regulator-max-microvolt = <3300000>;
 +		vdd33ucpd-supply = <&vdd3v3_usb>;
-+		regulator-always-on;
 +	};
 +
 +	vdda18adc: vdda18adc {
@@ -1809,6 +1823,17 @@ index 000000000..7ef87701f
 +				st,pll = <&pll1_cfg_1200Mhz>;
 +			};
 +		};
++				st,ck_gpu {
++			cfg_1 {
++				hz = <800000000>;
++				st,pll = <&pll3_cfg_800Mhz>;
++			};
++
++			cfg_2 {
++				hz = <900000000>;
++				st,pll = <&pll3_cfg_900Mhz>;
++			};
++		};
 +	};
 +};
 +
@@ -1824,44 +1849,52 @@ index 000000000..7ef87701f
 +	status = "okay";
 +};
 +
-+&scmi_regu {
-+	voltd-vddcore {
-+		reg = <VOLTD_SCMI_STPMIC2_BUCK2>;
-+		voltd-supply = <&vddcore>;
-+	};
-+	voltd-v1v8 {
-+		reg = <VOLTD_SCMI_STPMIC2_BUCK5>;
-+		voltd-supply = <&v1v8>;
-+	};
-+	voltd-v3v3 {
-+		reg = <VOLTD_SCMI_STPMIC2_BUCK7>;
-+		voltd-supply = <&v3v3>;
-+	};
-+	voltd-v5v-hdmi {
-+		reg = <VOLTD_SCMI_STPMIC2_LDO5>;
-+		voltd-supply = <&v5v_hdmi>;
-+	};
-+	voltd-v5v-vconn {
-+		reg = <VOLTD_SCMI_STPMIC2_LDO6>;
-+		voltd-supply = <&v5v_vconn>;
-+	};
-+	voltd-vdd-emmc {
-+		reg = <VOLTD_SCMI_STPMIC2_LDO2>;
-+		voltd-supply = <&vdd_emmc>;
-+	};
-+	voltd-vdd3v3-usb {
-+		reg = <VOLTD_SCMI_STPMIC2_LDO4>;
-+		voltd-supply = <&vdd3v3_usb>;
-+	};
-+	voltd-vdd-sdcard {
-+		reg = <VOLTD_SCMI_STPMIC2_LDO7>;
-+		voltd-supply = <&vdd_sdcard>;
++&scmi_regulator {
++	regulators {
++		regulator@b {
++			reg = <VOLTD_SCMI_STPMIC2_BUCK2>;
++			voltd-supply = <&vddcore>;
++		};
++
++		regulator@e {
++			reg = <VOLTD_SCMI_STPMIC2_BUCK5>;
++			voltd-supply = <&v1v8>;
++		};
++
++		regulator@10 {
++			reg = <VOLTD_SCMI_STPMIC2_BUCK7>;
++			voltd-supply = <&v3v3>;
++		};
++
++		regulator@15 {
++			reg = <VOLTD_SCMI_STPMIC2_LDO5>;
++			voltd-supply = <&v5v_hdmi>;
++		};
++
++		regulator@16 {
++			reg = <VOLTD_SCMI_STPMIC2_LDO6>;
++			voltd-supply = <&v5v_vconn>;
++		};
++
++		regulator@12 {
++			reg = <VOLTD_SCMI_STPMIC2_LDO2>;
++			voltd-supply = <&vdd_emmc>;
++		};
++
++		regulator@14 {
++			reg = <VOLTD_SCMI_STPMIC2_LDO4>;
++			voltd-supply = <&vdd3v3_usb>;
++		};
++
++		regulator@17 {
++			reg = <VOLTD_SCMI_STPMIC2_LDO7>;
++			voltd-supply = <&vdd_sdcard>;
++		};
 +	};
 +};
 +
 +&tamp {
 +	wakeup-source;
-+	wakeup-parent = <&exti2>;
 +	st,tamp-passive-precharge = <2>;
 +	st,tamp-passive-nb-sample = <4>;
 +	st,tamp-passive-sample-clk-div = <16384>;

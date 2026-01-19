@@ -1,4 +1,4 @@
-From 1e94e772276d67a6ae95376ac120137f2f32c353 Mon Sep 17 00:00:00 2001
+From 3e2385588f5ed0e9b0fa04aaa8e31952d8b531ff Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Thu, 2 Oct 2025 09:44:02 +0200
 Subject: [PATCH] dts: stm32: Adapt display clocks
@@ -11,7 +11,7 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi b/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi
-index cab0daea0..89e1d06a1 100644
+index 4a425f33fd..f775cd4d46 100644
 --- a/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi
 +++ b/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi
 @@ -67,11 +67,11 @@
@@ -25,6 +25,6 @@ index cab0daea0..89e1d06a1 100644
  		FLEXGEN_CFG(31, XBAR_SRC_PLL5, 0, 19)
 -		FLEXGEN_CFG(32, XBAR_SRC_PLL5, 0, 19)
 +		FLEXGEN_CFG(32, XBAR_SRC_PLL4, 0, 47)
- 		FLEXGEN_CFG(33, XBAR_SRC_PLL4, 0, 23)
+ 		FLEXGEN_CFG(33, XBAR_SRC_HSE_KER, 0, 0)
  		FLEXGEN_CFG(34, XBAR_SRC_PLL4, 0, 59)
  		FLEXGEN_CFG(35, XBAR_SRC_HSI_KER, 0, 3)

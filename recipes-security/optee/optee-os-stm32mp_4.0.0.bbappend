@@ -4,7 +4,7 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/optee-os:"
 
 # Increase PR if something changes
-PR="r1"
+PR="r2"
 
 SRC_URI:class-devupstream += " \
 	file://0001-arm-dts-Introduce-bytedevkit.patch \
