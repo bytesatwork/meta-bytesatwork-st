@@ -14,7 +14,7 @@ do_deploy:append() {
 }
 
 # Increase PR if something changes
-PR = "r4"
+PR = "r5"
 
 SRC_URI:class-devupstream += " \
 	file://0001-github-workflows-Add-action-to-analyze-patches.patch \
@@ -27,4 +27,5 @@ SRC_URI:class-devupstream += " \
 	file://0008-configs-stm32mp157_bytedevkit-Add-password.patch \
 	file://0009-configs-stm32mp257_bytedevkit-Add-password.patch \
 	file://0010-board-stm32mp2-bytedevkit-Add-support-for-STM32MP253.patch \
+	file://0011-ARM-dts-stm32-bytedevkit-Reduce-SD-card-speed.patch \
 "

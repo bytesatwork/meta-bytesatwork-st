@@ -1,0 +1,33 @@
+From f8c4b45ea4b6015e558ad9da96f7e52495f34ffb Mon Sep 17 00:00:00 2001
+From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
+Date: Fri, 27 Mar 2026 10:59:43 +0100
+Subject: [PATCH] ARM: dts: stm32: bytedevkit: Reduce SD card speed
+
+Reduce max frequency for SD card interface and disable high speed to
+prevent boot failures caused by "slow" SD cards.
+
+Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
+---
+ arch/arm/dts/stm32mp257f-bytedevkit.dts | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
+
+diff --git a/arch/arm/dts/stm32mp257f-bytedevkit.dts b/arch/arm/dts/stm32mp257f-bytedevkit.dts
+index 94cd8a842f..c9742c7030 100644
+--- a/arch/arm/dts/stm32mp257f-bytedevkit.dts
++++ b/arch/arm/dts/stm32mp257f-bytedevkit.dts
+@@ -439,12 +439,10 @@
+ 	bus-width = <4>;
+ 	vmmc-supply = <&scmi_vdd_sdcard>;
+ 	vqmmc-supply = <&scmi_vddio1>;
+-	sd-uhs-sdr12;
+-	sd-uhs-sdr25;
+-	sd-uhs-sdr50;
+-	sd-uhs-ddr50;
+-	sd-uhs-sdr104;
+ 	status = "okay";
++	/delete-property/cap-sd-highspeed;
++	/delete-property/cap-mmc-highspeed;
++	max-frequency = <25000000>;
+ };
+ 
+ &sdmmc2 {
