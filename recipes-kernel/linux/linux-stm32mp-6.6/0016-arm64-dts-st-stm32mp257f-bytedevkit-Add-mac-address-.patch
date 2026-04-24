@@ -1,0 +1,53 @@
+From 6ad0a9c0f43a37669fd442ade13cea4ebac03fdc Mon Sep 17 00:00:00 2001
+From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
+Date: Mon, 23 Mar 2026 17:24:05 +0100
+Subject: [PATCH] arm64: dts: st: stm32mp257f-bytedevkit: Add mac address from
+ OTP
+
+Define NVMEM cells in BSEC for Ethernet MAC addresses to allow the
+kernel to retrieve the permanent MAC addresses from OTP memory.
+
+Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
+---
+ arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts b/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
+index d86d9f2385..f2078b02c9 100644
+--- a/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
++++ b/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
+@@ -144,6 +144,16 @@ &arm_wdt {
+ 	status = "okay";
+ };
+ 
++&bsec {
++	ethernet_mac1_address: mac1@3dc {
++		reg = <0x3dc 0x6>;
++	};
++
++	ethernet_mac2_address: mac2@3e2 {
++		reg = <0x3e2 0x6>;
++	};
++};
++
+ &combophy {
+ 	st,ssc-on;
+ 	status = "okay";
+@@ -221,6 +231,8 @@ &eth1 {
+ 	phy-mode = "rgmii-id";
+ 	phy-handle = <&phy1_eth1>;
+ 	st,ext-phyclk;
++	nvmem-cells = <&ethernet_mac1_address>;
++	nvmem-cell-names = "mac-address";
+ 
+ 	mdio {
+ 		#address-cells = <1>;
+@@ -249,6 +261,8 @@ &eth2 {
+ 	phy-mode = "rgmii-id";
+ 	phy-handle = <&phy1_eth2>;
+ 	st,ext-phyclk;
++	nvmem-cells = <&ethernet_mac2_address>;
++	nvmem-cell-names = "mac-address";
+ 
+ 	mdio {
+ 		#address-cells = <1>;

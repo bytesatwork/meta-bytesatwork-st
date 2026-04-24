@@ -1,0 +1,35 @@
+From 26a22f12ddcf913dacbf67d60ee74fa7fecb9087 Mon Sep 17 00:00:00 2001
+From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
+Date: Wed, 25 Mar 2026 09:19:27 +0100
+Subject: [PATCH] arm64: dts: st: stm32mp257f-bytedevkit: Fix LVDS setup
+
+Correct enable GPIO polarity and touchscreen inversion.
+
+Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
+---
+ arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts b/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
+index f2078b02c9..677319e2eb 100644
+--- a/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
++++ b/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
+@@ -56,7 +56,7 @@ panel_backlight: backlight {
+ 
+ 	panel_lvds: panel-lvds {
+ 		compatible = "panel-lvds";
+-		enable-gpios = <&gpioh 9 GPIO_ACTIVE_HIGH>;
++		enable-gpios = <&gpioh 9 GPIO_ACTIVE_LOW>;
+ 		reset-gpios = <&gpioh 8 GPIO_ACTIVE_HIGH>;
+ 		backlight = <&panel_lvds_backlight>;
+ 		status = "okay";
+@@ -316,6 +316,9 @@ gt911@5d {
+ 
+ 		irq-gpios = <&gpioi 0 0>;
+ 		reset-gpios = <&gpioi 3 0>;
++
++		touchscreen-inverted-x;
++		touchscreen-inverted-y;
+ 	};
+ };
+ 

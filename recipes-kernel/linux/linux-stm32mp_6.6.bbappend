@@ -4,7 +4,7 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/linux-stm32mp-6.6:"
 
 # Increase PR if something changes
-PR="3"
+PR="4"
 
 SRC_URI:class-devupstream += " \
 	file://0001-github-workflows-Add-action-to-analyze-patches.patch \
@@ -22,6 +22,10 @@ SRC_URI:class-devupstream += " \
 	file://0013-arm64-dts-st-stm32mp257f-bytedevkit-Add-device-tree.patch \
 	file://0014-arm64-dts-st-stm32mp257f-bytedevkit-Enable-Gb-for-et.patch \
 	file://0015-arm64-bytedevkit_stm32mp2_defconfig-add-nftables-sys.patch \
+	file://0016-arm64-dts-st-stm32mp257f-bytedevkit-Add-mac-address-.patch \
+	file://0017-arm64-dts-st-stm32mp257f-bytedevkit-Fix-LVDS-setup.patch \
+	file://0018-arm64-dts-st-stm32mp257f-bytedevkit-Disable-MIPI-tou.patch \
+	file://0019-arm64-dts-st-stm32mp257f-bytedevkit-Disable-UHS-for-.patch \
 "
 
 KERNEL_CONFIG_FRAGMENTS:append:bytedevkit-stm32mp1 = "${S}/arch/arm/configs/fragment-901-bytedevkit.config"
