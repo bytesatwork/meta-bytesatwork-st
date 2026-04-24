@@ -1,0 +1,48 @@
+From b95bd3245258029da4561fa0f04877a169adeb32 Mon Sep 17 00:00:00 2001
+From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
+Date: Tue, 24 Mar 2026 10:32:49 +0100
+Subject: [PATCH] board: stm32mp2: bytedevkit: Add support for STM32MP253xx
+
+Detect CPU type and choose correct kernel device tree.
+
+Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
+---
+ .../bytedevkit_stm32mp2/stm32mp2-bytedevkit.c        | 12 ++++++++++++
+ include/configs/stm32mp2_bytedevkit.h                |  1 -
+ 2 files changed, 12 insertions(+), 1 deletion(-)
+
+diff --git a/board/bytesatwork/bytedevkit_stm32mp2/stm32mp2-bytedevkit.c b/board/bytesatwork/bytedevkit_stm32mp2/stm32mp2-bytedevkit.c
+index 98ccad6b54..8d90a96431 100644
+--- a/board/bytesatwork/bytedevkit_stm32mp2/stm32mp2-bytedevkit.c
++++ b/board/bytesatwork/bytedevkit_stm32mp2/stm32mp2-bytedevkit.c
+@@ -568,6 +568,18 @@ int board_late_init(void)
+ 		}
+ 	}
+ 
++	switch (get_cpu_type()) {
++	case CPU_STM32MP253Fxx:
++		env_set("dtbfile", "/boot/stm32mp253f-bytedevkit.dtb");
++		break;
++	case CPU_STM32MP257Fxx:
++		env_set("dtbfile", "/boot/stm32mp257f-bytedevkit.dtb");
++		break;
++	default:
++		env_set("dtbfile", "/boot/stm32mp257f-bytedevkit.dtb");
++		break;
++	}
++
+ 	return 0;
+ }
+ 
+diff --git a/include/configs/stm32mp2_bytedevkit.h b/include/configs/stm32mp2_bytedevkit.h
+index 83474a110b..a534ea0e07 100644
+--- a/include/configs/stm32mp2_bytedevkit.h
++++ b/include/configs/stm32mp2_bytedevkit.h
+@@ -29,7 +29,6 @@
+ 	"mmc_dev=0:7\0" \
+ 	"mmc_root=/dev/mmcblk0p7\0" \
+ 	"kernelfile=/boot/Image\0" \
+-	"dtbfile=/boot/"  __stringify(CONFIG_DEFAULT_DEVICE_TREE) ".dtb\0" \
+ 	"stdin=serial\0" \
+ 	"stdout=serial\0" \
+ 	"stderr=serial\0" \
