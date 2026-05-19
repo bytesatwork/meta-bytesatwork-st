@@ -29,3 +29,7 @@ SRC_URI:class-devupstream += " \
 	file://0010-board-stm32mp2-bytedevkit-Add-support-for-STM32MP253.patch \
 	file://0011-ARM-dts-stm32-bytedevkit-Reduce-SD-card-speed.patch \
 "
+
+# Commit no longer in branch 'v2023.10-stm32mp'
+SRC_URI:class-devupstream:remove = "git://github.com/STMicroelectronics/u-boot.git;protocol=https;branch=v2023.10-stm32mp"
+SRC_URI:class-devupstream:prepend = "git://github.com/STMicroelectronics/u-boot.git;protocol=https;nobranch=1 "
