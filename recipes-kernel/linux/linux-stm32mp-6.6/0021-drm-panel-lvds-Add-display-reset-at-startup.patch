@@ -1,0 +1,33 @@
+From fbfa9836846ae5863f6a6897ea47f576b14e1fb0 Mon Sep 17 00:00:00 2001
+From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
+Date: Thu, 4 Jun 2026 09:29:38 +0200
+Subject: [PATCH] drm/panel: lvds: Add display reset at startup
+
+The display does not recover after a reboot without power cycle. Adding
+a reset during startup fixes the issue.
+
+Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
+---
+ drivers/gpu/drm/panel/panel-lvds.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/drivers/gpu/drm/panel/panel-lvds.c b/drivers/gpu/drm/panel/panel-lvds.c
+index adb35047ef..926e9a64b5 100644
+--- a/drivers/gpu/drm/panel/panel-lvds.c
++++ b/drivers/gpu/drm/panel/panel-lvds.c
+@@ -267,6 +267,15 @@ static int panel_lvds_probe(struct platform_device *pdev)
+ 	drm_panel_add(&lvds->panel);
+ 
+ 	dev_set_drvdata(lvds->dev, lvds);
++
++	/* Reset the display */
++	if (lvds->reset_gpio) {
++		gpiod_set_value_cansleep(lvds->reset_gpio, 0);
++		msleep(20);
++		gpiod_set_value_cansleep(lvds->reset_gpio, 1);
++		msleep(100);
++	}
++
+ 	return 0;
+ }
+ 
