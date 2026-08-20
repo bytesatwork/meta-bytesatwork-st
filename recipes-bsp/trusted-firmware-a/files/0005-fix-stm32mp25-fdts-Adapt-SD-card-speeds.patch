@@ -1,4 +1,4 @@
-From bedadc1ab69cd63fca88c5836072e49c7b01d8d0 Mon Sep 17 00:00:00 2001
+From 0b234404373ab386a465931c93bccd3d700f7efa Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Fri, 27 Mar 2026 11:02:26 +0100
 Subject: [PATCH] fix(stm32mp25-fdts): Adapt SD card speeds
@@ -12,7 +12,7 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
  1 file changed, 3 insertions(+)
 
 diff --git a/fdts/stm32mp257f-bytedevkit.dts b/fdts/stm32mp257f-bytedevkit.dts
-index 672847f805..4c53256726 100644
+index 672847f80..4c5325672 100644
 --- a/fdts/stm32mp257f-bytedevkit.dts
 +++ b/fdts/stm32mp257f-bytedevkit.dts
 @@ -48,6 +48,9 @@

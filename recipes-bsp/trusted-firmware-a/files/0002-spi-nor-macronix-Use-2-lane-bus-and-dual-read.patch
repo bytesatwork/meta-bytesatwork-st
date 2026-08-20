@@ -1,4 +1,4 @@
-From bcc53712b644e88288797229d93b22fc72f99243 Mon Sep 17 00:00:00 2001
+From 1cfc017fa5673787b0dc32c0b49eae779c9c59ea Mon Sep 17 00:00:00 2001
 From: Guy Morand <guy.morand@bytesatwork.ch>
 Date: Thu, 4 Jul 2024 11:43:55 +0200
 Subject: [PATCH] spi-nor: macronix: Use 2 lane bus and dual read
@@ -12,7 +12,7 @@ Signed-off-by: Guy Morand <guy.morand@bytesatwork.ch>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/plat/st/stm32mp1/stm32mp1_boot_device.c b/plat/st/stm32mp1/stm32mp1_boot_device.c
-index 63d5285039..b122c0c4ac 100644
+index 63d528503..b122c0c4a 100644
 --- a/plat/st/stm32mp1/stm32mp1_boot_device.c
 +++ b/plat/st/stm32mp1/stm32mp1_boot_device.c
 @@ -197,14 +197,14 @@ int plat_get_nor_data(struct nor_device *device)
