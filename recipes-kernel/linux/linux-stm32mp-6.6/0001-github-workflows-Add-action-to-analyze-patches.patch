@@ -1,4 +1,4 @@
-From 9cb649e5dac01f81ae7cc02d48bb7b5bf12a3312 Mon Sep 17 00:00:00 2001
+From f0d916cb26e4819fc478378638f51cfddfea5a94 Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Thu, 25 Jul 2024 10:56:51 +0200
 Subject: [PATCH] github: workflows: Add action to analyze patches
@@ -16,7 +16,7 @@ Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 
 diff --git a/.checkpatch.conf b/.checkpatch.conf
 new file mode 100644
-index 0000000000..433d926467
+index 000000000000..433d9264673c
 --- /dev/null
 +++ b/.checkpatch.conf
 @@ -0,0 +1,2 @@
@@ -24,7 +24,7 @@ index 0000000000..433d926467
 +--min-conf-desc-length=1
 diff --git a/.github/workflows/checkpatch.yml b/.github/workflows/checkpatch.yml
 new file mode 100644
-index 0000000000..c71203a870
+index 000000000000..c71203a8708c
 --- /dev/null
 +++ b/.github/workflows/checkpatch.yml
 @@ -0,0 +1,119 @@
@@ -148,7 +148,7 @@ index 0000000000..c71203a870
 +            ./scripts/checkpatch.pl --no-tree ${{ matrix.patch }}
 +          fi
 diff --git a/MAINTAINERS b/MAINTAINERS
-index ec00b7d72d..65bc3e01a5 100644
+index e88e526bb4fa..43e963882a95 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
 @@ -4437,6 +4437,11 @@ S:	Maintained

@@ -1,4 +1,4 @@
-From f513328a00f59fa5d2e75ff305a2da1f55df9f88 Mon Sep 17 00:00:00 2001
+From c5b13cd6715e2a1dd93a00a703d9da74b059feaa Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Thu, 25 Jul 2024 11:08:58 +0200
 Subject: [PATCH] ARM: dts: stm32mp157c-byteengine/bytedevkit
@@ -22,13 +22,13 @@ Signed-off-by: Rico Ganahl <rico.ganahl@bytesatwork.ch>
  create mode 100644 arch/arm/boot/dts/st/stm32mp157c-byteengine-m5.dtsi
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index d477e6c9de..6459f183b9 100644
+index 7a7df9913120..70ce277ae763 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -4442,6 +4442,8 @@ M:	Daniel Ammann <daniel.ammann@bytesatwork.ch>
- S:	Maintained
- F:	.github/workflows/checkpatch.yml
+@@ -4444,6 +4444,8 @@ F:	.github/workflows/checkpatch.yml
+ F:	.gitlab-ci.yml
  F:	Documentation/devicetree/bindings/arm/bytesatwork/bytesatwork.yaml
+ F:	Documentation/devicetree/bindings/display/panel/youritech,ili9806e.yaml
 +F:	arch/arm/boot/dts/*bytedevkit*
 +F:	arch/arm/boot/dts/*byteengine*
  F:	arch/arm/configs/fragment-901-bytedevkit.config
@@ -36,7 +36,7 @@ index d477e6c9de..6459f183b9 100644
  
 diff --git a/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-1.dts b/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-1.dts
 new file mode 100644
-index 0000000000..827410b598
+index 000000000000..827410b5980f
 --- /dev/null
 +++ b/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-1.dts
 @@ -0,0 +1,39 @@
@@ -81,7 +81,7 @@ index 0000000000..827410b598
 +};
 diff --git a/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-3.dts b/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-3.dts
 new file mode 100644
-index 0000000000..3b065c310f
+index 000000000000..3b065c310f3d
 --- /dev/null
 +++ b/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-3.dts
 @@ -0,0 +1,32 @@
@@ -119,7 +119,7 @@ index 0000000000..3b065c310f
 +};
 diff --git a/arch/arm/boot/dts/st/stm32mp157c-bytedevkit.dtsi b/arch/arm/boot/dts/st/stm32mp157c-bytedevkit.dtsi
 new file mode 100644
-index 0000000000..b579799c25
+index 000000000000..b579799c2559
 --- /dev/null
 +++ b/arch/arm/boot/dts/st/stm32mp157c-bytedevkit.dtsi
 @@ -0,0 +1,314 @@
@@ -439,7 +439,7 @@ index 0000000000..b579799c25
 +};
 diff --git a/arch/arm/boot/dts/st/stm32mp157c-byteengine-m5.dtsi b/arch/arm/boot/dts/st/stm32mp157c-byteengine-m5.dtsi
 new file mode 100644
-index 0000000000..5f11cca0ec
+index 000000000000..5f11cca0ecf8
 --- /dev/null
 +++ b/arch/arm/boot/dts/st/stm32mp157c-byteengine-m5.dtsi
 @@ -0,0 +1,377 @@

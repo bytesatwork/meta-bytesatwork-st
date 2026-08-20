@@ -1,4 +1,4 @@
-From 51f7dd0137a572d22f84c01039e7daa6a423ea27 Mon Sep 17 00:00:00 2001
+From ebcc9e5cb5f4a6253f7b5c45e04af6035e67fedb Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Tue, 30 Sep 2025 16:23:00 +0200
 Subject: [PATCH] ARM: configs: Add systemd fragment
@@ -11,7 +11,7 @@ Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
  1 file changed, 49 insertions(+)
 
 diff --git a/arch/arm/configs/fragment-901-bytedevkit.config b/arch/arm/configs/fragment-901-bytedevkit.config
-index 592dcca226..132056c199 100644
+index 592dcca2262c..132056c199b5 100644
 --- a/arch/arm/configs/fragment-901-bytedevkit.config
 +++ b/arch/arm/configs/fragment-901-bytedevkit.config
 @@ -49,3 +49,52 @@ CONFIG_NFT_SET_RBTREE=y

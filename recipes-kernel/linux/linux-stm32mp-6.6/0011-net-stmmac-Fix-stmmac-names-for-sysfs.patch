@@ -1,4 +1,4 @@
-From 225d6b36d92bace5b68844a3b1f2a213f6bd55fb Mon Sep 17 00:00:00 2001
+From 937588bde8ad43cd8f58431908cdfade9fb5a865 Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Thu, 23 Oct 2025 09:05:15 +0200
 Subject: [PATCH] net: stmmac: Fix stmmac names for sysfs
@@ -12,7 +12,7 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
  1 file changed, 5 insertions(+)
 
 diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
-index 0542cfd181..0c9dfaeb88 100644
+index 0542cfd1817e..0c9dfaeb88dc 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
 @@ -551,7 +551,12 @@ int stmmac_mdio_register(struct net_device *ndev)

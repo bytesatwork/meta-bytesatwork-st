@@ -1,34 +1,72 @@
-From 75ff123fed1d8ce806c30c453ee94a44ffc8cf61 Mon Sep 17 00:00:00 2001
-From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
-Date: Tue, 24 Mar 2026 14:33:47 +0100
-Subject: [PATCH] arm64: dts: st: Add stm32mp253f-bytedevkit.dts
+From 7a2515a6e3d8db0b3025b588ad49bcb8663c3319 Mon Sep 17 00:00:00 2001
+From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
+Date: Mon, 17 Aug 2026 14:08:49 +0200
+Subject: [PATCH] arm64: dts: st: stm32mp2: Rename BDK device trees by revision
 
-Adds support for byteDEVKIT with STM32MP253F CPU.
+Use explicit revision suffixes for the STM32MP253F and STM32MP257F
+ByteDevKit device trees.
 
-Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
+Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 ---
- MAINTAINERS                                   |   1 +
- .../boot/dts/st/stm32mp253f-bytedevkit.dts    | 423 ++++++++++++++++++
- 2 files changed, 424 insertions(+)
- create mode 100644 arch/arm64/boot/dts/st/stm32mp253f-bytedevkit.dts
+ MAINTAINERS                                   |  12 +-
+ arch/arm64/boot/dts/st/Makefile               |   5 +-
+ ...vkit.dts => stm32mp253f-bytedevkit-v1.dts} |   0
+ .../boot/dts/st/stm32mp253f-bytedevkit-v2.dts | 423 ++++++++++++++++++
+ ...vkit.dts => stm32mp257f-bytedevkit-v1.dts} |   0
+ 5 files changed, 434 insertions(+), 6 deletions(-)
+ rename arch/arm64/boot/dts/st/{stm32mp253f-bytedevkit.dts => stm32mp253f-bytedevkit-v1.dts} (100%)
+ create mode 100644 arch/arm64/boot/dts/st/stm32mp253f-bytedevkit-v2.dts
+ rename arch/arm64/boot/dts/st/{stm32mp257f-bytedevkit.dts => stm32mp257f-bytedevkit-v1.dts} (100%)
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 4aca5ccb0821..43e7a43cdc28 100644
+index 28f95cae93fd..4a4a2eec4bfb 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -4444,6 +4444,7 @@ F:	.github/workflows/checkpatch.yml
+@@ -4444,13 +4444,15 @@ F:	.github/workflows/checkpatch.yml
  F:	.gitlab-ci.yml
  F:	Documentation/devicetree/bindings/arm/bytesatwork/bytesatwork.yaml
  F:	Documentation/devicetree/bindings/display/panel/youritech,ili9806e.yaml
-+F:	arch/arm64/boot/dts/st/stm32mp253f-bytedevkit.dts
- F:	arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
+-F:	arch/arm64/boot/dts/st/stm32mp253f-bytedevkit.dts
++F:	arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-1.dts
++F:	arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-3.dts
++F:	arch/arm/boot/dts/st/stm32mp157c-bytedevkit.dtsi
++F:	arch/arm/configs/fragment-901-bytedevkit.config
++F:	arch/arm64/boot/dts/st/stm32mp253f-bytedevkit-v1.dts
++F:	arch/arm64/boot/dts/st/stm32mp253f-bytedevkit-v2.dts
++F:	arch/arm64/boot/dts/st/stm32mp257f-bytedevkit-v1.dts
+ F:	arch/arm64/boot/dts/st/stm32mp257f-bytedevkit-v2.dts
+-F:	arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
  F:	arch/arm64/configs/bytedevkit_stm32mp2_defconfig
- F:	arch/arm/boot/dts/*bytedevkit*
-diff --git a/arch/arm64/boot/dts/st/stm32mp253f-bytedevkit.dts b/arch/arm64/boot/dts/st/stm32mp253f-bytedevkit.dts
+-F:	arch/arm/boot/dts/*bytedevkit*
+-F:	arch/arm/boot/dts/*byteengine*
+-F:	arch/arm/configs/fragment-901-bytedevkit.config
+ F:	drivers/gpu/drm/panel/panel-youritec-ili9806e.c
+ 
+ C-MEDIA CMI8788 DRIVER
+diff --git a/arch/arm64/boot/dts/st/Makefile b/arch/arm64/boot/dts/st/Makefile
+index 85bb8a3ac562..4204042bc76c 100644
+--- a/arch/arm64/boot/dts/st/Makefile
++++ b/arch/arm64/boot/dts/st/Makefile
+@@ -2,6 +2,9 @@
+ dtb-$(CONFIG_ARCH_STM32) += \
+ 	stm32mp215f-dk.dtb \
+ 	stm32mp235f-dk.dtb \
+-	stm32mp257f-bytedevkit.dtb \
++	stm32mp253f-bytedevkit-v1.dtb \
++	stm32mp253f-bytedevkit-v2.dtb \
++	stm32mp257f-bytedevkit-v1.dtb \
++	stm32mp257f-bytedevkit-v2.dtb \
+ 	stm32mp257f-dk.dtb \
+ 	stm32mp257f-ev1.dtb
+diff --git a/arch/arm64/boot/dts/st/stm32mp253f-bytedevkit.dts b/arch/arm64/boot/dts/st/stm32mp253f-bytedevkit-v1.dts
+similarity index 100%
+rename from arch/arm64/boot/dts/st/stm32mp253f-bytedevkit.dts
+rename to arch/arm64/boot/dts/st/stm32mp253f-bytedevkit-v1.dts
+diff --git a/arch/arm64/boot/dts/st/stm32mp253f-bytedevkit-v2.dts b/arch/arm64/boot/dts/st/stm32mp253f-bytedevkit-v2.dts
 new file mode 100644
-index 000000000000..a41703b9a955
+index 000000000000..90704073a06b
 --- /dev/null
-+++ b/arch/arm64/boot/dts/st/stm32mp253f-bytedevkit.dts
++++ b/arch/arm64/boot/dts/st/stm32mp253f-bytedevkit-v2.dts
 @@ -0,0 +1,423 @@
 +// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-3-Clause)
 +/*
@@ -45,7 +83,7 @@ index 000000000000..a41703b9a955
 +#include "stm32mp25xf.dtsi"
 +#include "stm32mp25-pinctrl.dtsi"
 +#include "stm32mp25xxak-pinctrl.dtsi"
-+#include "stm32mp257f-dk-ca35tdcid-resmem.dtsi"
++#include "stm32mp257f-dk-resmem.dtsi"
 +#include <dt-bindings/net/ti-dp83867.h>
 +
 +/ {
@@ -255,7 +293,7 @@ index 000000000000..a41703b9a955
 +		compatible = "snps,dwmac-mdio";
 +		phy1_eth2: ethernet-phy@0 {
 +			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <0>;
++			reg = <12>;
 +			reset-gpios = <&gpioh 6 GPIO_ACTIVE_LOW>;
 +			reset-assert-us = <10000>;
 +			reset-deassert-us = <80000>;
@@ -453,3 +491,7 @@ index 000000000000..a41703b9a955
 +		usb-role-switch;
 +	};
 +};
+diff --git a/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts b/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit-v1.dts
+similarity index 100%
+rename from arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
+rename to arch/arm64/boot/dts/st/stm32mp257f-bytedevkit-v1.dts

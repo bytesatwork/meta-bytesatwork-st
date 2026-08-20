@@ -1,4 +1,4 @@
-From 1cedd714bffdf54f00d11cdcedf8f903a44f94af Mon Sep 17 00:00:00 2001
+From 42b4b14b2c19900b31e1b8f666d9f36927e3f20a Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Mon, 19 Aug 2024 15:02:27 +0200
 Subject: [PATCH] dt-bindings: arm: bytesatwork: Add module and board
@@ -9,15 +9,17 @@ Add byteENGINE and byteDEVKIT.
 Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Signed-off-by: Daniel Ammann <daniel.ammann@bytesatwork.ch>
 ---
- .../bindings/arm/bytesatwork/bytesatwork.yaml | 30 +++++++++++++++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |  2 ++
- MAINTAINERS                                   |  1 +
- 3 files changed, 33 insertions(+)
+ .../bindings/arm/bytesatwork/bytesatwork.yaml | 30 +++++++
+ .../display/panel/youritech,ili9806e.yaml     | 84 +++++++++++++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |  4 +
+ MAINTAINERS                                   |  2 +
+ 4 files changed, 120 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/arm/bytesatwork/bytesatwork.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/panel/youritech,ili9806e.yaml
 
 diff --git a/Documentation/devicetree/bindings/arm/bytesatwork/bytesatwork.yaml b/Documentation/devicetree/bindings/arm/bytesatwork/bytesatwork.yaml
 new file mode 100644
-index 0000000000..567086eb92
+index 000000000000..567086eb9248
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/arm/bytesatwork/bytesatwork.yaml
 @@ -0,0 +1,30 @@
@@ -51,8 +53,98 @@ index 0000000000..567086eb92
 +additionalProperties: true
 +
 +...
+diff --git a/Documentation/devicetree/bindings/display/panel/youritech,ili9806e.yaml b/Documentation/devicetree/bindings/display/panel/youritech,ili9806e.yaml
+new file mode 100644
+index 000000000000..9c5eb2bf2e1f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/youritech,ili9806e.yaml
+@@ -0,0 +1,84 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/youritech,ili9806e.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MIPI-DSI panel with Youritech ILI9806E Controller
++
++maintainers:
++  - Daniel Ammann <daniel.ammann@bytesatwork.ch>
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    const: youritech,ili9806e
++
++  reg: true
++  port: true
++  reset-gpios: true
++  width-mm: true
++  height-mm: true
++
++  dsi-lanes:
++    description: Number of DSI lanes to be used must be <1> or <2> or <3> or <4>
++    enum: [1, 2, 3, 4]
++
++  video-mode:
++    description: |
++      0 - burst-mode
++      1 - non-burst with sync event
++      2 - non-burst with sync pulse
++      3 - command mode
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3]
++
++required:
++  - compatible
++  - reg
++  - dsi-lanes
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    &dsi {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      status = "okay";
++
++      panel@0 {
++        compatible = "youritech,ili9806e";
++        reg = <0>;
++        backlight = <&mipi_bl>;
++        reset-gpios = <&gpio2 22 GPIO_ACTIVE_HIGH>;
++        dsi-lanes = <2>;
++        video-mode = <2>;	/* 0: burst mode
++              * 1: non-burst mode with sync event
++              * 2: non-burst mode with sync pulse
++              */
++        width-mm = <68>;
++        height-mm = <121>;
++        status = "okay";
++
++        port {
++          panel_mipi_in: endpoint {
++            remote-endpoint = <&dsi_out>;
++          };
++        };
++      };
++
++      ports {
++        port@1 {
++          reg = <1>;
++
++          dsi_out: endpoint {
++            remote-endpoint = <&panel_mipi_in>;
++          };
++        };
++      };
++    };
++...
 diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index fc8b23e57d..f373fe792f 100644
+index 7a00923636c7..ae4a8ce33e4c 100644
 --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
 +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
 @@ -186,6 +186,8 @@ patternProperties:
@@ -64,15 +156,25 @@ index fc8b23e57d..f373fe792f 100644
    "^beacon,.*":
      description: Compass Electronics Group, LLC
    "^beagle,.*":
+@@ -1582,6 +1584,8 @@ patternProperties:
+     description: YSH & ATIL
+   "^yones-toptech,.*":
+     description: Yones Toptech Co., Ltd.
++  "^youritech,.*":
++    description: Youritech
+   "^ys,.*":
+     description: Shenzhen Yashi Changhua Intelligent Technology Co., Ltd.
+   "^ysoft,.*":
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 65bc3e01a5..ff09b323cc 100644
+index 087a6203f503..2660fb2fa7ad 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -4441,6 +4441,7 @@ BYTES AT WORK MODULES AND BOARDS
- M:	Daniel Ammann <daniel.ammann@bytesatwork.ch>
+@@ -4442,6 +4442,8 @@ M:	Daniel Ammann <daniel.ammann@bytesatwork.ch>
  S:	Maintained
  F:	.github/workflows/checkpatch.yml
+ F:	.gitlab-ci.yml
 +F:	Documentation/devicetree/bindings/arm/bytesatwork/bytesatwork.yaml
++F:	Documentation/devicetree/bindings/display/panel/youritech,ili9806e.yaml
  
  C-MEDIA CMI8788 DRIVER
  M:	Clemens Ladisch <clemens@ladisch.de>

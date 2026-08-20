@@ -1,0 +1,29 @@
+From b8438377648e488938ccfc4dfcc8e5d4b5672992 Mon Sep 17 00:00:00 2001
+From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
+Date: Fri, 14 Aug 2026 09:46:59 +0200
+Subject: [PATCH] drm/stm: lvds: Restore 25 MHz default pixel clock
+
+Restore the previous 25 MHz default pixel clock when no pixel clock
+rate is provided.
+
+This is kept as a temporary workaround while investigating the LVDS
+PLL initialization failure with the new default clock configuration.
+
+Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
+---
+ drivers/gpu/drm/stm/lvds.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/stm/lvds.c b/drivers/gpu/drm/stm/lvds.c
+index 6085446e3897..e0e275f7978b 100644
+--- a/drivers/gpu/drm/stm/lvds.c
++++ b/drivers/gpu/drm/stm/lvds.c
+@@ -772,7 +772,7 @@ static int lvds_pixel_clk_register(struct stm_lvds *lvds)
+ 
+ 	/* Check the pixel clock rate (null value forbidden) */
+ 	if (!lvds->pixel_clock_rate)
+-		lvds->pixel_clock_rate = 148500000;
++		lvds->pixel_clock_rate = 25000000;
+ 
+ 	ret = clk_hw_register(lvds->dev, &lvds->lvds_ck_px);
+ 	if (ret)

@@ -1,4 +1,4 @@
-From 04a04f9ec5f1c402a0b51143e98948402da23f2e Mon Sep 17 00:00:00 2001
+From dc414b96db1c30e74287432c93d2d60a804b8a8b Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Thu, 23 Oct 2025 09:07:01 +0200
 Subject: [PATCH] arm64: bytedevkit_stm32mp2_defconfig: Add basic configuration
@@ -19,20 +19,20 @@ Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
  create mode 100644 arch/arm64/configs/bytedevkit_stm32mp2_defconfig
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 6459f183b9..3055f15525 100644
+index 70ce277ae763..2ad00610ae4b 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -4442,6 +4442,7 @@ M:	Daniel Ammann <daniel.ammann@bytesatwork.ch>
- S:	Maintained
- F:	.github/workflows/checkpatch.yml
+@@ -4444,6 +4444,7 @@ F:	.github/workflows/checkpatch.yml
+ F:	.gitlab-ci.yml
  F:	Documentation/devicetree/bindings/arm/bytesatwork/bytesatwork.yaml
+ F:	Documentation/devicetree/bindings/display/panel/youritech,ili9806e.yaml
 +F:	arch/arm64/configs/bytedevkit_stm32mp2_defconfig
  F:	arch/arm/boot/dts/*bytedevkit*
  F:	arch/arm/boot/dts/*byteengine*
  F:	arch/arm/configs/fragment-901-bytedevkit.config
 diff --git a/arch/arm64/configs/bytedevkit_stm32mp2_defconfig b/arch/arm64/configs/bytedevkit_stm32mp2_defconfig
 new file mode 100644
-index 0000000000..09727525bb
+index 000000000000..09727525bbd8
 --- /dev/null
 +++ b/arch/arm64/configs/bytedevkit_stm32mp2_defconfig
 @@ -0,0 +1,972 @@

@@ -1,4 +1,4 @@
-From a830644438407b8f8372a918eec34e82e4fe92fa Mon Sep 17 00:00:00 2001
+From c7932bef5494c0ced665c97aee2a8e99ec30c7ff Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Tue, 30 Sep 2025 11:56:24 +0200
 Subject: [PATCH] ARM: configs: Add nftables fragment
@@ -11,7 +11,7 @@ Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
  1 file changed, 38 insertions(+)
 
 diff --git a/arch/arm/configs/fragment-901-bytedevkit.config b/arch/arm/configs/fragment-901-bytedevkit.config
-index e8f6aec153..592dcca226 100644
+index e8f6aec15363..592dcca2262c 100644
 --- a/arch/arm/configs/fragment-901-bytedevkit.config
 +++ b/arch/arm/configs/fragment-901-bytedevkit.config
 @@ -11,3 +11,41 @@ CONFIG_FRAMEBUFFER_CONSOLE=y

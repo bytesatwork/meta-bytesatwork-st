@@ -1,4 +1,4 @@
-From 26a22f12ddcf913dacbf67d60ee74fa7fecb9087 Mon Sep 17 00:00:00 2001
+From 29ce33d950b7357fae94bb1081f5c54b7fcbd2e1 Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Wed, 25 Mar 2026 09:19:27 +0100
 Subject: [PATCH] arm64: dts: st: stm32mp257f-bytedevkit: Fix LVDS setup
@@ -11,7 +11,7 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
  1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts b/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
-index f2078b02c9..677319e2eb 100644
+index f2078b02c9d2..677319e2eb0a 100644
 --- a/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
 +++ b/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
 @@ -56,7 +56,7 @@ panel_backlight: backlight {

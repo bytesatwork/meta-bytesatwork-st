@@ -1,0 +1,25 @@
+From 57bdecf4257054c1d2435016264ff581172fb9fd Mon Sep 17 00:00:00 2001
+From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
+Date: Fri, 14 Aug 2026 10:39:32 +0200
+Subject: [PATCH] arm64: dts: st: stm32mp253f-bytedevkit: Fix include
+
+Update the include to the renamed stm32mp257f-dk-resmem.dtsi.
+
+Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
+---
+ arch/arm64/boot/dts/st/stm32mp253f-bytedevkit.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/st/stm32mp253f-bytedevkit.dts b/arch/arm64/boot/dts/st/stm32mp253f-bytedevkit.dts
+index a41703b9a955..a61765ba651b 100644
+--- a/arch/arm64/boot/dts/st/stm32mp253f-bytedevkit.dts
++++ b/arch/arm64/boot/dts/st/stm32mp253f-bytedevkit.dts
+@@ -13,7 +13,7 @@
+ #include "stm32mp25xf.dtsi"
+ #include "stm32mp25-pinctrl.dtsi"
+ #include "stm32mp25xxak-pinctrl.dtsi"
+-#include "stm32mp257f-dk-ca35tdcid-resmem.dtsi"
++#include "stm32mp257f-dk-resmem.dtsi"
+ #include <dt-bindings/net/ti-dp83867.h>
+ 
+ / {

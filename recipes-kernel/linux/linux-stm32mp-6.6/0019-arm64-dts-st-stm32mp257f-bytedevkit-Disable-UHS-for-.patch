@@ -1,4 +1,4 @@
-From 0a1f986e9192a9bba0e94015c4cc91c5168f7a9f Mon Sep 17 00:00:00 2001
+From b3202dbe7db8bae1d7217a7a9aa1985b1d12b267 Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Fri, 27 Mar 2026 10:03:48 +0100
 Subject: [PATCH] arm64: dts: st: stm32mp257f-bytedevkit: Disable UHS for SD
@@ -12,7 +12,7 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
  1 file changed, 5 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts b/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
-index a63b625580..7990dd015b 100644
+index a63b6255805f..7990dd015bde 100644
 --- a/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
 +++ b/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
 @@ -427,11 +427,6 @@ &sdmmc1 {

@@ -1,4 +1,4 @@
-From 908f4231721090b90ad3fc03d433cd48b2f5fe7b Mon Sep 17 00:00:00 2001
+From d2ac78ee91dcfb8d43188b020dbc8f904c158954 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Stephan=20D=C3=BCnner?= <stephan.duenner@bytesatwork.ch>
 Date: Thu, 20 Nov 2025 15:30:39 +0100
 Subject: [PATCH] arm64: dts: st: stm32mp257f-bytedevkit: Enable Gb for
@@ -15,7 +15,7 @@ Signed-off-by: Stephan Dünner <stephan.duenner@bytesatwork.ch>
  1 file changed, 8 insertions(+), 10 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts b/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
-index 4c3be8099e..d86d9f2385 100644
+index 4c3be8099e59..d86d9f238555 100644
 --- a/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
 +++ b/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
 @@ -219,7 +219,6 @@ &eth1 {

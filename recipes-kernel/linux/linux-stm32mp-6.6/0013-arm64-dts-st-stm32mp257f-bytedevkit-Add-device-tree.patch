@@ -1,4 +1,4 @@
-From f02d92eee0719d1f7ebe2ba5a41ebf3b404ec18c Mon Sep 17 00:00:00 2001
+From 721eddddd536e6e900eacc4bd331ae2f8e291332 Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Thu, 23 Oct 2025 09:09:32 +0200
 Subject: [PATCH] arm64: dts: st: stm32mp257f-bytedevkit: Add device tree
@@ -17,24 +17,24 @@ Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
  arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi |  22 +-
  arch/arm64/boot/dts/st/stm32mp251.dtsi        |   2 -
  .../boot/dts/st/stm32mp257f-bytedevkit.dts    | 575 ++++++++++++++++++
- .../st/stm32mp257f-dk-ca35tdcid-resmem.dtsi   |  16 +-
+ .../boot/dts/st/stm32mp257f-dk-resmem.dtsi    |  16 +-
  6 files changed, 591 insertions(+), 26 deletions(-)
  create mode 100644 arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 3055f15525..1103638252 100644
+index 2ad00610ae4b..4aca5ccb0821 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -4442,6 +4442,7 @@ M:	Daniel Ammann <daniel.ammann@bytesatwork.ch>
- S:	Maintained
- F:	.github/workflows/checkpatch.yml
+@@ -4444,6 +4444,7 @@ F:	.github/workflows/checkpatch.yml
+ F:	.gitlab-ci.yml
  F:	Documentation/devicetree/bindings/arm/bytesatwork/bytesatwork.yaml
+ F:	Documentation/devicetree/bindings/display/panel/youritech,ili9806e.yaml
 +F:	arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
  F:	arch/arm64/configs/bytedevkit_stm32mp2_defconfig
  F:	arch/arm/boot/dts/*bytedevkit*
  F:	arch/arm/boot/dts/*byteengine*
 diff --git a/arch/arm64/boot/dts/st/Makefile b/arch/arm64/boot/dts/st/Makefile
-index 63908113ae..85bb8a3ac5 100644
+index 63908113ae36..85bb8a3ac562 100644
 --- a/arch/arm64/boot/dts/st/Makefile
 +++ b/arch/arm64/boot/dts/st/Makefile
 @@ -2,5 +2,6 @@
@@ -45,7 +45,7 @@ index 63908113ae..85bb8a3ac5 100644
  	stm32mp257f-dk.dtb \
  	stm32mp257f-ev1.dtb
 diff --git a/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi b/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi
-index 253a840a7a..88ddf3cb32 100644
+index 33f1ce973421..cd69a5897ebc 100644
 --- a/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi
 +++ b/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi
 @@ -96,8 +96,7 @@ pins1 {
@@ -118,10 +118,10 @@ index 253a840a7a..88ddf3cb32 100644
  		};
  	};
 diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-index 3b96eccc42..a7241a7025 100644
+index 27875de53c1f..04256dc517d5 100644
 --- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
 +++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-@@ -2293,13 +2293,11 @@ eth1: eth1@482c0000 {
+@@ -2276,13 +2276,11 @@ eth1: eth1@482c0000 {
  				clock-names = "stmmaceth",
  					      "mac-clk-tx",
  					      "mac-clk-rx",
@@ -137,7 +137,7 @@ index 3b96eccc42..a7241a7025 100644
  				st,syscon = <&syscfg 0x3000 0xffffffff>;
 diff --git a/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts b/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
 new file mode 100644
-index 0000000000..4c3be8099e
+index 000000000000..4c3be8099e59
 --- /dev/null
 +++ b/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
 @@ -0,0 +1,575 @@
@@ -716,10 +716,10 @@ index 0000000000..4c3be8099e
 +	};
 +};
 +
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-dk-ca35tdcid-resmem.dtsi b/arch/arm64/boot/dts/st/stm32mp257f-dk-ca35tdcid-resmem.dtsi
-index 2931ad2b45..52acda2349 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-dk-ca35tdcid-resmem.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-dk-ca35tdcid-resmem.dtsi
+diff --git a/arch/arm64/boot/dts/st/stm32mp257f-dk-resmem.dtsi b/arch/arm64/boot/dts/st/stm32mp257f-dk-resmem.dtsi
+index 2a93d5ed87cd..fac1b66de326 100644
+--- a/arch/arm64/boot/dts/st/stm32mp257f-dk-resmem.dtsi
++++ b/arch/arm64/boot/dts/st/stm32mp257f-dk-resmem.dtsi
 @@ -167,18 +167,18 @@ op_tee: op-tee@82000000 {
  			no-map;
  		};

@@ -1,0 +1,26 @@
+From 7ace34f2a463bd7ad73a299fa45cdb47a98e97e9 Mon Sep 17 00:00:00 2001
+From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
+Date: Fri, 14 Aug 2026 09:28:55 +0200
+Subject: [PATCH] arm64: dts: st: stm32mp257f-bytedevkit: Fix LVDS panel enable
+ GPIO polarity
+
+Set the LVDS panel enable GPIO to active high.
+
+Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
+---
+ arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts b/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
+index 24c499d01ba1..57fb8171130e 100644
+--- a/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
++++ b/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
+@@ -56,7 +56,7 @@ panel_backlight: backlight {
+ 
+ 	panel_lvds: panel-lvds {
+ 		compatible = "panel-lvds";
+-		enable-gpios = <&gpioh 9 GPIO_ACTIVE_LOW>;
++		enable-gpios = <&gpioh 9 GPIO_ACTIVE_HIGH>;
+ 		reset-gpios = <&gpioh 8 GPIO_ACTIVE_HIGH>;
+ 		backlight = <&panel_lvds_backlight>;
+ 		status = "okay";

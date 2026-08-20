@@ -4,7 +4,7 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/linux-stm32mp-6.6:"
 
 # Increase PR if something changes
-PR="6"
+PR="7"
 
 SRC_URI:class-devupstream += " \
 	file://0001-github-workflows-Add-action-to-analyze-patches.patch \
@@ -28,6 +28,13 @@ SRC_URI:class-devupstream += " \
 	file://0019-arm64-dts-st-stm32mp257f-bytedevkit-Disable-UHS-for-.patch \
 	file://0020-arm64-dts-st-Add-stm32mp253f-bytedevkit.dts.patch \
 	file://0021-drm-panel-lvds-Add-display-reset-at-startup.patch \
+	file://0022-arm64-dts-st-stm32mp257f-bytedevkit-Fix-include.patch \
+	file://0023-arm64-dts-st-stm32mp253f-bytedevkit-Fix-include.patch \
+	file://0024-ARM-configs-Add-display-fragment.patch \
+	file://0025-arm64-dts-st-stm32mp257f-bytedevkit-Fix-LVDS-panel-e.patch \
+	file://0026-drm-stm-lvds-Restore-25-MHz-default-pixel-clock.patch \
+	file://0027-arm64-dts-st-stm32mp257f-bytedevkit-v2-Add-device-tr.patch \
+	file://0028-arm64-dts-st-stm32mp2-Rename-BDK-device-trees-by-rev.patch \
 "
 
 KERNEL_CONFIG_FRAGMENTS:append:bytedevkit-stm32mp1 = "${S}/arch/arm/configs/fragment-901-bytedevkit.config"
@@ -41,3 +48,9 @@ KERNEL_CONFIG_FRAGMENTS:remove:bytedevkit-stm32mp2 = " \
 	${WORKDIR}/fragments/${LINUX_VERSION}/fragment-03-systemd.config \
 	${WORKDIR}/fragments/${LINUX_VERSION}/fragment-04-modules.config \
 "
+
+kernel_do_install:append:bytedevkit-stm32mp2() {
+	ln -sf stm32mp257f-bytedevkit-v2.dtb ${D}/boot/stm32mp257f-bytedevkit.dtb
+}
+
+FILES:${KERNEL_PACKAGE_NAME}-base:append:bytedevkit-stm32mp2 = " /boot/stm32mp257f-bytedevkit.dtb"

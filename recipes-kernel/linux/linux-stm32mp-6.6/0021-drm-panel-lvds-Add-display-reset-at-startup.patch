@@ -1,4 +1,4 @@
-From fbfa9836846ae5863f6a6897ea47f576b14e1fb0 Mon Sep 17 00:00:00 2001
+From f6cb5d11f768c352a4dd076a5a21e3b0e18d1814 Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Thu, 4 Jun 2026 09:29:38 +0200
 Subject: [PATCH] drm/panel: lvds: Add display reset at startup
@@ -12,10 +12,10 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
  1 file changed, 9 insertions(+)
 
 diff --git a/drivers/gpu/drm/panel/panel-lvds.c b/drivers/gpu/drm/panel/panel-lvds.c
-index adb35047ef..926e9a64b5 100644
+index 8b2c6be3e3a1..8cb3be9852f7 100644
 --- a/drivers/gpu/drm/panel/panel-lvds.c
 +++ b/drivers/gpu/drm/panel/panel-lvds.c
-@@ -267,6 +267,15 @@ static int panel_lvds_probe(struct platform_device *pdev)
+@@ -241,6 +241,15 @@ static int panel_lvds_probe(struct platform_device *pdev)
  	drm_panel_add(&lvds->panel);
  
  	dev_set_drvdata(lvds->dev, lvds);

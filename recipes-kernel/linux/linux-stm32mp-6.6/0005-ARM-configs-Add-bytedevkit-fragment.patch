@@ -1,4 +1,4 @@
-From 58e81811158bd95d9d6e27c6478b2754b0f53fcd Mon Sep 17 00:00:00 2001
+From 10be041dbf8bf81e9292a6a4c75f0ee187540bab Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Thu, 25 Jul 2024 11:05:37 +0200
 Subject: [PATCH] ARM: configs: Add bytedevkit fragment
@@ -14,20 +14,20 @@ Signed-off-by: Daniel Ammann <daniel.ammann@bytesatwork.ch>
  create mode 100644 arch/arm/configs/fragment-901-bytedevkit.config
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index a44e3dc85f..d477e6c9de 100644
+index a72e425cd665..7a7df9913120 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -4442,6 +4442,7 @@ M:	Daniel Ammann <daniel.ammann@bytesatwork.ch>
- S:	Maintained
- F:	.github/workflows/checkpatch.yml
+@@ -4444,6 +4444,7 @@ F:	.github/workflows/checkpatch.yml
+ F:	.gitlab-ci.yml
  F:	Documentation/devicetree/bindings/arm/bytesatwork/bytesatwork.yaml
+ F:	Documentation/devicetree/bindings/display/panel/youritech,ili9806e.yaml
 +F:	arch/arm/configs/fragment-901-bytedevkit.config
  F:	drivers/gpu/drm/panel/panel-youritec-ili9806e.c
  
  C-MEDIA CMI8788 DRIVER
 diff --git a/arch/arm/configs/fragment-901-bytedevkit.config b/arch/arm/configs/fragment-901-bytedevkit.config
 new file mode 100644
-index 0000000000..e8f6aec153
+index 000000000000..e8f6aec15363
 --- /dev/null
 +++ b/arch/arm/configs/fragment-901-bytedevkit.config
 @@ -0,0 +1,13 @@

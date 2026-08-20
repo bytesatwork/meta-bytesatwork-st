@@ -1,4 +1,4 @@
-From 5de9e5c735ddca0badbbae6c528aa10e0e7bfe39 Mon Sep 17 00:00:00 2001
+From de1d2c9efc9aa7e44106467ea6dcc240ef9ce572 Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Thu, 25 Jul 2024 11:02:55 +0200
 Subject: [PATCH] drm: add youritech panel with ili9806e mipi controller
@@ -19,19 +19,19 @@ Signed-off-by: Stephan Dünner <stephan.duenner@bytesatwork.ch>
  create mode 100644 drivers/gpu/drm/panel/panel-youritec-ili9806e.c
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index ff09b323cc..a44e3dc85f 100644
+index 2660fb2fa7ad..a72e425cd665 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -4442,6 +4442,7 @@ M:	Daniel Ammann <daniel.ammann@bytesatwork.ch>
- S:	Maintained
- F:	.github/workflows/checkpatch.yml
+@@ -4444,6 +4444,7 @@ F:	.github/workflows/checkpatch.yml
+ F:	.gitlab-ci.yml
  F:	Documentation/devicetree/bindings/arm/bytesatwork/bytesatwork.yaml
+ F:	Documentation/devicetree/bindings/display/panel/youritech,ili9806e.yaml
 +F:	drivers/gpu/drm/panel/panel-youritec-ili9806e.c
  
  C-MEDIA CMI8788 DRIVER
  M:	Clemens Ladisch <clemens@ladisch.de>
 diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index 3a2f4a9f1d..b5fd4089d9 100644
+index 3a2f4a9f1d46..b5fd4089d902 100644
 --- a/drivers/gpu/drm/panel/Kconfig
 +++ b/drivers/gpu/drm/panel/Kconfig
 @@ -835,4 +835,13 @@ config DRM_PANEL_XINPENG_XPP055C272
@@ -49,7 +49,7 @@ index 3a2f4a9f1d..b5fd4089d9 100644
 +	  Ilitek ILI9881c controller.
  endmenu
 diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index 433e93d579..482c3320e0 100644
+index 433e93d57949..482c3320e001 100644
 --- a/drivers/gpu/drm/panel/Makefile
 +++ b/drivers/gpu/drm/panel/Makefile
 @@ -85,3 +85,4 @@ obj-$(CONFIG_DRM_PANEL_VISIONOX_VTDR6130) += panel-visionox-vtdr6130.o
@@ -59,7 +59,7 @@ index 433e93d579..482c3320e0 100644
 +obj-$(CONFIG_DRM_PANEL_YOURITECH_ILI9806E) += panel-youritec-ili9806e.o
 diff --git a/drivers/gpu/drm/panel/panel-youritec-ili9806e.c b/drivers/gpu/drm/panel/panel-youritec-ili9806e.c
 new file mode 100644
-index 0000000000..5046fa4a02
+index 000000000000..5046fa4a0257
 --- /dev/null
 +++ b/drivers/gpu/drm/panel/panel-youritec-ili9806e.c
 @@ -0,0 +1,468 @@

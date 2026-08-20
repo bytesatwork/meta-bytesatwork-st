@@ -1,4 +1,4 @@
-From 1f1b619a48c543ab206d389e17f3d39bc52ec160 Mon Sep 17 00:00:00 2001
+From 6be449780b0356738ae2a4fc83f39a55b01a278c Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Fri, 31 Oct 2025 09:57:45 +0100
 Subject: [PATCH] arm: dts: stm32mp157c-byteengine/bytedevkit
@@ -13,7 +13,7 @@ Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
  3 files changed, 5 insertions(+), 3 deletions(-)
 
 diff --git a/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-1.dts b/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-1.dts
-index 827410b598..1cabbc9c83 100644
+index 827410b5980f..1cabbc9c83a3 100644
 --- a/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-1.dts
 +++ b/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-1.dts
 @@ -9,7 +9,8 @@
@@ -27,7 +27,7 @@ index 827410b598..1cabbc9c83 100644
  
  &ethernet0 {
 diff --git a/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-3.dts b/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-3.dts
-index 3b065c310f..f3f94fc898 100644
+index 3b065c310f3d..f3f94fc898ad 100644
 --- a/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-3.dts
 +++ b/arch/arm/boot/dts/st/stm32mp157c-bytedevkit-v1-3.dts
 @@ -9,7 +9,8 @@
@@ -41,7 +41,7 @@ index 3b065c310f..f3f94fc898 100644
  
  &ethernet0 {
 diff --git a/arch/arm/boot/dts/st/stm32mp157c-byteengine-m5.dtsi b/arch/arm/boot/dts/st/stm32mp157c-byteengine-m5.dtsi
-index 5f11cca0ec..5799a8953d 100644
+index 5f11cca0ecf8..5799a8953d12 100644
 --- a/arch/arm/boot/dts/st/stm32mp157c-byteengine-m5.dtsi
 +++ b/arch/arm/boot/dts/st/stm32mp157c-byteengine-m5.dtsi
 @@ -15,7 +15,7 @@

@@ -1,4 +1,4 @@
-From 99bf4d62a312f7764156c1d2da4c11c30fe9562a Mon Sep 17 00:00:00 2001
+From 8886109b6dc78ab3425a3d2701edb712c1c1fcf4 Mon Sep 17 00:00:00 2001
 From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 Date: Tue, 27 Jan 2026 09:22:12 +0100
 Subject: [PATCH] CI: Add action to analyze patches
@@ -8,12 +8,13 @@ Add gitlab CI to run checkpatch on merge requests.
 Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
 ---
  .gitlab-ci.yml | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+ MAINTAINERS    |  1 +
+ 2 files changed, 21 insertions(+)
  create mode 100644 .gitlab-ci.yml
 
 diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
 new file mode 100644
-index 0000000000..6d1db8da16
+index 000000000000..6d1db8da166c
 --- /dev/null
 +++ b/.gitlab-ci.yml
 @@ -0,0 +1,20 @@
@@ -37,3 +38,15 @@ index 0000000000..6d1db8da16
 +      git fetch --no-tags --prune origin '+refs/heads/*:refs/remotes/origin/*' || exit 1
 +      "./${CHECKPATCH}" --git ${CI_MERGE_REQUEST_TARGET_BRANCH_SHA:-$CI_MERGE_REQUEST_DIFF_BASE_SHA}..${CI_MERGE_REQUEST_SOURCE_BRANCH_SHA:-$CI_COMMIT_SHA}
 +  allow_failure: false
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 43e963882a95..087a6203f503 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -4441,6 +4441,7 @@ BYTES AT WORK MODULES AND BOARDS
+ M:	Daniel Ammann <daniel.ammann@bytesatwork.ch>
+ S:	Maintained
+ F:	.github/workflows/checkpatch.yml
++F:	.gitlab-ci.yml
+ 
+ C-MEDIA CMI8788 DRIVER
+ M:	Clemens Ladisch <clemens@ladisch.de>

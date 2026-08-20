@@ -1,4 +1,4 @@
-From adf789fd57ed9788d21ecc10b929191a78fca418 Mon Sep 17 00:00:00 2001
+From dac7a55b1a98f53221fc55b9cd263bc7e094642f Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Wed, 25 Mar 2026 10:31:23 +0100
 Subject: [PATCH] arm64: dts: st: stm32mp257f-bytedevkit: Disable MIPI touch
@@ -11,7 +11,7 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts b/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
-index 677319e2eb..a63b625580 100644
+index 677319e2eb0a..a63b6255805f 100644
 --- a/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
 +++ b/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit.dts
 @@ -334,7 +334,7 @@ gt911@5d {
