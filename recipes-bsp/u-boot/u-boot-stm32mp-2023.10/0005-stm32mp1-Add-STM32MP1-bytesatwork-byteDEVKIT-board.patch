@@ -1,4 +1,4 @@
-From 6318b31471e86e25289d9174a9a363df57ea7f2e Mon Sep 17 00:00:00 2001
+From adbf7871b25d962835cdb4e9d86c591516f91cfe Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Tue, 19 Aug 2025 14:17:00 +0200
 Subject: [PATCH] stm32mp1: Add STM32MP1 bytesatwork byteDEVKIT board
@@ -43,7 +43,7 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
  create mode 100644 include/configs/stm32mp1_bytedevkit.h
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 16b4836c4f..6b11f22d72 100644
+index 16b4836c4fe..6b11f22d727 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
 @@ -254,7 +254,16 @@ S:	Maintained
@@ -64,7 +64,7 @@ index 16b4836c4f..6b11f22d72 100644
  ARM CORTINA ACCESS CAxxxx
  M:	Alex Nemirovsky <alex.nemirovsky@cortina-access.com>
 diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
-index 1b8b833b97..8fcd393abe 100644
+index 1b8b833b97e..8fcd393abe7 100644
 --- a/arch/arm/Kconfig
 +++ b/arch/arm/Kconfig
 @@ -2285,6 +2285,7 @@ source "board/armltd/vexpress64/Kconfig"
@@ -76,7 +76,7 @@ index 1b8b833b97..8fcd393abe 100644
  source "board/eets/pdu001/Kconfig"
  source "board/emulation/qemu-arm/Kconfig"
 diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
-index 0fd5fee226..b7f016c95a 100644
+index 0fd5fee226d..b7f016c95ac 100644
 --- a/arch/arm/dts/Makefile
 +++ b/arch/arm/dts/Makefile
 @@ -1293,6 +1293,7 @@ dtb-$(CONFIG_STM32MP15X) += \
@@ -89,7 +89,7 @@ index 0fd5fee226..b7f016c95a 100644
  	stm32mp157c-ev1.dtb \
 diff --git a/arch/arm/dts/stm32mp15-ddr3-1x8Gb-1066-binG.dtsi b/arch/arm/dts/stm32mp15-ddr3-1x8Gb-1066-binG.dtsi
 new file mode 100644
-index 0000000000..c53b8c0141
+index 00000000000..c53b8c01418
 --- /dev/null
 +++ b/arch/arm/dts/stm32mp15-ddr3-1x8Gb-1066-binG.dtsi
 @@ -0,0 +1,120 @@
@@ -215,7 +215,7 @@ index 0000000000..c53b8c0141
 +#include "stm32mp15-ddr.dtsi"
 diff --git a/arch/arm/dts/stm32mp157c-bytedevkit-v1-3-u-boot.dtsi b/arch/arm/dts/stm32mp157c-bytedevkit-v1-3-u-boot.dtsi
 new file mode 100644
-index 0000000000..f8724434e0
+index 00000000000..f8724434e09
 --- /dev/null
 +++ b/arch/arm/dts/stm32mp157c-bytedevkit-v1-3-u-boot.dtsi
 @@ -0,0 +1,32 @@
@@ -253,7 +253,7 @@ index 0000000000..f8724434e0
 +};
 diff --git a/arch/arm/dts/stm32mp157c-bytedevkit-v1-3.dts b/arch/arm/dts/stm32mp157c-bytedevkit-v1-3.dts
 new file mode 100644
-index 0000000000..29e8d639c1
+index 00000000000..29e8d639c1a
 --- /dev/null
 +++ b/arch/arm/dts/stm32mp157c-bytedevkit-v1-3.dts
 @@ -0,0 +1,18 @@
@@ -277,7 +277,7 @@ index 0000000000..29e8d639c1
 +};
 diff --git a/arch/arm/dts/stm32mp157c-bytedevkit.dtsi b/arch/arm/dts/stm32mp157c-bytedevkit.dtsi
 new file mode 100644
-index 0000000000..a034557ea7
+index 00000000000..a034557ea71
 --- /dev/null
 +++ b/arch/arm/dts/stm32mp157c-bytedevkit.dtsi
 @@ -0,0 +1,109 @@
@@ -392,7 +392,7 @@ index 0000000000..a034557ea7
 +};
 diff --git a/arch/arm/dts/stm32mp157c-byteengine.dtsi b/arch/arm/dts/stm32mp157c-byteengine.dtsi
 new file mode 100644
-index 0000000000..1528d0d13a
+index 00000000000..1528d0d13a1
 --- /dev/null
 +++ b/arch/arm/dts/stm32mp157c-byteengine.dtsi
 @@ -0,0 +1,458 @@
@@ -855,7 +855,7 @@ index 0000000000..1528d0d13a
 +	status = "okay";
 +};
 diff --git a/arch/arm/mach-stm32mp/Kconfig.15x b/arch/arm/mach-stm32mp/Kconfig.15x
-index 0dadf3bd25..8f3db896bb 100644
+index 0dadf3bd252..8f3db896bbd 100644
 --- a/arch/arm/mach-stm32mp/Kconfig.15x
 +++ b/arch/arm/mach-stm32mp/Kconfig.15x
 @@ -23,6 +23,15 @@ config TARGET_ST_STM32MP15X
@@ -876,7 +876,7 @@ index 0dadf3bd25..8f3db896bb 100644
  	help
 diff --git a/board/bytesatwork/bytedevkit_stm32mp1/Kconfig b/board/bytesatwork/bytedevkit_stm32mp1/Kconfig
 new file mode 100644
-index 0000000000..776d4e83a2
+index 00000000000..776d4e83a2c
 --- /dev/null
 +++ b/board/bytesatwork/bytedevkit_stm32mp1/Kconfig
 @@ -0,0 +1,43 @@
@@ -925,7 +925,7 @@ index 0000000000..776d4e83a2
 +endif
 diff --git a/board/bytesatwork/bytedevkit_stm32mp1/Makefile b/board/bytesatwork/bytedevkit_stm32mp1/Makefile
 new file mode 100644
-index 0000000000..6d2798d414
+index 00000000000..6d2798d4140
 --- /dev/null
 +++ b/board/bytesatwork/bytedevkit_stm32mp1/Makefile
 @@ -0,0 +1,10 @@
@@ -941,7 +941,7 @@ index 0000000000..6d2798d414
 +obj-y += ../baw_config/
 diff --git a/board/bytesatwork/bytedevkit_stm32mp1/hwid.c b/board/bytesatwork/bytedevkit_stm32mp1/hwid.c
 new file mode 100644
-index 0000000000..eb2c441988
+index 00000000000..eb2c4419888
 --- /dev/null
 +++ b/board/bytesatwork/bytedevkit_stm32mp1/hwid.c
 @@ -0,0 +1,481 @@
@@ -1428,7 +1428,7 @@ index 0000000000..eb2c441988
 +	)
 diff --git a/board/bytesatwork/bytedevkit_stm32mp1/stm32mp1-bytedevkit.c b/board/bytesatwork/bytedevkit_stm32mp1/stm32mp1-bytedevkit.c
 new file mode 100644
-index 0000000000..eff7c2b7d0
+index 00000000000..eff7c2b7d01
 --- /dev/null
 +++ b/board/bytesatwork/bytedevkit_stm32mp1/stm32mp1-bytedevkit.c
 @@ -0,0 +1,181 @@
@@ -1615,7 +1615,7 @@ index 0000000000..eff7c2b7d0
 +#endif
 diff --git a/board/bytesatwork/common b/board/bytesatwork/common
 new file mode 120000
-index 0000000000..fea1e658d7
+index 00000000000..fea1e658d77
 --- /dev/null
 +++ b/board/bytesatwork/common
 @@ -0,0 +1 @@
@@ -1623,7 +1623,7 @@ index 0000000000..fea1e658d7
 \ No newline at end of file
 diff --git a/configs/stm32mp157_bytedevkit_1g_defconfig b/configs/stm32mp157_bytedevkit_1g_defconfig
 new file mode 100644
-index 0000000000..6c02b1d7a1
+index 00000000000..6c02b1d7a11
 --- /dev/null
 +++ b/configs/stm32mp157_bytedevkit_1g_defconfig
 @@ -0,0 +1,115 @@
@@ -1744,7 +1744,7 @@ index 0000000000..6c02b1d7a1
 +CONFIG_LMB_RESERVED_REGIONS=16
 diff --git a/configs/stm32mp157_bytedevkit_defconfig b/configs/stm32mp157_bytedevkit_defconfig
 new file mode 100644
-index 0000000000..6723e6072b
+index 00000000000..6723e6072bd
 --- /dev/null
 +++ b/configs/stm32mp157_bytedevkit_defconfig
 @@ -0,0 +1,114 @@
@@ -1864,7 +1864,7 @@ index 0000000000..6723e6072b
 +CONFIG_LMB_RESERVED_REGIONS=16
 diff --git a/include/configs/stm32mp1_bytedevkit.h b/include/configs/stm32mp1_bytedevkit.h
 new file mode 100644
-index 0000000000..ec6608099c
+index 00000000000..ec6608099c7
 --- /dev/null
 +++ b/include/configs/stm32mp1_bytedevkit.h
 @@ -0,0 +1,89 @@

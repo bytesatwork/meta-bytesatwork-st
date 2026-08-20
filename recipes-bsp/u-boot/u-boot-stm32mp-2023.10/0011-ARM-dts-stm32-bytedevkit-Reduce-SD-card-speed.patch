@@ -1,4 +1,4 @@
-From f8c4b45ea4b6015e558ad9da96f7e52495f34ffb Mon Sep 17 00:00:00 2001
+From 7de7928dd360b59cb17e81a49fb1d72687d3be8a Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Fri, 27 Mar 2026 10:59:43 +0100
 Subject: [PATCH] ARM: dts: stm32: bytedevkit: Reduce SD card speed
@@ -12,7 +12,7 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
  1 file changed, 3 insertions(+), 5 deletions(-)
 
 diff --git a/arch/arm/dts/stm32mp257f-bytedevkit.dts b/arch/arm/dts/stm32mp257f-bytedevkit.dts
-index 94cd8a842f..c9742c7030 100644
+index 94cd8a842f5..c9742c70305 100644
 --- a/arch/arm/dts/stm32mp257f-bytedevkit.dts
 +++ b/arch/arm/dts/stm32mp257f-bytedevkit.dts
 @@ -439,12 +439,10 @@

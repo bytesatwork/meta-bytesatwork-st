@@ -1,4 +1,4 @@
-From 1738c9c99ce8930b587cead576e434d1bc60f193 Mon Sep 17 00:00:00 2001
+From fe53a6bd097fd92c03c5b636c030ee5b962906a7 Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Tue, 27 Jan 2026 09:08:39 +0100
 Subject: [PATCH] CI: Add action to analyze patches
@@ -11,7 +11,7 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
  1 file changed, 18 insertions(+), 488 deletions(-)
 
 diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
-index 2ceeb947f7..6d1db8da16 100644
+index 2ceeb947f7c..6d1db8da166 100644
 --- a/.gitlab-ci.yml
 +++ b/.gitlab-ci.yml
 @@ -1,490 +1,20 @@

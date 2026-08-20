@@ -1,4 +1,4 @@
-From 03591398d75404e8901527967866bf9b6437b53a Mon Sep 17 00:00:00 2001
+From 807d2fa5d00ce04aa7491e5c17cde02e97dcf5d6 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Stephan=20D=C3=BCnner?= <stephan.duenner@bytesatwork.ch>
 Date: Fri, 9 Aug 2019 19:17:33 +0200
 Subject: [PATCH] cmd: Add cpuinfo
@@ -19,7 +19,7 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
  create mode 100644 cmd/cpuinfo.c
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index feea8e9366..16b4836c4f 100644
+index feea8e93665..16b4836c4fe 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
 @@ -254,6 +254,7 @@ S:	Maintained
@@ -31,7 +31,7 @@ index feea8e9366..16b4836c4f 100644
  ARM CORTINA ACCESS CAxxxx
  M:	Alex Nemirovsky <alex.nemirovsky@cortina-access.com>
 diff --git a/cmd/Kconfig b/cmd/Kconfig
-index 43ca10f69c..004056874b 100644
+index 43ca10f69cc..004056874bf 100644
 --- a/cmd/Kconfig
 +++ b/cmd/Kconfig
 @@ -170,6 +170,12 @@ config CMD_CPU
@@ -48,7 +48,7 @@ index 43ca10f69c..004056874b 100644
  	bool "fwu metadata read"
  	depends on FWU_MULTI_BANK_UPDATE
 diff --git a/cmd/Makefile b/cmd/Makefile
-index 9bebf321c3..95f78b8ed8 100644
+index 9bebf321c39..95f78b8ed8d 100644
 --- a/cmd/Makefile
 +++ b/cmd/Makefile
 @@ -51,6 +51,7 @@ obj-$(CONFIG_CMD_CONFIG) += config.o
@@ -61,7 +61,7 @@ index 9bebf321c3..95f78b8ed8 100644
  obj-$(CONFIG_CMD_DM) += dm.o
 diff --git a/cmd/cpuinfo.c b/cmd/cpuinfo.c
 new file mode 100644
-index 0000000000..9a5a0081f1
+index 00000000000..9a5a0081f13
 --- /dev/null
 +++ b/cmd/cpuinfo.c
 @@ -0,0 +1,37 @@

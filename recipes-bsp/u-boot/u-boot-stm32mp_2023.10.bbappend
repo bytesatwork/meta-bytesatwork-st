@@ -14,7 +14,7 @@ do_deploy:append() {
 }
 
 # Increase PR if something changes
-PR = "r5"
+PR = "r6"
 
 SRC_URI:class-devupstream += " \
 	file://0001-github-workflows-Add-action-to-analyze-patches.patch \

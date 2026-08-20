@@ -1,4 +1,4 @@
-From b95bd3245258029da4561fa0f04877a169adeb32 Mon Sep 17 00:00:00 2001
+From 2aa4770c265d970958308339c54407770f3e6f90 Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Tue, 24 Mar 2026 10:32:49 +0100
 Subject: [PATCH] board: stm32mp2: bytedevkit: Add support for STM32MP253xx
@@ -12,7 +12,7 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
  2 files changed, 12 insertions(+), 1 deletion(-)
 
 diff --git a/board/bytesatwork/bytedevkit_stm32mp2/stm32mp2-bytedevkit.c b/board/bytesatwork/bytedevkit_stm32mp2/stm32mp2-bytedevkit.c
-index 98ccad6b54..8d90a96431 100644
+index 98ccad6b540..8d90a96431e 100644
 --- a/board/bytesatwork/bytedevkit_stm32mp2/stm32mp2-bytedevkit.c
 +++ b/board/bytesatwork/bytedevkit_stm32mp2/stm32mp2-bytedevkit.c
 @@ -568,6 +568,18 @@ int board_late_init(void)
@@ -35,7 +35,7 @@ index 98ccad6b54..8d90a96431 100644
  }
  
 diff --git a/include/configs/stm32mp2_bytedevkit.h b/include/configs/stm32mp2_bytedevkit.h
-index 83474a110b..a534ea0e07 100644
+index 83474a110bb..a534ea0e079 100644
 --- a/include/configs/stm32mp2_bytedevkit.h
 +++ b/include/configs/stm32mp2_bytedevkit.h
 @@ -29,7 +29,6 @@

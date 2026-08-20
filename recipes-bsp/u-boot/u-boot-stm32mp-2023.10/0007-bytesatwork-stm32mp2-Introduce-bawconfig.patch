@@ -1,4 +1,4 @@
-From c2bbcc9203f4f3adc6a9835ea24593fe96e08f47 Mon Sep 17 00:00:00 2001
+From 57c7ba5ccfd858f5010c9471a8c03ef48f1cce22 Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Tue, 2 Sep 2025 15:06:20 +0200
 Subject: [PATCH] bytesatwork: stm32mp2: Introduce bawconfig
@@ -14,7 +14,7 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
  4 files changed, 10 insertions(+)
 
 diff --git a/board/bytesatwork/bytedevkit_stm32mp2/Kconfig b/board/bytesatwork/bytedevkit_stm32mp2/Kconfig
-index 1a93809b6b..54d578d3be 100644
+index 1a93809b6bb..54d578d3be1 100644
 --- a/board/bytesatwork/bytedevkit_stm32mp2/Kconfig
 +++ b/board/bytesatwork/bytedevkit_stm32mp2/Kconfig
 @@ -10,5 +10,6 @@ config SYS_CONFIG_NAME
@@ -25,7 +25,7 @@ index 1a93809b6b..54d578d3be 100644
  
  endif
 diff --git a/board/bytesatwork/bytedevkit_stm32mp2/Makefile b/board/bytesatwork/bytedevkit_stm32mp2/Makefile
-index 4c116ae4b9..3b77f6050e 100644
+index 4c116ae4b96..3b77f6050e0 100644
 --- a/board/bytesatwork/bytedevkit_stm32mp2/Makefile
 +++ b/board/bytesatwork/bytedevkit_stm32mp2/Makefile
 @@ -7,3 +7,4 @@
@@ -34,7 +34,7 @@ index 4c116ae4b9..3b77f6050e 100644
  obj-y += stm32mp2-bytedevkit.o
 +obj-y += ../baw_config/
 diff --git a/configs/stm32mp257_bytedevkit_defconfig b/configs/stm32mp257_bytedevkit_defconfig
-index 219aeb9c9c..c5cf9b6696 100644
+index 219aeb9c9ca..c5cf9b6696e 100644
 --- a/configs/stm32mp257_bytedevkit_defconfig
 +++ b/configs/stm32mp257_bytedevkit_defconfig
 @@ -13,6 +13,10 @@ CONFIG_TARGET_STM32MP2_BYTEDEVKIT=y
@@ -49,7 +49,7 @@ index 219aeb9c9c..c5cf9b6696 100644
  CONFIG_OF_BOARD_FIXUP=y
  CONFIG_SYS_MEMTEST_START=0x84000000
 diff --git a/include/configs/stm32mp2_bytedevkit.h b/include/configs/stm32mp2_bytedevkit.h
-index ad989751dc..83474a110b 100644
+index ad989751dc2..83474a110bb 100644
 --- a/include/configs/stm32mp2_bytedevkit.h
 +++ b/include/configs/stm32mp2_bytedevkit.h
 @@ -46,4 +46,8 @@

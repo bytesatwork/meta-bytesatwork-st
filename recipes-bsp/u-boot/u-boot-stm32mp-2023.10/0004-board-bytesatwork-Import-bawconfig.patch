@@ -1,4 +1,4 @@
-From 8842bd7ccb9a7b7bf83958d2b6a34cc69c00c776 Mon Sep 17 00:00:00 2001
+From 6e4cbffb7c193eb3c14b8f95ed158733737a7478 Mon Sep 17 00:00:00 2001
 From: Rico Ganahl <rico.ganahl@bytesatwork.ch>
 Date: Wed, 2 Feb 2022 09:16:56 +0100
 Subject: [PATCH] board: bytesatwork: Import bawconfig
@@ -75,7 +75,7 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 
 diff --git a/board/bytesatwork/baw_config/Kconfig b/board/bytesatwork/baw_config/Kconfig
 new file mode 100644
-index 0000000000..b49e5f36d8
+index 00000000000..b49e5f36d8c
 --- /dev/null
 +++ b/board/bytesatwork/baw_config/Kconfig
 @@ -0,0 +1,72 @@
@@ -153,7 +153,7 @@ index 0000000000..b49e5f36d8
 +endmenu
 diff --git a/board/bytesatwork/baw_config/MAINTAINERS b/board/bytesatwork/baw_config/MAINTAINERS
 new file mode 100644
-index 0000000000..68cf2510f6
+index 00000000000..68cf2510f68
 --- /dev/null
 +++ b/board/bytesatwork/baw_config/MAINTAINERS
 @@ -0,0 +1,7 @@
@@ -166,7 +166,7 @@ index 0000000000..68cf2510f6
 +F:	board/bytesatwork/baw_config/Kconfig
 diff --git a/board/bytesatwork/baw_config/Makefile b/board/bytesatwork/baw_config/Makefile
 new file mode 100644
-index 0000000000..3f02428a87
+index 00000000000..3f02428a879
 --- /dev/null
 +++ b/board/bytesatwork/baw_config/Makefile
 @@ -0,0 +1,15 @@
@@ -187,7 +187,7 @@ index 0000000000..3f02428a87
 +obj-$(CONFIG_BAW_CONFIG_BUILTIN) += baw_config_builtin.o
 diff --git a/board/bytesatwork/baw_config/README b/board/bytesatwork/baw_config/README
 new file mode 100644
-index 0000000000..518d2a94ec
+index 00000000000..518d2a94ec8
 --- /dev/null
 +++ b/board/bytesatwork/baw_config/README
 @@ -0,0 +1,71 @@
@@ -264,7 +264,7 @@ index 0000000000..518d2a94ec
 +Magic is 0x6e4a. CRC is the native u-boot crc32.
 diff --git a/board/bytesatwork/baw_config/baw_config.c b/board/bytesatwork/baw_config/baw_config.c
 new file mode 100644
-index 0000000000..f223e488a6
+index 00000000000..f223e488a6f
 --- /dev/null
 +++ b/board/bytesatwork/baw_config/baw_config.c
 @@ -0,0 +1,88 @@
@@ -358,7 +358,7 @@ index 0000000000..f223e488a6
 +}
 diff --git a/board/bytesatwork/baw_config/baw_config.h b/board/bytesatwork/baw_config/baw_config.h
 new file mode 100644
-index 0000000000..4c741db9f3
+index 00000000000..4c741db9f3e
 --- /dev/null
 +++ b/board/bytesatwork/baw_config/baw_config.h
 @@ -0,0 +1,125 @@
@@ -489,7 +489,7 @@ index 0000000000..4c741db9f3
 +#endif
 diff --git a/board/bytesatwork/baw_config/baw_config_builtin.c b/board/bytesatwork/baw_config/baw_config_builtin.c
 new file mode 100644
-index 0000000000..367078be8e
+index 00000000000..367078be8ef
 --- /dev/null
 +++ b/board/bytesatwork/baw_config/baw_config_builtin.c
 @@ -0,0 +1,15 @@
@@ -510,7 +510,7 @@ index 0000000000..367078be8e
 +}
 diff --git a/board/bytesatwork/baw_config/baw_config_builtin.h b/board/bytesatwork/baw_config/baw_config_builtin.h
 new file mode 100644
-index 0000000000..a44445955d
+index 00000000000..a44445955d7
 --- /dev/null
 +++ b/board/bytesatwork/baw_config/baw_config_builtin.h
 @@ -0,0 +1,21 @@
@@ -537,7 +537,7 @@ index 0000000000..a44445955d
 +#endif
 diff --git a/board/bytesatwork/baw_config/baw_config_eeprom.c b/board/bytesatwork/baw_config/baw_config_eeprom.c
 new file mode 100644
-index 0000000000..f27e2f737e
+index 00000000000..f27e2f737e0
 --- /dev/null
 +++ b/board/bytesatwork/baw_config/baw_config_eeprom.c
 @@ -0,0 +1,308 @@
@@ -851,7 +851,7 @@ index 0000000000..f27e2f737e
 +#endif
 diff --git a/board/bytesatwork/baw_config/baw_config_eeprom.h b/board/bytesatwork/baw_config/baw_config_eeprom.h
 new file mode 100644
-index 0000000000..c5d943f18c
+index 00000000000..c5d943f18c5
 --- /dev/null
 +++ b/board/bytesatwork/baw_config/baw_config_eeprom.h
 @@ -0,0 +1,38 @@
@@ -895,7 +895,7 @@ index 0000000000..c5d943f18c
 +#endif
 diff --git a/board/bytesatwork/baw_config/baw_config_get.c b/board/bytesatwork/baw_config/baw_config_get.c
 new file mode 100644
-index 0000000000..2a8091947a
+index 00000000000..2a8091947ab
 --- /dev/null
 +++ b/board/bytesatwork/baw_config/baw_config_get.c
 @@ -0,0 +1,43 @@
@@ -944,7 +944,7 @@ index 0000000000..2a8091947a
 +}
 diff --git a/board/bytesatwork/baw_config/baw_config_get.h b/board/bytesatwork/baw_config/baw_config_get.h
 new file mode 100644
-index 0000000000..43ac01f14b
+index 00000000000..43ac01f14be
 --- /dev/null
 +++ b/board/bytesatwork/baw_config/baw_config_get.h
 @@ -0,0 +1,13 @@
@@ -963,7 +963,7 @@ index 0000000000..43ac01f14b
 +#endif
 diff --git a/board/bytesatwork/baw_config/cmd_baw_config.c b/board/bytesatwork/baw_config/cmd_baw_config.c
 new file mode 100644
-index 0000000000..922f021701
+index 00000000000..922f0217013
 --- /dev/null
 +++ b/board/bytesatwork/baw_config/cmd_baw_config.c
 @@ -0,0 +1,223 @@

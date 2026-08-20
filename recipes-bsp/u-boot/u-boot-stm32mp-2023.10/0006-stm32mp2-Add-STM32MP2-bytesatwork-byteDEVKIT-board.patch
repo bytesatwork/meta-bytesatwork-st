@@ -1,4 +1,4 @@
-From d9dfe483b28e14473a194fe33786783397f6d076 Mon Sep 17 00:00:00 2001
+From 36a58d650f658e6d50813077f4b1c57e90208862 Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Thu, 13 Mar 2025 16:19:58 +0100
 Subject: [PATCH] stm32mp2: Add STM32MP2 bytesatwork byteDEVKIT board
@@ -34,7 +34,7 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
  create mode 100644 include/configs/stm32mp2_bytedevkit.h
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 6b11f22d72..d0d3b9db5b 100644
+index 6b11f22d727..d0d3b9db5b3 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
 @@ -248,7 +248,7 @@ F:	doc/README.bcm7xxx
@@ -65,7 +65,7 @@ index 6b11f22d72..d0d3b9db5b 100644
  ARM CORTINA ACCESS CAxxxx
  M:	Alex Nemirovsky <alex.nemirovsky@cortina-access.com>
 diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
-index 8fcd393abe..3be46b50a2 100644
+index 8fcd393abe7..3be46b50a2e 100644
 --- a/arch/arm/Kconfig
 +++ b/arch/arm/Kconfig
 @@ -2286,6 +2286,7 @@ source "board/cortina/presidio-asic/Kconfig"
@@ -77,7 +77,7 @@ index 8fcd393abe..3be46b50a2 100644
  source "board/eets/pdu001/Kconfig"
  source "board/emulation/qemu-arm/Kconfig"
 diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
-index b7f016c95a..f283cb2099 100644
+index b7f016c95ac..f283cb20995 100644
 --- a/arch/arm/dts/Makefile
 +++ b/arch/arm/dts/Makefile
 @@ -1318,6 +1318,7 @@ dtb-$(CONFIG_STM32MP23X) += \
@@ -90,7 +90,7 @@ index b7f016c95a..f283cb2099 100644
  
 diff --git a/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-resmem.dtsi b/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-resmem.dtsi
 new file mode 100644
-index 0000000000..03a1626833
+index 00000000000..03a16268334
 --- /dev/null
 +++ b/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-resmem.dtsi
 @@ -0,0 +1,189 @@
@@ -285,7 +285,7 @@ index 0000000000..03a1626833
 +};
 diff --git a/arch/arm/dts/stm32mp257f-bytedevkit-u-boot.dtsi b/arch/arm/dts/stm32mp257f-bytedevkit-u-boot.dtsi
 new file mode 100644
-index 0000000000..605323b337
+index 00000000000..605323b337c
 --- /dev/null
 +++ b/arch/arm/dts/stm32mp257f-bytedevkit-u-boot.dtsi
 @@ -0,0 +1,47 @@
@@ -338,7 +338,7 @@ index 0000000000..605323b337
 +};
 diff --git a/arch/arm/dts/stm32mp257f-bytedevkit.dts b/arch/arm/dts/stm32mp257f-bytedevkit.dts
 new file mode 100644
-index 0000000000..94cd8a842f
+index 00000000000..94cd8a842f5
 --- /dev/null
 +++ b/arch/arm/dts/stm32mp257f-bytedevkit.dts
 @@ -0,0 +1,510 @@
@@ -853,7 +853,7 @@ index 0000000000..94cd8a842f
 +	dr_mode = "peripheral";
 +};
 diff --git a/arch/arm/mach-stm32mp/Kconfig.25x b/arch/arm/mach-stm32mp/Kconfig.25x
-index fd7e2cfc33..c32fd47941 100644
+index fd7e2cfc338..c32fd479417 100644
 --- a/arch/arm/mach-stm32mp/Kconfig.25x
 +++ b/arch/arm/mach-stm32mp/Kconfig.25x
 @@ -13,6 +13,13 @@ config TARGET_ST_STM32MP25X
@@ -872,7 +872,7 @@ index fd7e2cfc33..c32fd47941 100644
  config TEXT_BASE
 diff --git a/board/bytesatwork/bytedevkit_stm32mp2/Kconfig b/board/bytesatwork/bytedevkit_stm32mp2/Kconfig
 new file mode 100644
-index 0000000000..1a93809b6b
+index 00000000000..1a93809b6bb
 --- /dev/null
 +++ b/board/bytesatwork/bytedevkit_stm32mp2/Kconfig
 @@ -0,0 +1,14 @@
@@ -892,7 +892,7 @@ index 0000000000..1a93809b6b
 +endif
 diff --git a/board/bytesatwork/bytedevkit_stm32mp2/Makefile b/board/bytesatwork/bytedevkit_stm32mp2/Makefile
 new file mode 100644
-index 0000000000..4c116ae4b9
+index 00000000000..4c116ae4b96
 --- /dev/null
 +++ b/board/bytesatwork/bytedevkit_stm32mp2/Makefile
 @@ -0,0 +1,9 @@
@@ -907,7 +907,7 @@ index 0000000000..4c116ae4b9
 +obj-y += stm32mp2-bytedevkit.o
 diff --git a/board/bytesatwork/bytedevkit_stm32mp2/stm32mp2-bytedevkit.c b/board/bytesatwork/bytedevkit_stm32mp2/stm32mp2-bytedevkit.c
 new file mode 100644
-index 0000000000..98ccad6b54
+index 00000000000..98ccad6b540
 --- /dev/null
 +++ b/board/bytesatwork/bytedevkit_stm32mp2/stm32mp2-bytedevkit.c
 @@ -0,0 +1,749 @@
@@ -1662,7 +1662,7 @@ index 0000000000..98ccad6b54
 +
 diff --git a/configs/stm32mp257_bytedevkit_defconfig b/configs/stm32mp257_bytedevkit_defconfig
 new file mode 100644
-index 0000000000..219aeb9c9c
+index 00000000000..219aeb9c9ca
 --- /dev/null
 +++ b/configs/stm32mp257_bytedevkit_defconfig
 @@ -0,0 +1,193 @@
@@ -1861,7 +1861,7 @@ index 0000000000..219aeb9c9c
 +# CONFIG_TOOLS_MKFWUMDATA is not set
 diff --git a/include/configs/stm32mp2_bytedevkit.h b/include/configs/stm32mp2_bytedevkit.h
 new file mode 100644
-index 0000000000..ad989751dc
+index 00000000000..ad989751dc2
 --- /dev/null
 +++ b/include/configs/stm32mp2_bytedevkit.h
 @@ -0,0 +1,49 @@

@@ -1,4 +1,4 @@
-From 931fed0e411afb8bfe0da07a91ad235100cf713b Mon Sep 17 00:00:00 2001
+From 31655f5f8cfede528739e19d29fc3bb9d453ec2a Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Tue, 29 Jul 2025 09:14:28 +0200
 Subject: [PATCH] github: workflows: Add action to analyze patches
@@ -14,7 +14,7 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
  create mode 100644 .github/workflows/checkpatch.yml
 
 diff --git a/.checkpatch.conf b/.checkpatch.conf
-index c368d41472..e79d6f2034 100644
+index c368d414726..e79d6f20349 100644
 --- a/.checkpatch.conf
 +++ b/.checkpatch.conf
 @@ -30,7 +30,7 @@
@@ -28,7 +28,7 @@ index c368d41472..e79d6f2034 100644
  --u-boot
 diff --git a/.github/workflows/checkpatch.yml b/.github/workflows/checkpatch.yml
 new file mode 100644
-index 0000000000..dc75adb9e0
+index 00000000000..dc75adb9e0a
 --- /dev/null
 +++ b/.github/workflows/checkpatch.yml
 @@ -0,0 +1,120 @@
@@ -153,7 +153,7 @@ index 0000000000..dc75adb9e0
 +            ./scripts/checkpatch.pl --no-tree ${{ matrix.patch }}
 +          fi
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 592aab68dc..feea8e9366 100644
+index 592aab68dc5..feea8e93665 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
 @@ -248,6 +248,13 @@ F:	doc/README.bcm7xxx
