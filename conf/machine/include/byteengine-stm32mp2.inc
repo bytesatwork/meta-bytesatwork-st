@@ -16,9 +16,6 @@ include conf/machine/include/arm/armv8a/tune-cortexa35.inc
 PREFERRED_PROVIDER_virtual/bootloader = "u-boot-stm32mp"
 PREFERRED_PROVIDER_virtual/kernel = "linux-stm32mp"
 
-# install dtb
-MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "kernel-imagebootfs"
-
 # Set the variable used by meta-st-stm32mp with the yocto standard variable.
 # Without this, we cannot create images bigger than ~700MB.
 ROOTFS_PARTITION_SIZE = "${IMAGE_ROOTFS_SIZE}"
