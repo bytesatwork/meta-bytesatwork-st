@@ -13,6 +13,7 @@ SRC_URI:class-devupstream += " \
 	file://0004-plat-stm32mp2-conf-Add-flavor-for-bytedevkit.patch \
 	file://0005-dts-stm32-Adapt-display-clocks.patch \
 	file://0006-dts-stm32-stm32mp257f-bytedevkit-Enable-1.8V-on-VDDI.patch \
+	file://0007-arm-dts-stm32mp2-grant-secure-access-to-PMIC-interru.patch \
 "
 
 STM32MP_SOURCE_SELECTION = "github"

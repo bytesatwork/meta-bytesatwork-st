@@ -1,4 +1,4 @@
-From 3e2385588f5ed0e9b0fa04aaa8e31952d8b531ff Mon Sep 17 00:00:00 2001
+From 6738b2d3337c7475f1a5c3aa9daca58a451ca668 Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Thu, 2 Oct 2025 09:44:02 +0200
 Subject: [PATCH] dts: stm32: Adapt display clocks
@@ -11,7 +11,7 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi b/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi
-index 4a425f33fd..f775cd4d46 100644
+index 4a425f33f..f775cd4d4 100644
 --- a/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi
 +++ b/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi
 @@ -67,11 +67,11 @@

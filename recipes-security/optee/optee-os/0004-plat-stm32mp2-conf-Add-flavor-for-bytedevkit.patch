@@ -1,4 +1,4 @@
-From fc8b8aaea9ab80f7151d9920d89f33af55297260 Mon Sep 17 00:00:00 2001
+From 56ecc32acc8675e114cc6a16a881985cb987731f Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Mon, 1 Sep 2025 15:40:40 +0200
 Subject: [PATCH] plat-stm32mp2: conf: Add flavor for bytedevkit
@@ -11,7 +11,7 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
  1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/core/arch/arm/plat-stm32mp2/conf.mk b/core/arch/arm/plat-stm32mp2/conf.mk
-index 98e76f02c8..27feabdc0c 100644
+index 5801e2f78..f7a21bf01 100644
 --- a/core/arch/arm/plat-stm32mp2/conf.mk
 +++ b/core/arch/arm/plat-stm32mp2/conf.mk
 @@ -1,9 +1,11 @@
@@ -27,7 +27,7 @@ index 98e76f02c8..27feabdc0c 100644
  		  $(flavor_dts_file-257F_EV1)
  
  flavorlist-MP23 = $(flavor_dts_file-235F_DK)
-@@ -220,7 +222,7 @@ CFG_WERROR ?= y
+@@ -223,7 +225,7 @@ CFG_WERROR ?= y
  CFG_CORE_ASLR ?= n
  
  # UART instance used for early console (0 disables early console)

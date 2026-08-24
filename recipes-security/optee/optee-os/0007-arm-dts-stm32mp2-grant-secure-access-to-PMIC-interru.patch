@@ -1,0 +1,26 @@
+From ed842fea1535fda87505e843cb20d962c0c123d2 Mon Sep 17 00:00:00 2001
+From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
+Date: Mon, 24 Aug 2026 13:56:45 +0200
+Subject: [PATCH] arm: dts: stm32mp2: grant secure access to PMIC interrupt
+
+Configure EXTI1 resource 52 as secure for the STPMIC2 interrupt,
+allowing OP-TEE to probe the PMIC successfully.
+
+Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
+---
+ core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rif.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rif.dtsi b/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rif.dtsi
+index 11dabe52a..191745cc4 100644
+--- a/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rif.dtsi
++++ b/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rif.dtsi
+@@ -224,7 +224,7 @@
+ 		RIFPROT(RIF_EXTI1_RESOURCE(48), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
+ 		RIFPROT(RIF_EXTI1_RESOURCE(49), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
+ 		RIFPROT(RIF_EXTI1_RESOURCE(50), RIF_UNUSED, RIF_UNLOCK, RIF_SEC, RIF_PRIV, RIF_CID1, RIF_SEM_DIS, RIF_CFEN)
+-		RIFPROT(RIF_EXTI1_RESOURCE(52), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
++		RIFPROT(RIF_EXTI1_RESOURCE(52), RIF_UNUSED, RIF_UNLOCK, RIF_SEC, RIF_PRIV, RIF_CID1, RIF_SEM_DIS, RIF_CFEN)
+ 		RIFPROT(RIF_EXTI1_RESOURCE(53), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
+ 		RIFPROT(RIF_EXTI1_RESOURCE(54), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)
+ 		RIFPROT(RIF_EXTI1_RESOURCE(55), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_NPRIV, RIF_UNUSED, RIF_SEM_DIS, RIF_CFDIS)

@@ -1,4 +1,4 @@
-From 7db7e0f38d9fc6998ef4845da780d79f6293b2b2 Mon Sep 17 00:00:00 2001
+From 521a4c9ac9d0c99826926aaa4329ba6f56b32a5d Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Stephan=20D=C3=BCnner?= <stephan.duenner@bytesatwork.ch>
 Date: Thu, 20 Nov 2025 11:48:06 +0100
 Subject: [PATCH] dts: stm32: stm32mp257f-bytedevkit: Enable 1.8V on VDDIO
@@ -14,7 +14,7 @@ Signed-off-by: Stephan Dünner <stephan.duenner@bytesatwork.ch>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/core/arch/arm/dts/stm32mp257f-bytedevkit.dts b/core/arch/arm/dts/stm32mp257f-bytedevkit.dts
-index c05ee69300..1a796ced42 100644
+index c05ee6930..1a796ced4 100644
 --- a/core/arch/arm/dts/stm32mp257f-bytedevkit.dts
 +++ b/core/arch/arm/dts/stm32mp257f-bytedevkit.dts
 @@ -44,7 +44,7 @@

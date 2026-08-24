@@ -1,4 +1,4 @@
-From afc483d201a5d08ce3c691ee775571a45638ae83 Mon Sep 17 00:00:00 2001
+From 8309ae7a402619fddf31ddfc9eba7187dccdcc12 Mon Sep 17 00:00:00 2001
 From: Guy Morand <guy.morand@bytesatwork.ch>
 Date: Wed, 3 Jul 2024 14:44:14 +0200
 Subject: [PATCH] arm: dts: Introduce bytedevkit
@@ -18,7 +18,7 @@ Signed-off-by: Guy Morand <guy.morand@bytesatwork.ch>
 
 diff --git a/core/arch/arm/dts/stm32mp157c-bytedevkit-v1-1.dts b/core/arch/arm/dts/stm32mp157c-bytedevkit-v1-1.dts
 new file mode 100644
-index 0000000000..617b6294e1
+index 000000000..617b6294e
 --- /dev/null
 +++ b/core/arch/arm/dts/stm32mp157c-bytedevkit-v1-1.dts
 @@ -0,0 +1,12 @@
@@ -36,7 +36,7 @@ index 0000000000..617b6294e1
 +};
 diff --git a/core/arch/arm/dts/stm32mp157c-bytedevkit-v1-3.dts b/core/arch/arm/dts/stm32mp157c-bytedevkit-v1-3.dts
 new file mode 100644
-index 0000000000..76c403b916
+index 000000000..76c403b91
 --- /dev/null
 +++ b/core/arch/arm/dts/stm32mp157c-bytedevkit-v1-3.dts
 @@ -0,0 +1,12 @@
@@ -54,7 +54,7 @@ index 0000000000..76c403b916
 +};
 diff --git a/core/arch/arm/dts/stm32mp157c-bytedevkit.dtsi b/core/arch/arm/dts/stm32mp157c-bytedevkit.dtsi
 new file mode 100644
-index 0000000000..038672254f
+index 000000000..038672254
 --- /dev/null
 +++ b/core/arch/arm/dts/stm32mp157c-bytedevkit.dtsi
 @@ -0,0 +1,78 @@

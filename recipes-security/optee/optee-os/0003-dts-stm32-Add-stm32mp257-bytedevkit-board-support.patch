@@ -1,4 +1,4 @@
-From fb0937f42c66a995728e7c8d7fb37a588559129a Mon Sep 17 00:00:00 2001
+From fb9eb7c1e9f482b86a57215188d4c800604d9bb5 Mon Sep 17 00:00:00 2001
 From: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 Date: Thu, 13 Mar 2025 15:27:42 +0100
 Subject: [PATCH] dts: stm32: Add stm32mp257-bytedevkit board support
@@ -23,7 +23,7 @@ Signed-off-by: Simone Schwizer <simone.schwizer@bytesatwork.ch>
 
 diff --git a/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi b/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi
 new file mode 100644
-index 0000000000..4a425f33fd
+index 000000000..4a425f33f
 --- /dev/null
 +++ b/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rcc.dtsi
 @@ -0,0 +1,205 @@
@@ -234,7 +234,7 @@ index 0000000000..4a425f33fd
 +
 diff --git a/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-resmem.dtsi b/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-resmem.dtsi
 new file mode 100644
-index 0000000000..f2b0a6624c
+index 000000000..f2b0a6624
 --- /dev/null
 +++ b/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-resmem.dtsi
 @@ -0,0 +1,146 @@
@@ -386,7 +386,7 @@ index 0000000000..f2b0a6624c
 +};
 diff --git a/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rif.dtsi b/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rif.dtsi
 new file mode 100644
-index 0000000000..11dabe52a4
+index 000000000..11dabe52a
 --- /dev/null
 +++ b/core/arch/arm/dts/stm32mp257f-bytedevkit-ca35tdcid-rif.dtsi
 @@ -0,0 +1,1003 @@
@@ -1395,7 +1395,7 @@ index 0000000000..11dabe52a4
 +
 diff --git a/core/arch/arm/dts/stm32mp257f-bytedevkit.dts b/core/arch/arm/dts/stm32mp257f-bytedevkit.dts
 new file mode 100644
-index 0000000000..c05ee69300
+index 000000000..c05ee6930
 --- /dev/null
 +++ b/core/arch/arm/dts/stm32mp257f-bytedevkit.dts
 @@ -0,0 +1,514 @@
