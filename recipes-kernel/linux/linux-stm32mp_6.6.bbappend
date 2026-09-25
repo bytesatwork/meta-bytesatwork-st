@@ -4,7 +4,7 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/linux-stm32mp-6.6:"
 
 # Increase PR if something changes
-PR="7"
+PR="8"
 
 SRC_URI:class-devupstream += " \
 	file://0001-github-workflows-Add-action-to-analyze-patches.patch \
@@ -35,6 +35,15 @@ SRC_URI:class-devupstream += " \
 	file://0026-drm-stm-lvds-Restore-25-MHz-default-pixel-clock.patch \
 	file://0027-arm64-dts-st-stm32mp257f-bytedevkit-v2-Add-device-tr.patch \
 	file://0028-arm64-dts-st-stm32mp2-Rename-BDK-device-trees-by-rev.patch \
+	file://0029-crypto-scatterwalk-Backport-memcpy_sglist.patch \
+	file://0030-crypto-algif_aead-use-memcpy_sglist-instead-of-null-.patch \
+	file://0031-crypto-algif_aead-Revert-to-operating-out-of-place.patch \
+	file://0032-crypto-algif_aead-snapshot-IV-for-async-AEAD-request.patch \
+	file://0033-crypto-authenc-use-memcpy_sglist-instead-of-null-skc.patch \
+	file://0034-crypto-authencesn-Do-not-place-hiseq-at-end-of-dst-f.patch \
+	file://0035-crypto-authencesn-Fix-src-offset-when-decrypting-in-.patch \
+	file://0036-xfrm-esp-avoid-in-place-decrypt-on-shared-skb-frags.patch \
+	file://0037-arm64-bytedevkit_stm32mp2_defconfig-remove-CONFIG_DR.patch \
 "
 
 KERNEL_CONFIG_FRAGMENTS:append:bytedevkit-stm32mp1 = "${S}/arch/arm/configs/fragment-901-bytedevkit.config"
