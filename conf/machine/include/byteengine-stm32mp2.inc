@@ -31,3 +31,5 @@ IMAGE_BOOT_FILES = "${KERNEL_IMAGETYPE} ${KERNEL_DEVICETREE}"
 
 SPDX_WORKAROUND ??= "create-spdx"
 INHERIT:remove = "${SPDX_WORKAROUND}"
+
+TOOLCHAIN_TARGET_TASK:append = " optee-os-stm32mp-dev"
