@@ -1,0 +1,40 @@
+From 06da88a17396d7e7e21442109aa726d29dd2aae9 Mon Sep 17 00:00:00 2001
+From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
+Date: Wed, 9 Sep 2026 11:31:51 +0200
+Subject: [PATCH] arm64: dts: st: stm32mp257f-bytedevkit-v2: Configure USB-C as
+ USB 2.0 host
+
+Configure the USB-C port on the STM32MP257F byteDEVKIT as a
+USB 2.0 High-Speed host.
+
+Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
+---
+ arch/arm64/boot/dts/st/stm32mp257f-bytedevkit-v2.dts | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit-v2.dts b/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit-v2.dts
+index 803b420a22ae..17a84e3ddbd8 100644
+--- a/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit-v2.dts
++++ b/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit-v2.dts
+@@ -91,7 +91,6 @@ panel_lvds_backlight: panel-lvds-backlight {
+ 		default-brightness-level = <1>;
+ 		status = "okay";
+ 	};
+-
+ };
+ 
+ &pinctrl {
+@@ -499,9 +498,11 @@ &usb3dr {
+ 	status = "okay";
+ 
+ 	dwc3: usb@48300000 {
+-		phys            = <&usb2_phy2>, <&combophy PHY_TYPE_USB3>;
+-		phy-names       = "usb2-phy", "usb3-phy";
++		phys = <&usb2_phy2>;
++		phy-names = "usb2-phy";
+ 		usb-role-switch;
++		maximum-speed = "high-speed";
++		role-switch-default-mode = "host";
+ 	};
+ };
+ 

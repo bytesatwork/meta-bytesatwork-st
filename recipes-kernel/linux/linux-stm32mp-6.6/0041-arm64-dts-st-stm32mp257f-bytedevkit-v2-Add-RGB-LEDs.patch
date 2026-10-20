@@ -1,0 +1,51 @@
+From a875f23afe7fce54a87e1a7d92adeec04a25a230 Mon Sep 17 00:00:00 2001
+From: Alexander Forsch <alexander.forsch@bytesatwork.ch>
+Date: Wed, 9 Sep 2026 15:07:15 +0200
+Subject: [PATCH] arm64: dts: st: stm32mp257f-bytedevkit-v2: Add RGB LEDs
+
+Add the GPIO expander and GPIO LED definitions for the RGB status
+LEDs on the STM32MP257F byteDEVKIT.
+
+Signed-off-by: Alexander Forsch <alexander.forsch@bytesatwork.ch>
+---
+ .../boot/dts/st/stm32mp257f-bytedevkit-v2.dts | 20 +++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit-v2.dts b/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit-v2.dts
+index 274437434ecf..376ba2930839 100644
+--- a/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit-v2.dts
++++ b/arch/arm64/boot/dts/st/stm32mp257f-bytedevkit-v2.dts
+@@ -91,6 +91,19 @@ panel_lvds_backlight: panel-lvds-backlight {
+ 		default-brightness-level = <1>;
+ 		status = "okay";
+ 	};
++
++	leds {
++		compatible = "gpio-leds";
++		red {
++			gpios = <&gpio_expander 2 GPIO_ACTIVE_LOW>;
++		};
++		green {
++			gpios = <&gpio_expander 3 GPIO_ACTIVE_LOW>;
++		};
++		blue {
++			gpios = <&gpio_expander 4 GPIO_ACTIVE_LOW>;
++		};
++	};
+ };
+ 
+ &pinctrl {
+@@ -346,6 +359,13 @@ gt911@5d {
+ 		touchscreen-inverted-x;
+ 		touchscreen-inverted-y;
+ 	};
++
++	gpio_expander: gpio@71 {
++		compatible = "ti,tca9538";
++		reg = <0x71>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
+ };
+ 
+ &i2c2 {

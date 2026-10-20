@@ -4,7 +4,7 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/linux-stm32mp-6.6:"
 
 # Increase PR if something changes
-PR="8"
+PR="9"
 
 SRC_URI:class-devupstream += " \
 	file://0001-github-workflows-Add-action-to-analyze-patches.patch \
@@ -44,6 +44,10 @@ SRC_URI:class-devupstream += " \
 	file://0035-crypto-authencesn-Fix-src-offset-when-decrypting-in-.patch \
 	file://0036-xfrm-esp-avoid-in-place-decrypt-on-shared-skb-frags.patch \
 	file://0037-arm64-bytedevkit_stm32mp2_defconfig-remove-CONFIG_DR.patch \
+	file://0038-arm64-dts-st-stm32mp257f-bytedevkit-v2-Configure-USB.patch \
+	file://0039-arm64-dts-st-stm32mp257f-bytedevkit-v2-dts-Add-PCIe-.patch \
+	file://0040-arm64-bytedevkit_stm32mp2_defconfig-Enable-PCIe-and-.patch \
+	file://0041-arm64-dts-st-stm32mp257f-bytedevkit-v2-Add-RGB-LEDs.patch \
 "
 
 KERNEL_CONFIG_FRAGMENTS:append:bytedevkit-stm32mp1 = "${S}/arch/arm/configs/fragment-901-bytedevkit.config"
